@@ -1,1 +1,1 @@
-github "JoeyBodnar/WhiteFlowerFactory" "chore/add-concurrent-queue"
+github "JoeyBodnar/WhiteFlowerFactory" == 0.4.0

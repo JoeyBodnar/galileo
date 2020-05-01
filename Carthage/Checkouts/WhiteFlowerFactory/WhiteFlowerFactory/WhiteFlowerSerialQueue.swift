@@ -10,6 +10,7 @@ import Foundation
 
 /// Used for creating a queue of network requests to be ran serially
 public final class WhiteFlowerSerialQueue {
+    
     public var operationQueue: OperationQueue
     
     var responses = [APIResponse]()

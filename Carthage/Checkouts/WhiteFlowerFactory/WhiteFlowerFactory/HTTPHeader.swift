@@ -9,6 +9,7 @@
 import Foundation
 
 public final class HTTPHeader {
+    
     let field: String
     let value: String
     

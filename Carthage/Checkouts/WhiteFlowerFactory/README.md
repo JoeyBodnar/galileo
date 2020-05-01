@@ -1,32 +1,43 @@
-WhiteFlowerFactory is a simple URLSession wrapper I use in private projects. It was built by me and for me, so while I will take bug issues on this library, I will not accept feature requests. 
-
-### Why WhiteFlowerFactory?
-"But, Alamofire already exists and URLSession is easy to use--so what is the point of this library?"
-
-Several reasons:
-1) This is a much smaller dependency, and it's my own code. 
-2) It is limited in scope. Alamofire is a huge library packed full of features that not everyone needs. WhiteFlowerFactory supports basic HTTP requests and makes use of the Result type in Swift 5, as well as adopting Codable support. All in very little code (it is about 550 lines of code in total, and a lot of those are convenience functions)
-3) WhiteFlowerFactory supports serial APIRequests out of the box with a very simple syntax
+WhiteFlowerFactory is a simple URLSession wrapper with support for both concurrent and serial request queues.
 
 ### Installation with Cocoapods
 
     pod 'WhiteFlowerFactory'
-    
-Don't forget to add 'use_frameworks!' to your Podfile.
 
 ### Usage
+Right now all callbacks are completed on the main queue, though this is subject to change in the near future.
 
 #### Get requests
 To make a simple GET request:
 
-    WhiteFlower.shared.get(urlString: "https://jsonplaceholder.typicode.com/todos/") { (response) in
-        response.result.onSuccess({ data in
-            // data iis of type Data?
-        }).onError({ error in
-            // error is of type NetworkError
-        })
+    WhiteFlower.shared.get(urlString: "") { response in
+        switch response.result {
+        case .success(let data): // do something with data
+        case .failure(let error): // do something with network error
+        }
+    }
+    
+#### Serialize response using Codable
+
+If you have a type and want to serialize the response using Codable:
+
+    WhiteFlower.shared.get(urlString: "") { response in
+        switch response.serializeTo(type: MyClass.self) {
+            case .success(let myClassInstance): // do something with myClassInstance
+            case .failure(let error): // do something with network error  
+        }
     }
    
+#### Test if OK
+sometimes you just want to make sure an object was created, and expect a response with an empty body. For that, use `isOK()`:
+
+    WhiteFlower.shared.post(urlString: "https://www.facebook.com/postSomething", params: ["key": "value"], headers: nil, completion: { (response) in
+        switch response.isOk() {
+        case .success: // success
+        case .failure(let error)
+        }
+    }
+
 #### POST requests
 A sample POST request:
 
@@ -89,20 +100,16 @@ To make requests serially (one after another, waiting until the previous request
           // this is called at the very end and gives an array of APIResponse objects
       }
       
-### Codable support
-Suppose you have a model, Post, that conforms to Codable. If you want to get an array of posts from your api, just do the following:
+### Concurrent network operations
+To make multiple requests concurrently and then receive a callback only once all requests have completed, use the `WhiteFlowerConcurrentQueue` class:
 
-    WhiteFlower.shared.get(urlString: "www.myapi.com/posts") { response in
-        response.result.parse(type: [Post].self) { result in
-            switch result {
-            case .success(let posts): // posts is an array of Post objects
-                print("posts are \(posts)")
-            case .failure(let error):
-                print("error is \(error)")
-            }
-        }
+    let requests = [WhiteFlowerRequest(method: .get, urlString: "https://facebook.com"), WhiteFlowerRequest(method: .get, urlString: "https://google.com"), WhiteFlowerRequest(method: .get, urlString: "https://reddit.com/r/iosprogramming")]
+
+    let queue = WhiteFlowerConcurrentQueue(requests: [], queue: DispatchQueue.main)
+    queue.execute { responses in
+        // `responses` is an array of APIResponse objects
     }
-
-
+    
+The `responses` array will return the responses in the same order that they were originally executed. So for the example above, the response object for the `https://facebook.com` request would be first, google would be second, and reddit.com/r/iosprogramming would be last
 
     

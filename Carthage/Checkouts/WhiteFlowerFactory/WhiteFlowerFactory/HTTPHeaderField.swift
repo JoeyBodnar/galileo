@@ -9,6 +9,7 @@
 import Foundation
 
 public struct HTTPHeaderField {
+    
     public static let authorization: String = "Authorization"
     public static let contentType: String = "Content-Type"
     public static let contentLength: String = "Content-Length"

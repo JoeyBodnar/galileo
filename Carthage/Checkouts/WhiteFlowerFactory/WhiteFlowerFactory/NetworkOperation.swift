@@ -10,13 +10,14 @@ import Foundation
 import os
 
 internal final class NetworkOperation : AsynchronousOperation {
-    var task: URLSessionTask?
+    
+    internal var task: URLSessionTask?
     
     init(request: WhiteFlowerRequest, completion: @escaping(DataTaskCompletion)) {
         super.init()
         
         guard let urlRequest = request.urlRequest else {
-            completion(APIResponse(dataTaskResponse: nil, result: .failure(.invalidURL(400)), originalRequest: nil))
+            completion(APIResponse(dataTaskResponse: nil, result: .failure(NetworkError.invalidURL(400)), originalRequest: nil))
             cancel()
             return
         }

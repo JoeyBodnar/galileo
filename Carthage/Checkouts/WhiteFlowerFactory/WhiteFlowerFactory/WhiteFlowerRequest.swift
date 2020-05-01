@@ -12,6 +12,7 @@ import os
 /// Just a simple abstraction on top of URLRequest.
 /// To make a request with WhiteFlower, you must first create a white flower request. All network requests are routed through this class. 
 public final class WhiteFlowerRequest {
+    
     public var urlString: String
     public var method: HTTPMethod
     

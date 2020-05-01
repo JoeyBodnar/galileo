@@ -8,10 +8,11 @@
 
 import Foundation
 
-public typealias APIResult = Result<Data?, NetworkError>
+public typealias APIResult = Result<Data?, Error>
 
 /// The response to all API calls
 public final class APIResponse {
+    
     public var originalRequest: URLRequest? // Requests aborted by invalidURL will not have an originalRequest
     public var dataTaskResponse: DataTaskResponse?
     public var result: APIResult
@@ -23,32 +24,37 @@ public final class APIResponse {
     }
     
     convenience init(data: Data?, response: URLResponse?, error: Error?, originalRequest: URLRequest?) {
-        let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 500
         
         let originalResponse = DataTaskResponse(data: data, response: response)
+        if let unwrappedError = error {
+            self.init(dataTaskResponse: originalResponse, result: .failure(unwrappedError), originalRequest: originalRequest)
+            return
+        }
+        
+        let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 500
         
         switch statusCode {
         case 200..<400:
             self.init(dataTaskResponse: originalResponse, result: .success(data ?? Data()), originalRequest: originalRequest)
         case 400:
-            let error: APIResult = .failure(.badRequest(statusCode))
+            let error: APIResult = .failure(NetworkError.badRequest(statusCode))
             self.init(dataTaskResponse: originalResponse, result: error, originalRequest: originalRequest)
         case 401:
-            let error: APIResult = .failure(.unauthorized(statusCode))
+            let error: APIResult = .failure(NetworkError.unauthorized(statusCode))
             self.init(dataTaskResponse: originalResponse, result: error, originalRequest: originalRequest)
         case 403:
-            let error: APIResult = .failure(.forbidden(statusCode))
+            let error: APIResult = .failure(NetworkError.forbidden(statusCode))
             self.init(dataTaskResponse: originalResponse, result: error, originalRequest: originalRequest)
         case 404:
-            let error: APIResult = .failure(.notFound(statusCode))
+            let error: APIResult = .failure(NetworkError.notFound(statusCode))
             self.init(dataTaskResponse: originalResponse, result: error, originalRequest: originalRequest)
         case 405..<500:
-            let error: APIResult = .failure(.requestFailed(statusCode))
+            let error: APIResult = .failure(NetworkError.requestFailed(statusCode))
             self.init(dataTaskResponse: originalResponse, result: error, originalRequest: originalRequest)
-        case 500..<600: let error: APIResult = .failure(.serverError(statusCode))
+        case 500..<600: let error: APIResult = .failure(NetworkError.serverError(statusCode))
             self.init(dataTaskResponse: originalResponse, result: error, originalRequest: originalRequest)
         default:
-            self.init(dataTaskResponse: originalResponse, result: .failure(.badRequest(statusCode)), originalRequest: originalRequest)
+            self.init(dataTaskResponse: originalResponse, result: .failure(NetworkError.badRequest(statusCode)), originalRequest: originalRequest)
         }
     }
     
