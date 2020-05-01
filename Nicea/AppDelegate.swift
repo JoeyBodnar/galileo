@@ -12,15 +12,6 @@ import CocoaMarkdown
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        //print("window is \(window!.frame)")
-        /// AppKit setting window size is very bizarre. Cannot set from the storyboard. Does not work unless delayed for a split second.
-        /*DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.window?.setFrame(LayoutConstants.defaultMainWindowRect, display: true)
-            self.window?.setFrameOriginToPositionWindowInCenterOfScreen()
-        }*/
-    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
