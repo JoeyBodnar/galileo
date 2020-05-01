@@ -1,0 +1,11 @@
+framework module WhiteFlowerFactory {
+  umbrella header "WhiteFlowerFactory.h"
+
+  export *
+  module * { export * }
+}
+
+module WhiteFlowerFactory.Swift {
+    header "WhiteFlowerFactory-Swift.h"
+    requires objc
+}

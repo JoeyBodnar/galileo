@@ -31,8 +31,8 @@ class RedditClient {
 
 extension RedditClient: APIClientDelegate {
     
-    func client(_ APIClient: APIClient, didRefreshOAuthToken ressponse: OAuthTokenResponse) {
-        setOAuthTokenResponse(response: ressponse)
+    func client(_ APIClient: APIClient, didRefreshOAuthToken response: OAuthTokenResponse) {
+        setOAuthTokenResponse(response: response)
     }
 }
 
