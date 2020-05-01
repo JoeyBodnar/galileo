@@ -1,0 +1,23 @@
+{
+  "Mac" : [
+    {
+      "name" : "WhiteFlowerFactory",
+      "hash" : "86d057f82e1f131b877916f0766d447a7eb7ddac9d0c389f2c466c6af870dfd3",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+    }
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "3a3ef26a7e1018556bf4ee80841d27253ad9045e",
+  "iOS" : [
+    {
+      "name" : "WhiteFlowerFactory",
+      "hash" : "9bc4aba8e620bf48eb4527922fd5b0088d3e014c0d3b01f292d16fccbdeb73dd",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView identifier="SidebarSubredditCell" id="cag-Jt-tdJ" customClass="SidebarSubredditCell" customModule="Nicea" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="306" height="42"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sBR-4X-v6L">
+                    <rect key="frame" x="0.0" y="11" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="dU8-Vd-0w4"/>
+                        <constraint firstAttribute="height" constant="20" id="dUj-rM-5PW"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="gwL-tG-ihj"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eud-Ot-N76">
+                    <rect key="frame" x="26" y="13" width="37" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="yvZ-zP-Pap">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="eud-Ot-N76" firstAttribute="leading" secondItem="sBR-4X-v6L" secondAttribute="trailing" constant="8" id="690-Q6-XGJ"/>
+                <constraint firstItem="eud-Ot-N76" firstAttribute="centerY" secondItem="sBR-4X-v6L" secondAttribute="centerY" id="H8Z-vo-Ko4"/>
+                <constraint firstItem="sBR-4X-v6L" firstAttribute="leading" secondItem="cag-Jt-tdJ" secondAttribute="leading" id="s5p-b0-yAn"/>
+                <constraint firstItem="sBR-4X-v6L" firstAttribute="centerY" secondItem="cag-Jt-tdJ" secondAttribute="centerY" id="vAD-Tl-Xr5"/>
+            </constraints>
+            <connections>
+                <outlet property="iconImageView" destination="sBR-4X-v6L" id="dS7-h5-rYo"/>
+                <outlet property="label" destination="eud-Ot-N76" id="eoX-HY-j4B"/>
+            </connections>
+            <point key="canvasLocation" x="168" y="-45"/>
+        </tableCellView>
+    </objects>
+</document>

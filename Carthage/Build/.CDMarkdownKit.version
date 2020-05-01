@@ -1,0 +1,10 @@
+{
+  "commitish" : "1.2.1",
+  "Mac" : [
+    {
+      "name" : "CDMarkdownKit",
+      "hash" : "0f72845a08f4728fafc87f50b8693cf2e25a99d72804d1fab28c3979de4dc3eb",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+    }
+  ]
+}

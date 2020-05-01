@@ -1,0 +1,1727 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9F00960F243868CD0084C68D /* LinkTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00960E243868CD0084C68D /* LinkTitleLabel.swift */; };
+		9F009611243876510084C68D /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F009610243876510084C68D /* CommentResponse.swift */; };
+		9F05128F242782B600ED64FE /* Subreddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F05128E242782B600ED64FE /* Subreddit.swift */; };
+		9F0512D7242A40DB00ED64FE /* SubredditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512D6242A40DB00ED64FE /* SubredditResponse.swift */; };
+		9F0512DC242A52E300ED64FE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512DB242A52E300ED64FE /* DetailViewController.swift */; };
+		9F0512DF242A535B00ED64FE /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512DE242A535B00ED64FE /* SplitViewController.swift */; };
+		9F0512E2242A5ABC00ED64FE /* LayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512E1242A5ABC00ED64FE /* LayoutExtensions.swift */; };
+		9F0512E4242A701200ED64FE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512E3242A701200ED64FE /* HeaderView.swift */; };
+		9F0512E7242BAD1A00ED64FE /* WebViewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512E6242BAD1A00ED64FE /* WebViewWindowController.swift */; };
+		9F0512E9242BAD3500ED64FE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512E8242BAD3500ED64FE /* WebViewController.swift */; };
+		9F0512EB242CED3F00ED64FE /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512EA242CED3F00ED64FE /* AuthenticationServices.swift */; };
+		9F0512EE242D0BDE00ED64FE /* OAuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512ED242D0BDE00ED64FE /* OAuthTokenResponse.swift */; };
+		9F0512F0242D12B400ED64FE /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512EF242D12B400ED64FE /* UserRouter.swift */; };
+		9F0512F2242D13FF00ED64FE /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512F1242D13FF00ED64FE /* UserServices.swift */; };
+		9F0512F4242D168400ED64FE /* MySubredditListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512F3242D168400ED64FE /* MySubredditListResponse.swift */; };
+		9F0512F7242D1BF500ED64FE /* WebViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512F6242D1BF500ED64FE /* WebViewViewModel.swift */; };
+		9F0512F9242D260900ED64FE /* IdentifierConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0512F8242D260900ED64FE /* IdentifierConstants.swift */; };
+		9F051301242E37A300ED64FE /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F051300242E37A300ED64FE /* DefaultsManager.swift */; };
+		9F1570A32434B80300584C51 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1570A22434B80300584C51 /* Int.swift */; };
+		9F1570A82434D9CC00584C51 /* SubredditHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1570A72434D9CC00584C51 /* SubredditHeaderCell.xib */; };
+		9F1570AA2434D9F600584C51 /* SubredditHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1570A92434D9F600584C51 /* SubredditHeaderCell.swift */; };
+		9F1B3E7D2444D33B003BBB95 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E7C2444D33B003BBB95 /* URL.swift */; };
+		9F1B3E8424484B35003BBB95 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8324484B35003BBB95 /* String.swift */; };
+		9F1B3E8724486320003BBB95 /* ImageViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8624486320003BBB95 /* ImageViewButton.swift */; };
+		9F1B3E8924489B99003BBB95 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8824489B99003BBB95 /* MainWindowController.swift */; };
+		9F1B3E8B24489E4E003BBB95 /* WindowResizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8A24489E4E003BBB95 /* WindowResizeManager.swift */; };
+		9F1B3E8E2448AA2D003BBB95 /* MailWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8D2448AA2D003BBB95 /* MailWindowController.swift */; };
+		9F1B3E902448AB3F003BBB95 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8F2448AB3F003BBB95 /* MailViewController.swift */; };
+		9F1B3E932448AD10003BBB95 /* MailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E922448AD10003BBB95 /* MailViewModel.swift */; };
+		9F20BE4F244F65D200BC8415 /* SidebarDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F20BE4E244F65D200BC8415 /* SidebarDefaultItem.swift */; };
+		9F2A8A0B2430F70C00AF3CA4 /* VoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A8A0A2430F70C00AF3CA4 /* VoteRouter.swift */; };
+		9F2A8A0D2430FA4F00AF3CA4 /* AuthenticationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A8A0C2430FA4F00AF3CA4 /* AuthenticationRouter.swift */; };
+		9F2D1D092449ACF200B6C905 /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D082449ACF200B6C905 /* LayoutConstants.swift */; };
+		9F2D1D0B2449B62700B6C905 /* Comment+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D0A2449B62700B6C905 /* Comment+Extension.swift */; };
+		9F2D1D0D2449D3F900B6C905 /* CommentTextBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D0C2449D3F900B6C905 /* CommentTextBoxCell.swift */; };
+		9F2D1D0F2449D8A600B6C905 /* ControlAccentColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D0E2449D8A600B6C905 /* ControlAccentColorButton.swift */; };
+		9F2D1D112449E10400B6C905 /* GreyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D102449E10400B6C905 /* GreyButton.swift */; };
+		9F2D1D132449E6C500B6C905 /* CommentReplyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D122449E6C500B6C905 /* CommentReplyCache.swift */; };
+		9F2D1D152449F26700B6C905 /* NSTableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D142449F26600B6C905 /* NSTableView+Extension.swift */; };
+		9F2D1D17244A209400B6C905 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D1D16244A209400B6C905 /* Array+Extension.swift */; };
+		9F307C912459B6C2009B6372 /* VotableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F307C902459B6C2009B6372 /* VotableView.swift */; };
+		9F321B0F244DDF6400B39813 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F321B0E244DDF6400B39813 /* NSNotification+Extension.swift */; };
+		9F3A795D242FA63A00AA8834 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A795C242FA63A00AA8834 /* ImageCacheManager.swift */; };
+		9F3A795F242FB57900AA8834 /* SubredditHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A795E242FB57900AA8834 /* SubredditHeaderView.swift */; };
+		9F3EBBB2244DE97E00E85D5F /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3EBBB1244DE97E00E85D5F /* SessionManager.swift */; };
+		9F47C1A72457044600970CFB /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47C1A62457044600970CFB /* Strings.swift */; };
+		9F50BD42244CB9ED00A54B6E /* NSWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F50BD41244CB9ED00A54B6E /* NSWindow+Extension.swift */; };
+		9F50BD44244CBA2400A54B6E /* NButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F50BD43244CBA2400A54B6E /* NButton+Extension.swift */; };
+		9F5AC5FF24273D4E00D23FEA /* WhiteFlowerFactory in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5AC5FE24273D4E00D23FEA /* WhiteFlowerFactory */; };
+		9F5AC6032427437600D23FEA /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC6022427437600D23FEA /* PostRouter.swift */; };
+		9F5AC604242747AF00D23FEA /* WhiteFlowerFactory in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5AC5FE24273D4E00D23FEA /* WhiteFlowerFactory */; };
+		9F5AC60A24274A3900D23FEA /* Paginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC60924274A3900D23FEA /* Paginator.swift */; };
+		9F5AC60C24274A7100D23FEA /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC60B24274A7100D23FEA /* Listing.swift */; };
+		9F5AC60E24274A8A00D23FEA /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC60D24274A8A00D23FEA /* Thing.swift */; };
+		9F5AC61024274AD000D23FEA /* Votable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC60F24274AD000D23FEA /* Votable.swift */; };
+		9F5AC61224274B2100D23FEA /* VoteDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC61124274B2100D23FEA /* VoteDirection.swift */; };
+		9F5AC61624274C2600D23FEA /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC61524274C2600D23FEA /* Link.swift */; };
+		9F5AC61A2427503C00D23FEA /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC6192427503C00D23FEA /* Media.swift */; };
+		9F5AC61C2427506800D23FEA /* DistinguishType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC61B2427506800D23FEA /* DistinguishType.swift */; };
+		9F5AC61E2427509C00D23FEA /* Oembed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC61D2427509C00D23FEA /* Oembed.swift */; };
+		9F5AC62224277C7C00D23FEA /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC62124277C7C00D23FEA /* Sort.swift */; };
+		9F5AC6242427804F00D23FEA /* PostServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5AC6232427804F00D23FEA /* PostServices.swift */; };
+		9F6AC3722438EEDC00BB31FF /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AC3712438EEDC00BB31FF /* CommentCell.swift */; };
+		9F6AC3742438EEE900BB31FF /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F6AC3732438EEE900BB31FF /* CommentCell.xib */; };
+		9F6AC3762439B27400BB31FF /* MoreCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AC3752439B27400BB31FF /* MoreCommentResponse.swift */; };
+		9F6AC378243B44DE00BB31FF /* CommentOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AC377243B44DE00BB31FF /* CommentOutlineView.swift */; };
+		9F77B9DB24535F23006490A1 /* WebViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77B9DA24535F23006490A1 /* WebViewControllerDelegate.swift */; };
+		9F7FC3CF242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7FC3CE242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib */; };
+		9F7FC3D1242E5CB0006DD0AF /* SidebarSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3D0242E5CB0006DD0AF /* SidebarSectionHeaderCell.swift */; };
+		9F7FC3D4242E5D6F006DD0AF /* NSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3D3242E5D6F006DD0AF /* NSImageView.swift */; };
+		9F7FC3D6242E6462006DD0AF /* SubredditRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3D5242E6462006DD0AF /* SubredditRouter.swift */; };
+		9F7FC3D8242E67F5006DD0AF /* TrendingSubredditsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3D7242E67F5006DD0AF /* TrendingSubredditsResponse.swift */; };
+		9F7FC3DA242F1E62006DD0AF /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3D9242F1E62006DD0AF /* NSImage.swift */; };
+		9F7FC3DE242F2188006DD0AF /* PostListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3DD242F2188006DD0AF /* PostListDataSource.swift */; };
+		9F7FC3E0242F24AB006DD0AF /* SidebarOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3DF242F24AB006DD0AF /* SidebarOutlineView.swift */; };
+		9F7FC3E2242F259C006DD0AF /* SidebarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3E1242F259C006DD0AF /* SidebarContentView.swift */; };
+		9F7FC3E8242F315A006DD0AF /* LinkArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3E7242F315A006DD0AF /* LinkArticleCell.swift */; };
+		9F7FC3EA242F3166006DD0AF /* LinkArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7FC3E9242F3166006DD0AF /* LinkArticleCell.xib */; };
+		9F7FC3EC242F3326006DD0AF /* LinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3EB242F3326006DD0AF /* LinkType.swift */; };
+		9F7FC3EE242F363D006DD0AF /* UpvoteDownvoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3ED242F363D006DD0AF /* UpvoteDownvoteView.swift */; };
+		9F7FC3F0242F3B1B006DD0AF /* PostMetaInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3EF242F3B1B006DD0AF /* PostMetaInfoView.swift */; };
+		9F7FC3F2242F4B73006DD0AF /* NSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3F1242F4B73006DD0AF /* NSLabel.swift */; };
+		9F7FC3F4242F50F8006DD0AF /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3F3242F50F8006DD0AF /* ImageButton.swift */; };
+		9F7FC3F7242F5183006DD0AF /* ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3F6242F5183006DD0AF /* ClearButton.swift */; };
+		9F7FC3FD242F5AAB006DD0AF /* PostMetaInfoBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3FC242F5AAB006DD0AF /* PostMetaInfoBottomView.swift */; };
+		9F7FC3FF242F61F8006DD0AF /* NSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC3FE242F61F8006DD0AF /* NSTextField.swift */; };
+		9F7FC401242F75A5006DD0AF /* LinkImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC400242F75A5006DD0AF /* LinkImageCell.swift */; };
+		9F7FC403242F75B2006DD0AF /* LinkImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7FC402242F75B2006DD0AF /* LinkImageCell.xib */; };
+		9F7FC409242F841A006DD0AF /* TableViewCellHeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC408242F841A006DD0AF /* TableViewCellHeights.swift */; };
+		9F7FC410242F97A0006DD0AF /* Link+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FC40F242F97A0006DD0AF /* Link+Extension.swift */; };
+		9F921B292459D407008E7701 /* RedditClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B282459D407008E7701 /* RedditClient.swift */; };
+		9F921B2B2459D44D008E7701 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B2A2459D44D008E7701 /* APIClient.swift */; };
+		9F921B2D2459F1FF008E7701 /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */; };
+		9F97B493243775AF0059B45F /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97B492243775AF0059B45F /* PostListViewController.swift */; };
+		9F9C1FA62426252E0001DF9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C1FA52426252E0001DF9E /* AppDelegate.swift */; };
+		9F9C1FAA242625300001DF9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C1FA9242625300001DF9E /* Assets.xcassets */; };
+		9F9C1FAD242625300001DF9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C1FAB242625300001DF9E /* Main.storyboard */; };
+		9F9C1FB8242625E10001DF9E /* SideBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C1FB7242625E10001DF9E /* SideBarViewModel.swift */; };
+		9F9C1FBA242625EB0001DF9E /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C1FB9242625EB0001DF9E /* SidebarViewController.swift */; };
+		9F9C1FC42426281D0001DF9E /* APIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9C1FC22426281D0001DF9E /* APIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F9C1FC72426281D0001DF9E /* APIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9C1FC02426281D0001DF9E /* APIClient.framework */; };
+		9F9C1FC82426281D0001DF9E /* APIClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9C1FC02426281D0001DF9E /* APIClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FA573FE243B782D00B9384C /* PostListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA573FD243B782D00B9384C /* PostListTableView.swift */; };
+		9FA57400243B78A100B9384C /* PostListScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA573FF243B78A100B9384C /* PostListScrollView.swift */; };
+		9FA57404243B885B00B9384C /* PostListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA57403243B885B00B9384C /* PostListDelegate.swift */; };
+		9FA57406243B8BEB00B9384C /* NSActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA57405243B8BEB00B9384C /* NSActivityIndicator.swift */; };
+		9FA57408243B8D9D00B9384C /* PostDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA57407243B8D9D00B9384C /* PostDetailDelegate.swift */; };
+		9FA57411243B931700B9384C /* NiceaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA57410243B931700B9384C /* NiceaUITests.swift */; };
+		9FAA536A244B45D0009A58A5 /* MailViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5369244B45D0009A58A5 /* MailViewModelDelegate.swift */; };
+		9FAA536E244B7D3A009A58A5 /* CommentTextBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAA536D244B7D3A009A58A5 /* CommentTextBoxCell.xib */; };
+		9FAA5370244C1359009A58A5 /* CommentLoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA536F244C1359009A58A5 /* CommentLoadingCell.swift */; };
+		9FAA5373244C138C009A58A5 /* CommentLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAA5372244C138C009A58A5 /* CommentLoadingCell.xib */; };
+		9FB16110243B6D8D00495B0E /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1610F243B6D8D00495B0E /* PostListViewModel.swift */; };
+		9FBA01612448AE0B00C9A8FE /* MailViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01602448AE0B00C9A8FE /* MailViewDataSource.swift */; };
+		9FBA01632448AE1400C9A8FE /* MailViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01622448AE1400C9A8FE /* MailViewDelegate.swift */; };
+		9FBA01662448AFF600C9A8FE /* MailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01652448AFF600C9A8FE /* MailTableViewCell.swift */; };
+		9FBA01682448B0CB00C9A8FE /* MailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FBA01672448B0CB00C9A8FE /* MailTableViewCell.xib */; };
+		9FBA016A2448B8EA00C9A8FE /* MailboxResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01692448B8EA00C9A8FE /* MailboxResponse.swift */; };
+		9FBA016C2448B91200C9A8FE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA016B2448B91200C9A8FE /* Comment.swift */; };
+		9FBA016E2448BAB300C9A8FE /* InboxReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA016D2448BAB300C9A8FE /* InboxReply.swift */; };
+		9FBA01702448C58200C9A8FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA016F2448C58200C9A8FE /* User.swift */; };
+		9FBA01732449815F00C9A8FE /* CommentTableViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01722449815F00C9A8FE /* CommentTableViewCellView.swift */; };
+		9FBA01752449831600C9A8FE /* CommentTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01742449831600C9A8FE /* CommentTopView.swift */; };
+		9FBE4DAD2451DE7C005FEBEB /* Subreddit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBE4DAC2451DE7C005FEBEB /* Subreddit+Extension.swift */; };
+		9FBE4DAF2451FE0D005FEBEB /* SortItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBE4DAE2451FE0D005FEBEB /* SortItem.swift */; };
+		9FBE4DB124532381005FEBEB /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBE4DB024532381005FEBEB /* NSColor.swift */; };
+		9FC13D4F24541A1B004FCA0F /* PostDetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC13D4E24541A1B004FCA0F /* PostDetailContentView.swift */; };
+		9FC13D582454746F004FCA0F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC13D552454740A004FCA0F /* Array.swift */; };
+		9FC1B37B243799C500C60A4C /* LinkParentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1B37A243799C500C60A4C /* LinkParentCell.swift */; };
+		9FC1B37D2437AFD800C60A4C /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1B37C2437AFD800C60A4C /* PostDetailViewModel.swift */; };
+		9FC1B37F243858A000C60A4C /* PostDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1B37E243858A000C60A4C /* PostDetailDataSource.swift */; };
+		9FCF375E242E417F004BDD22 /* SidebarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF375D242E417F004BDD22 /* SidebarDataSource.swift */; };
+		9FCF3760242E423F004BDD22 /* SidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF375F242E423F004BDD22 /* SidebarSection.swift */; };
+		9FCF3763242E4552004BDD22 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF3762242E4552004BDD22 /* TableViewCells.swift */; };
+		9FCF3765242E45CC004BDD22 /* SidebarSubredditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF3764242E45CC004BDD22 /* SidebarSubredditCell.swift */; };
+		9FCF3767242E4868004BDD22 /* SidebarSubredditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FCF3766242E4868004BDD22 /* SidebarSubredditCell.xib */; };
+		9FE566BB24540E3000A108C4 /* PostDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE566BA24540E3000A108C4 /* PostDetailHeaderCell.swift */; };
+		9FE566BE24540FD800A108C4 /* PostDetailHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE566BD24540FD800A108C4 /* PostDetailHeaderCell.xib */; };
+		9FF6D512245874E9005B4C57 /* CocoaMarkdown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF6D50B245874D8005B4C57 /* CocoaMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FF6D514245896CB005B4C57 /* NSSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6D513245896CB005B4C57 /* NSSize.swift */; };
+		9FF8450A243E357500A60D9C /* LoggedInHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF84509243E357500A60D9C /* LoggedInHeaderContentView.swift */; };
+		9FFF0DCF243F516900651DB2 /* PhotoViewerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF0DCE243F516900651DB2 /* PhotoViewerWindowController.swift */; };
+		9FFF0DD2243F57AC00651DB2 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF0DD1243F57AC00651DB2 /* PhotoViewerViewController.swift */; };
+		9FFF0DD6243F5B9300651DB2 /* PhotoViewerControllerRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF0DD5243F5B9300651DB2 /* PhotoViewerControllerRootView.swift */; };
+		9FFF0DD8243F6AA500651DB2 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF0DD7243F6AA500651DB2 /* VideoView.swift */; };
+		9FFF0DDB243F719C00651DB2 /* LinkVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF0DDA243F719C00651DB2 /* LinkVideoCell.swift */; };
+		9FFF0DDD243F721800651DB2 /* LinkVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF0DDC243F721800651DB2 /* LinkVideoCell.xib */; };
+		9FFFEDE224363505001B860E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFEDE124363505001B860E /* Date.swift */; };
+		9FFFEDE524363E6E001B860E /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFEDE424363E6E001B860E /* PostDetailViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9F9C1FC52426281D0001DF9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F9C1F9A2426252E0001DF9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F9C1FBF2426281D0001DF9E;
+			remoteInfo = APIClient;
+		};
+		9FA57413243B931700B9384C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F9C1F9A2426252E0001DF9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F9C1FA12426252E0001DF9E;
+			remoteInfo = Nicea;
+		};
+		9FF6D506245874D8005B4C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 729F53DA1A68641400CC7448;
+			remoteInfo = "CocoaMarkdown-iOS";
+		};
+		9FF6D508245874D8005B4C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 729F53E51A68641400CC7448;
+			remoteInfo = "CocoaMarkdownTests-iOS";
+		};
+		9FF6D50A245874D8005B4C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 729F53FB1A68649200CC7448;
+			remoteInfo = "CocoaMarkdown-Mac";
+		};
+		9FF6D50C245874D8005B4C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 729F54051A68649200CC7448;
+			remoteInfo = "CocoaMarkdownTests-Mac";
+		};
+		9FF6D50E245874D8005B4C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72FE7EC91A68692400F23F46;
+			remoteInfo = "Example-iOS";
+		};
+		9FF6D510245874D8005B4C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72FE7EF41A68695100F23F46;
+			remoteInfo = "Example-Mac";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9F9C1FCC2426281D0001DF9E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9FF6D512245874E9005B4C57 /* CocoaMarkdown.framework in Embed Frameworks */,
+				9F9C1FC82426281D0001DF9E /* APIClient.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9F00960E243868CD0084C68D /* LinkTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTitleLabel.swift; sourceTree = "<group>"; };
+		9F009610243876510084C68D /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
+		9F05128E242782B600ED64FE /* Subreddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subreddit.swift; sourceTree = "<group>"; };
+		9F0512D6242A40DB00ED64FE /* SubredditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditResponse.swift; sourceTree = "<group>"; };
+		9F0512DB242A52E300ED64FE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		9F0512DE242A535B00ED64FE /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		9F0512E1242A5ABC00ED64FE /* LayoutExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutExtensions.swift; sourceTree = "<group>"; };
+		9F0512E3242A701200ED64FE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		9F0512E6242BAD1A00ED64FE /* WebViewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWindowController.swift; sourceTree = "<group>"; };
+		9F0512E8242BAD3500ED64FE /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		9F0512EA242CED3F00ED64FE /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
+		9F0512ED242D0BDE00ED64FE /* OAuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthTokenResponse.swift; sourceTree = "<group>"; };
+		9F0512EF242D12B400ED64FE /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
+		9F0512F1242D13FF00ED64FE /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
+		9F0512F3242D168400ED64FE /* MySubredditListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubredditListResponse.swift; sourceTree = "<group>"; };
+		9F0512F6242D1BF500ED64FE /* WebViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewModel.swift; sourceTree = "<group>"; };
+		9F0512F8242D260900ED64FE /* IdentifierConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierConstants.swift; sourceTree = "<group>"; };
+		9F051300242E37A300ED64FE /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
+		9F1570A22434B80300584C51 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		9F1570A72434D9CC00584C51 /* SubredditHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubredditHeaderCell.xib; sourceTree = "<group>"; };
+		9F1570A92434D9F600584C51 /* SubredditHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditHeaderCell.swift; sourceTree = "<group>"; };
+		9F1B3E7C2444D33B003BBB95 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		9F1B3E8324484B35003BBB95 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		9F1B3E8624486320003BBB95 /* ImageViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewButton.swift; sourceTree = "<group>"; };
+		9F1B3E8824489B99003BBB95 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		9F1B3E8A24489E4E003BBB95 /* WindowResizeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowResizeManager.swift; sourceTree = "<group>"; };
+		9F1B3E8D2448AA2D003BBB95 /* MailWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailWindowController.swift; sourceTree = "<group>"; };
+		9F1B3E8F2448AB3F003BBB95 /* MailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
+		9F1B3E922448AD10003BBB95 /* MailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewModel.swift; sourceTree = "<group>"; };
+		9F20BE4E244F65D200BC8415 /* SidebarDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarDefaultItem.swift; sourceTree = "<group>"; };
+		9F2A8A0A2430F70C00AF3CA4 /* VoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRouter.swift; sourceTree = "<group>"; };
+		9F2A8A0C2430FA4F00AF3CA4 /* AuthenticationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRouter.swift; sourceTree = "<group>"; };
+		9F2D1D082449ACF200B6C905 /* LayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
+		9F2D1D0A2449B62700B6C905 /* Comment+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Extension.swift"; sourceTree = "<group>"; };
+		9F2D1D0C2449D3F900B6C905 /* CommentTextBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextBoxCell.swift; sourceTree = "<group>"; };
+		9F2D1D0E2449D8A600B6C905 /* ControlAccentColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlAccentColorButton.swift; sourceTree = "<group>"; };
+		9F2D1D102449E10400B6C905 /* GreyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyButton.swift; sourceTree = "<group>"; };
+		9F2D1D122449E6C500B6C905 /* CommentReplyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReplyCache.swift; sourceTree = "<group>"; };
+		9F2D1D142449F26600B6C905 /* NSTableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Extension.swift"; sourceTree = "<group>"; };
+		9F2D1D16244A209400B6C905 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		9F307C902459B6C2009B6372 /* VotableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotableView.swift; sourceTree = "<group>"; };
+		9F321B0E244DDF6400B39813 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
+		9F3A795C242FA63A00AA8834 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		9F3A795E242FB57900AA8834 /* SubredditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditHeaderView.swift; sourceTree = "<group>"; };
+		9F3EBBB1244DE97E00E85D5F /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		9F47C1A62457044600970CFB /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		9F50BD41244CB9ED00A54B6E /* NSWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extension.swift"; sourceTree = "<group>"; };
+		9F50BD43244CBA2400A54B6E /* NButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NButton+Extension.swift"; sourceTree = "<group>"; };
+		9F5AC5F824262E9A00D23FEA /* WhiteFlowerFactory */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = WhiteFlowerFactory; path = Carthage/Build/iOS/WhiteFlowerFactory.framework/WhiteFlowerFactory; sourceTree = "<group>"; };
+		9F5AC5FE24273D4E00D23FEA /* WhiteFlowerFactory */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = WhiteFlowerFactory; path = Carthage/Build/Mac/WhiteFlowerFactory.framework/Versions/A/WhiteFlowerFactory; sourceTree = "<group>"; };
+		9F5AC6022427437600D23FEA /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
+		9F5AC60924274A3900D23FEA /* Paginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginator.swift; sourceTree = "<group>"; };
+		9F5AC60B24274A7100D23FEA /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
+		9F5AC60D24274A8A00D23FEA /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		9F5AC60F24274AD000D23FEA /* Votable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Votable.swift; sourceTree = "<group>"; };
+		9F5AC61124274B2100D23FEA /* VoteDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteDirection.swift; sourceTree = "<group>"; };
+		9F5AC61524274C2600D23FEA /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		9F5AC6192427503C00D23FEA /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		9F5AC61B2427506800D23FEA /* DistinguishType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistinguishType.swift; sourceTree = "<group>"; };
+		9F5AC61D2427509C00D23FEA /* Oembed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oembed.swift; sourceTree = "<group>"; };
+		9F5AC62124277C7C00D23FEA /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		9F5AC6232427804F00D23FEA /* PostServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServices.swift; sourceTree = "<group>"; };
+		9F6AC3712438EEDC00BB31FF /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		9F6AC3732438EEE900BB31FF /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		9F6AC3752439B27400BB31FF /* MoreCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentResponse.swift; sourceTree = "<group>"; };
+		9F6AC377243B44DE00BB31FF /* CommentOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentOutlineView.swift; sourceTree = "<group>"; };
+		9F77B9DA24535F23006490A1 /* WebViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegate.swift; sourceTree = "<group>"; };
+		9F7FC3CE242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidebarSectionHeaderCell.xib; sourceTree = "<group>"; };
+		9F7FC3D0242E5CB0006DD0AF /* SidebarSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSectionHeaderCell.swift; sourceTree = "<group>"; };
+		9F7FC3D3242E5D6F006DD0AF /* NSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageView.swift; sourceTree = "<group>"; };
+		9F7FC3D5242E6462006DD0AF /* SubredditRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditRouter.swift; sourceTree = "<group>"; };
+		9F7FC3D7242E67F5006DD0AF /* TrendingSubredditsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingSubredditsResponse.swift; sourceTree = "<group>"; };
+		9F7FC3D9242F1E62006DD0AF /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
+		9F7FC3DD242F2188006DD0AF /* PostListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListDataSource.swift; sourceTree = "<group>"; };
+		9F7FC3DF242F24AB006DD0AF /* SidebarOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarOutlineView.swift; sourceTree = "<group>"; };
+		9F7FC3E1242F259C006DD0AF /* SidebarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarContentView.swift; sourceTree = "<group>"; };
+		9F7FC3E7242F315A006DD0AF /* LinkArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkArticleCell.swift; sourceTree = "<group>"; };
+		9F7FC3E9242F3166006DD0AF /* LinkArticleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinkArticleCell.xib; sourceTree = "<group>"; };
+		9F7FC3EB242F3326006DD0AF /* LinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkType.swift; sourceTree = "<group>"; };
+		9F7FC3ED242F363D006DD0AF /* UpvoteDownvoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpvoteDownvoteView.swift; sourceTree = "<group>"; };
+		9F7FC3EF242F3B1B006DD0AF /* PostMetaInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMetaInfoView.swift; sourceTree = "<group>"; };
+		9F7FC3F1242F4B73006DD0AF /* NSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLabel.swift; sourceTree = "<group>"; };
+		9F7FC3F3242F50F8006DD0AF /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		9F7FC3F6242F5183006DD0AF /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
+		9F7FC3FC242F5AAB006DD0AF /* PostMetaInfoBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMetaInfoBottomView.swift; sourceTree = "<group>"; };
+		9F7FC3FE242F61F8006DD0AF /* NSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextField.swift; sourceTree = "<group>"; };
+		9F7FC400242F75A5006DD0AF /* LinkImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkImageCell.swift; sourceTree = "<group>"; };
+		9F7FC402242F75B2006DD0AF /* LinkImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinkImageCell.xib; sourceTree = "<group>"; };
+		9F7FC408242F841A006DD0AF /* TableViewCellHeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellHeights.swift; sourceTree = "<group>"; };
+		9F7FC40F242F97A0006DD0AF /* Link+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Link+Extension.swift"; sourceTree = "<group>"; };
+		9F921B282459D407008E7701 /* RedditClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditClient.swift; sourceTree = "<group>"; };
+		9F921B2A2459D44D008E7701 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
+		9F921B2F245BDCE7008E7701 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		9F97B492243775AF0059B45F /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
+		9F9C1FA22426252E0001DF9E /* Nicea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nicea.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9C1FA52426252E0001DF9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9F9C1FA9242625300001DF9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F9C1FAC242625300001DF9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F9C1FAE242625300001DF9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F9C1FAF242625300001DF9E /* Nicea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nicea.entitlements; sourceTree = "<group>"; };
+		9F9C1FB7242625E10001DF9E /* SideBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewModel.swift; sourceTree = "<group>"; };
+		9F9C1FB9242625EB0001DF9E /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		9F9C1FC02426281D0001DF9E /* APIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9C1FC22426281D0001DF9E /* APIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
+		9F9C1FC32426281D0001DF9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FA573FD243B782D00B9384C /* PostListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListTableView.swift; sourceTree = "<group>"; };
+		9FA573FF243B78A100B9384C /* PostListScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListScrollView.swift; sourceTree = "<group>"; };
+		9FA57403243B885B00B9384C /* PostListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListDelegate.swift; sourceTree = "<group>"; };
+		9FA57405243B8BEB00B9384C /* NSActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSActivityIndicator.swift; sourceTree = "<group>"; };
+		9FA57407243B8D9D00B9384C /* PostDetailDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailDelegate.swift; sourceTree = "<group>"; };
+		9FA5740E243B931700B9384C /* NiceaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NiceaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FA57410243B931700B9384C /* NiceaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiceaUITests.swift; sourceTree = "<group>"; };
+		9FA57412243B931700B9384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FAA5369244B45D0009A58A5 /* MailViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewModelDelegate.swift; sourceTree = "<group>"; };
+		9FAA536D244B7D3A009A58A5 /* CommentTextBoxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTextBoxCell.xib; sourceTree = "<group>"; };
+		9FAA536F244C1359009A58A5 /* CommentLoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLoadingCell.swift; sourceTree = "<group>"; };
+		9FAA5372244C138C009A58A5 /* CommentLoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentLoadingCell.xib; sourceTree = "<group>"; };
+		9FB1610F243B6D8D00495B0E /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
+		9FBA01602448AE0B00C9A8FE /* MailViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewDataSource.swift; sourceTree = "<group>"; };
+		9FBA01622448AE1400C9A8FE /* MailViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewDelegate.swift; sourceTree = "<group>"; };
+		9FBA01652448AFF600C9A8FE /* MailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTableViewCell.swift; sourceTree = "<group>"; };
+		9FBA01672448B0CB00C9A8FE /* MailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailTableViewCell.xib; sourceTree = "<group>"; };
+		9FBA01692448B8EA00C9A8FE /* MailboxResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxResponse.swift; sourceTree = "<group>"; };
+		9FBA016B2448B91200C9A8FE /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		9FBA016D2448BAB300C9A8FE /* InboxReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxReply.swift; sourceTree = "<group>"; };
+		9FBA016F2448C58200C9A8FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9FBA01722449815F00C9A8FE /* CommentTableViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCellView.swift; sourceTree = "<group>"; };
+		9FBA01742449831600C9A8FE /* CommentTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTopView.swift; sourceTree = "<group>"; };
+		9FBE4DAC2451DE7C005FEBEB /* Subreddit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subreddit+Extension.swift"; sourceTree = "<group>"; };
+		9FBE4DAE2451FE0D005FEBEB /* SortItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortItem.swift; sourceTree = "<group>"; };
+		9FBE4DB024532381005FEBEB /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
+		9FC13D4E24541A1B004FCA0F /* PostDetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailContentView.swift; sourceTree = "<group>"; };
+		9FC13D552454740A004FCA0F /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		9FC1B37A243799C500C60A4C /* LinkParentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkParentCell.swift; sourceTree = "<group>"; };
+		9FC1B37C2437AFD800C60A4C /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		9FC1B37E243858A000C60A4C /* PostDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailDataSource.swift; sourceTree = "<group>"; };
+		9FCF375D242E417F004BDD22 /* SidebarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarDataSource.swift; sourceTree = "<group>"; };
+		9FCF375F242E423F004BDD22 /* SidebarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSection.swift; sourceTree = "<group>"; };
+		9FCF3762242E4552004BDD22 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
+		9FCF3764242E45CC004BDD22 /* SidebarSubredditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSubredditCell.swift; sourceTree = "<group>"; };
+		9FCF3766242E4868004BDD22 /* SidebarSubredditCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidebarSubredditCell.xib; sourceTree = "<group>"; };
+		9FE566BA24540E3000A108C4 /* PostDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailHeaderCell.swift; sourceTree = "<group>"; };
+		9FE566BD24540FD800A108C4 /* PostDetailHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailHeaderCell.xib; sourceTree = "<group>"; };
+		9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaMarkdown.xcodeproj; path = CocoaMarkdown/CocoaMarkdown.xcodeproj; sourceTree = "<group>"; };
+		9FF6D513245896CB005B4C57 /* NSSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSize.swift; sourceTree = "<group>"; };
+		9FF84509243E357500A60D9C /* LoggedInHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInHeaderContentView.swift; sourceTree = "<group>"; };
+		9FFF0DCE243F516900651DB2 /* PhotoViewerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerWindowController.swift; sourceTree = "<group>"; };
+		9FFF0DD1243F57AC00651DB2 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
+		9FFF0DD5243F5B9300651DB2 /* PhotoViewerControllerRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerControllerRootView.swift; sourceTree = "<group>"; };
+		9FFF0DD7243F6AA500651DB2 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		9FFF0DDA243F719C00651DB2 /* LinkVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkVideoCell.swift; sourceTree = "<group>"; };
+		9FFF0DDC243F721800651DB2 /* LinkVideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinkVideoCell.xib; sourceTree = "<group>"; };
+		9FFFEDE124363505001B860E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		9FFFEDE424363E6E001B860E /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9F9C1F9F2426252E0001DF9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5AC5FF24273D4E00D23FEA /* WhiteFlowerFactory in Frameworks */,
+				9F9C1FC72426281D0001DF9E /* APIClient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9C1FBD2426281D0001DF9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5AC604242747AF00D23FEA /* WhiteFlowerFactory in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FA5740B243B931700B9384C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9F0512D5242A40D000ED64FE /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				9F0512ED242D0BDE00ED64FE /* OAuthTokenResponse.swift */,
+				9F0512D6242A40DB00ED64FE /* SubredditResponse.swift */,
+				9F0512F3242D168400ED64FE /* MySubredditListResponse.swift */,
+				9F7FC3D7242E67F5006DD0AF /* TrendingSubredditsResponse.swift */,
+				9F009610243876510084C68D /* CommentResponse.swift */,
+				9F6AC3752439B27400BB31FF /* MoreCommentResponse.swift */,
+				9FBA01692448B8EA00C9A8FE /* MailboxResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		9F0512D8242A49CF00ED64FE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9F5AC6232427804F00D23FEA /* PostServices.swift */,
+				9F0512EA242CED3F00ED64FE /* AuthenticationServices.swift */,
+				9F0512F1242D13FF00ED64FE /* UserServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9F0512D9242A4B5900ED64FE /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				9F5AC6022427437600D23FEA /* PostRouter.swift */,
+				9F0512EF242D12B400ED64FE /* UserRouter.swift */,
+				9F7FC3D5242E6462006DD0AF /* SubredditRouter.swift */,
+				9F2A8A0A2430F70C00AF3CA4 /* VoteRouter.swift */,
+				9F2A8A0C2430FA4F00AF3CA4 /* AuthenticationRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		9F0512DA242A52D300ED64FE /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9FB1610D243B67C900495B0E /* DetailViewController */,
+				9FB1610E243B699F00495B0E /* PostList */,
+				9F97B490243775620059B45F /* PostDetail */,
+				9F3A795E242FB57900AA8834 /* SubredditHeaderView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		9F0512DD242A534800ED64FE /* SplitView */ = {
+			isa = PBXGroup;
+			children = (
+				9F0512DE242A535B00ED64FE /* SplitViewController.swift */,
+			);
+			path = SplitView;
+			sourceTree = "<group>";
+		};
+		9F0512E0242A5A9000ED64FE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9F3A795B242FA62800AA8834 /* Managers */,
+				9F7FC3D2242E5D65006DD0AF /* Extensions */,
+				9F0512E1242A5ABC00ED64FE /* LayoutExtensions.swift */,
+				9F0512F8242D260900ED64FE /* IdentifierConstants.swift */,
+				9F051300242E37A300ED64FE /* DefaultsManager.swift */,
+				9F2D1D082449ACF200B6C905 /* LayoutConstants.swift */,
+				9F2D1D122449E6C500B6C905 /* CommentReplyCache.swift */,
+				9F47C1A62457044600970CFB /* Strings.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9F0512E5242BACF300ED64FE /* WebViewWindow */ = {
+			isa = PBXGroup;
+			children = (
+				9F0512E6242BAD1A00ED64FE /* WebViewWindowController.swift */,
+				9F0512E8242BAD3500ED64FE /* WebViewController.swift */,
+				9F0512F6242D1BF500ED64FE /* WebViewViewModel.swift */,
+				9F77B9DA24535F23006490A1 /* WebViewControllerDelegate.swift */,
+			);
+			path = WebViewWindow;
+			sourceTree = "<group>";
+		};
+		9F0512FA242E2CBA00ED64FE /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				9F1B3E8C2448AA1A003BBB95 /* MailWindow */,
+				9FFF0DCD243F511E00651DB2 /* PhotoViewerWindow */,
+				9F0512FB242E2CC600ED64FE /* MainWindow */,
+				9F0512E5242BACF300ED64FE /* WebViewWindow */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		9F0512FB242E2CC600ED64FE /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				9F1B3E8824489B99003BBB95 /* MainWindowController.swift */,
+				9F0512DD242A534800ED64FE /* SplitView */,
+				9F0512DA242A52D300ED64FE /* Detail */,
+				9F9C1FB6242625C60001DF9E /* Sidebar */,
+			);
+			path = MainWindow;
+			sourceTree = "<group>";
+		};
+		9F0512FD242E368300ED64FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9FCF375F242E423F004BDD22 /* SidebarSection.swift */,
+				9F20BE4E244F65D200BC8415 /* SidebarDefaultItem.swift */,
+				9FBE4DAE2451FE0D005FEBEB /* SortItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9F1570A42434D91300584C51 /* SubredditHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F1570A72434D9CC00584C51 /* SubredditHeaderCell.xib */,
+				9F1570A92434D9F600584C51 /* SubredditHeaderCell.swift */,
+			);
+			path = SubredditHeaderCell;
+			sourceTree = "<group>";
+		};
+		9F1B3E8524486303003BBB95 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F1B3E8624486320003BBB95 /* ImageViewButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9F1B3E8C2448AA1A003BBB95 /* MailWindow */ = {
+			isa = PBXGroup;
+			children = (
+				9F1B3E8D2448AA2D003BBB95 /* MailWindowController.swift */,
+				9F1B3E912448AB57003BBB95 /* ViewController */,
+			);
+			path = MailWindow;
+			sourceTree = "<group>";
+		};
+		9F1B3E912448AB57003BBB95 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9F1B3E8F2448AB3F003BBB95 /* MailViewController.swift */,
+				9FAA5369244B45D0009A58A5 /* MailViewModelDelegate.swift */,
+				9F1B3E922448AD10003BBB95 /* MailViewModel.swift */,
+				9FBA01602448AE0B00C9A8FE /* MailViewDataSource.swift */,
+				9FBA01622448AE1400C9A8FE /* MailViewDelegate.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9F3A795B242FA62800AA8834 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9F3A795C242FA63A00AA8834 /* ImageCacheManager.swift */,
+				9F1B3E8A24489E4E003BBB95 /* WindowResizeManager.swift */,
+				9F3EBBB1244DE97E00E85D5F /* SessionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		9F5485E9244C3B4D00F0CFC0 /* CommentTextBoxCell */ = {
+			isa = PBXGroup;
+			children = (
+				9FAA536D244B7D3A009A58A5 /* CommentTextBoxCell.xib */,
+				9F2D1D0C2449D3F900B6C905 /* CommentTextBoxCell.swift */,
+			);
+			path = CommentTextBoxCell;
+			sourceTree = "<group>";
+		};
+		9F5485EA244C3B5B00F0CFC0 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9FCF3762242E4552004BDD22 /* TableViewCells.swift */,
+				9F7FC408242F841A006DD0AF /* TableViewCellHeights.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		9F5AC5F724262E9A00D23FEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F5AC5FE24273D4E00D23FEA /* WhiteFlowerFactory */,
+				9F5AC5F824262E9A00D23FEA /* WhiteFlowerFactory */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F5AC608242748F100D23FEA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F0512D5242A40D000ED64FE /* Responses */,
+				9F5AC60924274A3900D23FEA /* Paginator.swift */,
+				9FBA016B2448B91200C9A8FE /* Comment.swift */,
+				9F5AC60B24274A7100D23FEA /* Listing.swift */,
+				9F5AC60D24274A8A00D23FEA /* Thing.swift */,
+				9FBA016D2448BAB300C9A8FE /* InboxReply.swift */,
+				9F5AC60F24274AD000D23FEA /* Votable.swift */,
+				9F5AC61124274B2100D23FEA /* VoteDirection.swift */,
+				9F5AC61524274C2600D23FEA /* Link.swift */,
+				9F5AC6192427503C00D23FEA /* Media.swift */,
+				9F5AC61B2427506800D23FEA /* DistinguishType.swift */,
+				9F5AC61D2427509C00D23FEA /* Oembed.swift */,
+				9F5AC62124277C7C00D23FEA /* Sort.swift */,
+				9F05128E242782B600ED64FE /* Subreddit.swift */,
+				9F7FC3EB242F3326006DD0AF /* LinkType.swift */,
+				9FBA016F2448C58200C9A8FE /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9F7FC3D2242E5D65006DD0AF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F7FC3D3242E5D6F006DD0AF /* NSImageView.swift */,
+				9F7FC3D9242F1E62006DD0AF /* NSImage.swift */,
+				9F7FC3FE242F61F8006DD0AF /* NSTextField.swift */,
+				9F7FC40F242F97A0006DD0AF /* Link+Extension.swift */,
+				9F1570A22434B80300584C51 /* Int.swift */,
+				9FFFEDE124363505001B860E /* Date.swift */,
+				9F1B3E7C2444D33B003BBB95 /* URL.swift */,
+				9F1B3E8324484B35003BBB95 /* String.swift */,
+				9F2D1D0A2449B62700B6C905 /* Comment+Extension.swift */,
+				9F2D1D142449F26600B6C905 /* NSTableView+Extension.swift */,
+				9F2D1D16244A209400B6C905 /* Array+Extension.swift */,
+				9F50BD41244CB9ED00A54B6E /* NSWindow+Extension.swift */,
+				9F50BD43244CBA2400A54B6E /* NButton+Extension.swift */,
+				9F321B0E244DDF6400B39813 /* NSNotification+Extension.swift */,
+				9FBE4DAC2451DE7C005FEBEB /* Subreddit+Extension.swift */,
+				9FBE4DB024532381005FEBEB /* NSColor.swift */,
+				9FF6D513245896CB005B4C57 /* NSSize.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9F7FC3E5242F3101006DD0AF /* LinkTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9F7FC40C242F873F006DD0AF /* Parent */,
+				9FFF0DD9243F6FBF00651DB2 /* Video */,
+				9F7FC40E242F8756006DD0AF /* Article */,
+				9F7FC40D242F8748006DD0AF /* Image */,
+			);
+			path = LinkTableViewCells;
+			sourceTree = "<group>";
+		};
+		9F7FC3E6242F310F006DD0AF /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				9FCF3764242E45CC004BDD22 /* SidebarSubredditCell.swift */,
+				9FCF3766242E4868004BDD22 /* SidebarSubredditCell.xib */,
+				9F7FC3D0242E5CB0006DD0AF /* SidebarSectionHeaderCell.swift */,
+				9F7FC3CE242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		9F7FC3F5242F5174006DD0AF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9FA57405243B8BEB00B9384C /* NSActivityIndicator.swift */,
+				9F7FC3ED242F363D006DD0AF /* UpvoteDownvoteView.swift */,
+				9F7FC3EF242F3B1B006DD0AF /* PostMetaInfoView.swift */,
+				9F7FC3FC242F5AAB006DD0AF /* PostMetaInfoBottomView.swift */,
+				9F7FC3F1242F4B73006DD0AF /* NSLabel.swift */,
+				9F7FC3F3242F50F8006DD0AF /* ImageButton.swift */,
+				9F7FC3F6242F5183006DD0AF /* ClearButton.swift */,
+				9F00960E243868CD0084C68D /* LinkTitleLabel.swift */,
+				9FFF0DD7243F6AA500651DB2 /* VideoView.swift */,
+				9FBA01742449831600C9A8FE /* CommentTopView.swift */,
+				9F2D1D0E2449D8A600B6C905 /* ControlAccentColorButton.swift */,
+				9F2D1D102449E10400B6C905 /* GreyButton.swift */,
+				9F307C902459B6C2009B6372 /* VotableView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9F7FC40C242F873F006DD0AF /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				9FC1B37A243799C500C60A4C /* LinkParentCell.swift */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		9F7FC40D242F8748006DD0AF /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				9F1B3E8524486303003BBB95 /* Views */,
+				9F7FC400242F75A5006DD0AF /* LinkImageCell.swift */,
+				9F7FC402242F75B2006DD0AF /* LinkImageCell.xib */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		9F7FC40E242F8756006DD0AF /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				9F7FC3E7242F315A006DD0AF /* LinkArticleCell.swift */,
+				9F7FC3E9242F3166006DD0AF /* LinkArticleCell.xib */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
+		9F921B212459D3EE008E7701 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9F921B282459D407008E7701 /* RedditClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9F921B2E245BDCD2008E7701 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				9F921B2F245BDCE7008E7701 /* Config.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		9F97B490243775620059B45F /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9FFFEDE424363E6E001B860E /* PostDetailViewController.swift */,
+				9FC1B37C2437AFD800C60A4C /* PostDetailViewModel.swift */,
+				9FC1B37E243858A000C60A4C /* PostDetailDataSource.swift */,
+				9FA57407243B8D9D00B9384C /* PostDetailDelegate.swift */,
+				9FA57409243B8DBE00B9384C /* Views */,
+			);
+			path = PostDetail;
+			sourceTree = "<group>";
+		};
+		9F9C1F992426252E0001DF9E = {
+			isa = PBXGroup;
+			children = (
+				9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */,
+				9F9C1FA42426252E0001DF9E /* Nicea */,
+				9F9C1FC12426281D0001DF9E /* APIClient */,
+				9FA5740F243B931700B9384C /* NiceaUITests */,
+				9F9C1FA32426252E0001DF9E /* Products */,
+				9F5AC5F724262E9A00D23FEA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9F9C1FA32426252E0001DF9E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F9C1FA22426252E0001DF9E /* Nicea.app */,
+				9F9C1FC02426281D0001DF9E /* APIClient.framework */,
+				9FA5740E243B931700B9384C /* NiceaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F9C1FA42426252E0001DF9E /* Nicea */ = {
+			isa = PBXGroup;
+			children = (
+				9F921B2E245BDCD2008E7701 /* Config */,
+				9F921B212459D3EE008E7701 /* Networking */,
+				9FCF3761242E4547004BDD22 /* Views */,
+				9F0512FD242E368300ED64FE /* Models */,
+				9F0512FA242E2CBA00ED64FE /* Windows */,
+				9F0512E0242A5A9000ED64FE /* Utils */,
+				9F9C1FA52426252E0001DF9E /* AppDelegate.swift */,
+				9F9C1FA9242625300001DF9E /* Assets.xcassets */,
+				9F9C1FAB242625300001DF9E /* Main.storyboard */,
+				9F9C1FAE242625300001DF9E /* Info.plist */,
+				9F9C1FAF242625300001DF9E /* Nicea.entitlements */,
+			);
+			path = Nicea;
+			sourceTree = "<group>";
+		};
+		9F9C1FB6242625C60001DF9E /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				9FF84508243E356100A60D9C /* Header */,
+				9F9C1FB9242625EB0001DF9E /* SidebarViewController.swift */,
+				9F9C1FB7242625E10001DF9E /* SideBarViewModel.swift */,
+				9FCF375D242E417F004BDD22 /* SidebarDataSource.swift */,
+				9F7FC3DF242F24AB006DD0AF /* SidebarOutlineView.swift */,
+				9F7FC3E1242F259C006DD0AF /* SidebarContentView.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		9F9C1FC12426281D0001DF9E /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				9F921B2A2459D44D008E7701 /* APIClient.swift */,
+				9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */,
+				9FC13D572454745A004FCA0F /* Extensions */,
+				9F0512D9242A4B5900ED64FE /* Router */,
+				9F0512D8242A49CF00ED64FE /* Services */,
+				9F5AC608242748F100D23FEA /* Models */,
+				9F9C1FC22426281D0001DF9E /* APIClient.h */,
+				9F9C1FC32426281D0001DF9E /* Info.plist */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		9FA573FC243B781C00B9384C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9FA573FD243B782D00B9384C /* PostListTableView.swift */,
+				9FA573FF243B78A100B9384C /* PostListScrollView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9FA57409243B8DBE00B9384C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F6AC377243B44DE00BB31FF /* CommentOutlineView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9FA5740F243B931700B9384C /* NiceaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9FA57410243B931700B9384C /* NiceaUITests.swift */,
+				9FA57412243B931700B9384C /* Info.plist */,
+			);
+			path = NiceaUITests;
+			sourceTree = "<group>";
+		};
+		9FAA5371244C135E009A58A5 /* CommentLoadingCell */ = {
+			isa = PBXGroup;
+			children = (
+				9FAA536F244C1359009A58A5 /* CommentLoadingCell.swift */,
+				9FAA5372244C138C009A58A5 /* CommentLoadingCell.xib */,
+			);
+			path = CommentLoadingCell;
+			sourceTree = "<group>";
+		};
+		9FB1610D243B67C900495B0E /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9F0512DB242A52E300ED64FE /* DetailViewController.swift */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		9FB1610E243B699F00495B0E /* PostList */ = {
+			isa = PBXGroup;
+			children = (
+				9F97B492243775AF0059B45F /* PostListViewController.swift */,
+				9FB1610F243B6D8D00495B0E /* PostListViewModel.swift */,
+				9F7FC3DD242F2188006DD0AF /* PostListDataSource.swift */,
+				9FA57403243B885B00B9384C /* PostListDelegate.swift */,
+				9FA573FC243B781C00B9384C /* Views */,
+			);
+			path = PostList;
+			sourceTree = "<group>";
+		};
+		9FBA01642448AFB300C9A8FE /* MailTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9FBA01652448AFF600C9A8FE /* MailTableViewCell.swift */,
+				9FBA01672448B0CB00C9A8FE /* MailTableViewCell.xib */,
+			);
+			path = MailTableViewCells;
+			sourceTree = "<group>";
+		};
+		9FBA01712449814800C9A8FE /* CommentTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F6AC3712438EEDC00BB31FF /* CommentCell.swift */,
+				9F6AC3732438EEE900BB31FF /* CommentCell.xib */,
+				9FBA01722449815F00C9A8FE /* CommentTableViewCellView.swift */,
+			);
+			path = CommentTableViewCell;
+			sourceTree = "<group>";
+		};
+		9FC13D572454745A004FCA0F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9FC13D552454740A004FCA0F /* Array.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9FCF3761242E4547004BDD22 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F5485EA244C3B5B00F0CFC0 /* TableViewCells */,
+				9F1570A42434D91300584C51 /* SubredditHeaderCell */,
+				9FE566BC24540FC400A108C4 /* PostDetailHeaderCell */,
+				9F7FC3F5242F5174006DD0AF /* Shared */,
+				9F7FC3E6242F310F006DD0AF /* Sidebar */,
+				9F7FC3E5242F3101006DD0AF /* LinkTableViewCells */,
+				9FBA01642448AFB300C9A8FE /* MailTableViewCells */,
+				9FBA01712449814800C9A8FE /* CommentTableViewCell */,
+				9FAA5371244C135E009A58A5 /* CommentLoadingCell */,
+				9F5485E9244C3B4D00F0CFC0 /* CommentTextBoxCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9FE566BC24540FC400A108C4 /* PostDetailHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				9FE566BA24540E3000A108C4 /* PostDetailHeaderCell.swift */,
+				9FE566BD24540FD800A108C4 /* PostDetailHeaderCell.xib */,
+				9FC13D4E24541A1B004FCA0F /* PostDetailContentView.swift */,
+			);
+			path = PostDetailHeaderCell;
+			sourceTree = "<group>";
+		};
+		9FF6D4FC245874D7005B4C57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9FF6D507245874D8005B4C57 /* CocoaMarkdown.framework */,
+				9FF6D509245874D8005B4C57 /* CocoaMarkdownTests-iOS.xctest */,
+				9FF6D50B245874D8005B4C57 /* CocoaMarkdown.framework */,
+				9FF6D50D245874D8005B4C57 /* CocoaMarkdownTests-Mac.xctest */,
+				9FF6D50F245874D8005B4C57 /* Example-iOS.app */,
+				9FF6D511245874D8005B4C57 /* Example-Mac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9FF84508243E356100A60D9C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				9F0512E3242A701200ED64FE /* HeaderView.swift */,
+				9FF84509243E357500A60D9C /* LoggedInHeaderContentView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		9FFF0DCD243F511E00651DB2 /* PhotoViewerWindow */ = {
+			isa = PBXGroup;
+			children = (
+				9FFF0DCE243F516900651DB2 /* PhotoViewerWindowController.swift */,
+				9FFF0DD0243F579900651DB2 /* ViewController */,
+			);
+			path = PhotoViewerWindow;
+			sourceTree = "<group>";
+		};
+		9FFF0DD0243F579900651DB2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9FFF0DD1243F57AC00651DB2 /* PhotoViewerViewController.swift */,
+				9FFF0DD5243F5B9300651DB2 /* PhotoViewerControllerRootView.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9FFF0DD9243F6FBF00651DB2 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9FFF0DDA243F719C00651DB2 /* LinkVideoCell.swift */,
+				9FFF0DDC243F721800651DB2 /* LinkVideoCell.xib */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9F9C1FBB2426281D0001DF9E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F9C1FC42426281D0001DF9E /* APIClient.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9F9C1FA12426252E0001DF9E /* Nicea */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F9C1FB2242625300001DF9E /* Build configuration list for PBXNativeTarget "Nicea" */;
+			buildPhases = (
+				9F9C1F9E2426252E0001DF9E /* Sources */,
+				9F9C1F9F2426252E0001DF9E /* Frameworks */,
+				9F9C1FA02426252E0001DF9E /* Resources */,
+				9F9C1FCC2426281D0001DF9E /* Embed Frameworks */,
+				9F5AC60124273EDD00D23FEA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9F9C1FC62426281D0001DF9E /* PBXTargetDependency */,
+			);
+			name = Nicea;
+			productName = Nicea;
+			productReference = 9F9C1FA22426252E0001DF9E /* Nicea.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9F9C1FBF2426281D0001DF9E /* APIClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F9C1FC92426281D0001DF9E /* Build configuration list for PBXNativeTarget "APIClient" */;
+			buildPhases = (
+				9F9C1FBB2426281D0001DF9E /* Headers */,
+				9F9C1FBC2426281D0001DF9E /* Sources */,
+				9F9C1FBD2426281D0001DF9E /* Frameworks */,
+				9F9C1FBE2426281D0001DF9E /* Resources */,
+				9F5AC607242747B900D23FEA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = APIClient;
+			productName = APIClient;
+			productReference = 9F9C1FC02426281D0001DF9E /* APIClient.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9FA5740D243B931700B9384C /* NiceaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FA57415243B931700B9384C /* Build configuration list for PBXNativeTarget "NiceaUITests" */;
+			buildPhases = (
+				9FA5740A243B931700B9384C /* Sources */,
+				9FA5740B243B931700B9384C /* Frameworks */,
+				9FA5740C243B931700B9384C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9FA57414243B931700B9384C /* PBXTargetDependency */,
+			);
+			name = NiceaUITests;
+			productName = NiceaUITests;
+			productReference = 9FA5740E243B931700B9384C /* NiceaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9F9C1F9A2426252E0001DF9E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Stephen Bodnar";
+				TargetAttributes = {
+					9F9C1FA12426252E0001DF9E = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					9F9C1FBF2426281D0001DF9E = {
+						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1120;
+					};
+					9FA5740D243B931700B9384C = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 9F9C1FA12426252E0001DF9E;
+					};
+				};
+			};
+			buildConfigurationList = 9F9C1F9D2426252E0001DF9E /* Build configuration list for PBXProject "Nicea" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9F9C1F992426252E0001DF9E;
+			productRefGroup = 9F9C1FA32426252E0001DF9E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9FF6D4FC245874D7005B4C57 /* Products */;
+					ProjectRef = 9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				9F9C1FA12426252E0001DF9E /* Nicea */,
+				9F9C1FBF2426281D0001DF9E /* APIClient */,
+				9FA5740D243B931700B9384C /* NiceaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9FF6D507245874D8005B4C57 /* CocoaMarkdown.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaMarkdown.framework;
+			remoteRef = 9FF6D506245874D8005B4C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9FF6D509245874D8005B4C57 /* CocoaMarkdownTests-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "CocoaMarkdownTests-iOS.xctest";
+			remoteRef = 9FF6D508245874D8005B4C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9FF6D50B245874D8005B4C57 /* CocoaMarkdown.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaMarkdown.framework;
+			remoteRef = 9FF6D50A245874D8005B4C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9FF6D50D245874D8005B4C57 /* CocoaMarkdownTests-Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "CocoaMarkdownTests-Mac.xctest";
+			remoteRef = 9FF6D50C245874D8005B4C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9FF6D50F245874D8005B4C57 /* Example-iOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-iOS.app";
+			remoteRef = 9FF6D50E245874D8005B4C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9FF6D511245874D8005B4C57 /* Example-Mac.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-Mac.app";
+			remoteRef = 9FF6D510245874D8005B4C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9F9C1FA02426252E0001DF9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FBA01682448B0CB00C9A8FE /* MailTableViewCell.xib in Resources */,
+				9FCF3767242E4868004BDD22 /* SidebarSubredditCell.xib in Resources */,
+				9F7FC3CF242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib in Resources */,
+				9F7FC3EA242F3166006DD0AF /* LinkArticleCell.xib in Resources */,
+				9FFF0DDD243F721800651DB2 /* LinkVideoCell.xib in Resources */,
+				9F7FC403242F75B2006DD0AF /* LinkImageCell.xib in Resources */,
+				9F9C1FAA242625300001DF9E /* Assets.xcassets in Resources */,
+				9F1570A82434D9CC00584C51 /* SubredditHeaderCell.xib in Resources */,
+				9FAA536E244B7D3A009A58A5 /* CommentTextBoxCell.xib in Resources */,
+				9F6AC3742438EEE900BB31FF /* CommentCell.xib in Resources */,
+				9F9C1FAD242625300001DF9E /* Main.storyboard in Resources */,
+				9FAA5373244C138C009A58A5 /* CommentLoadingCell.xib in Resources */,
+				9FE566BE24540FD800A108C4 /* PostDetailHeaderCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9C1FBE2426281D0001DF9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FA5740C243B931700B9384C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9F5AC60124273EDD00D23FEA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/WhiteFlowerFactory.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		9F5AC607242747B900D23FEA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/WhiteFlowerFactory.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9F9C1F9E2426252E0001DF9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F7FC3F2242F4B73006DD0AF /* NSLabel.swift in Sources */,
+				9F50BD42244CB9ED00A54B6E /* NSWindow+Extension.swift in Sources */,
+				9FA57406243B8BEB00B9384C /* NSActivityIndicator.swift in Sources */,
+				9F7FC401242F75A5006DD0AF /* LinkImageCell.swift in Sources */,
+				9FA57400243B78A100B9384C /* PostListScrollView.swift in Sources */,
+				9F7FC3EE242F363D006DD0AF /* UpvoteDownvoteView.swift in Sources */,
+				9F6AC3722438EEDC00BB31FF /* CommentCell.swift in Sources */,
+				9FF8450A243E357500A60D9C /* LoggedInHeaderContentView.swift in Sources */,
+				9F7FC3F0242F3B1B006DD0AF /* PostMetaInfoView.swift in Sources */,
+				9FFF0DD8243F6AA500651DB2 /* VideoView.swift in Sources */,
+				9F0512E9242BAD3500ED64FE /* WebViewController.swift in Sources */,
+				9FC1B37F243858A000C60A4C /* PostDetailDataSource.swift in Sources */,
+				9F1B3E7D2444D33B003BBB95 /* URL.swift in Sources */,
+				9FBA01612448AE0B00C9A8FE /* MailViewDataSource.swift in Sources */,
+				9F1B3E8424484B35003BBB95 /* String.swift in Sources */,
+				9FA573FE243B782D00B9384C /* PostListTableView.swift in Sources */,
+				9FC1B37B243799C500C60A4C /* LinkParentCell.swift in Sources */,
+				9FA57404243B885B00B9384C /* PostListDelegate.swift in Sources */,
+				9F00960F243868CD0084C68D /* LinkTitleLabel.swift in Sources */,
+				9F307C912459B6C2009B6372 /* VotableView.swift in Sources */,
+				9F051301242E37A300ED64FE /* DefaultsManager.swift in Sources */,
+				9F1B3E8724486320003BBB95 /* ImageViewButton.swift in Sources */,
+				9FBE4DB124532381005FEBEB /* NSColor.swift in Sources */,
+				9F9C1FA62426252E0001DF9E /* AppDelegate.swift in Sources */,
+				9F7FC3E2242F259C006DD0AF /* SidebarContentView.swift in Sources */,
+				9FBE4DAD2451DE7C005FEBEB /* Subreddit+Extension.swift in Sources */,
+				9F7FC3F4242F50F8006DD0AF /* ImageButton.swift in Sources */,
+				9F7FC3F7242F5183006DD0AF /* ClearButton.swift in Sources */,
+				9F77B9DB24535F23006490A1 /* WebViewControllerDelegate.swift in Sources */,
+				9F1B3E8924489B99003BBB95 /* MainWindowController.swift in Sources */,
+				9F0512E2242A5ABC00ED64FE /* LayoutExtensions.swift in Sources */,
+				9F7FC3FD242F5AAB006DD0AF /* PostMetaInfoBottomView.swift in Sources */,
+				9F7FC410242F97A0006DD0AF /* Link+Extension.swift in Sources */,
+				9F1B3E902448AB3F003BBB95 /* MailViewController.swift in Sources */,
+				9F7FC3FF242F61F8006DD0AF /* NSTextField.swift in Sources */,
+				9F1570AA2434D9F600584C51 /* SubredditHeaderCell.swift in Sources */,
+				9FFFEDE224363505001B860E /* Date.swift in Sources */,
+				9FF6D514245896CB005B4C57 /* NSSize.swift in Sources */,
+				9F2D1D0F2449D8A600B6C905 /* ControlAccentColorButton.swift in Sources */,
+				9F1570A32434B80300584C51 /* Int.swift in Sources */,
+				9F7FC409242F841A006DD0AF /* TableViewCellHeights.swift in Sources */,
+				9FFF0DD2243F57AC00651DB2 /* PhotoViewerViewController.swift in Sources */,
+				9F2D1D17244A209400B6C905 /* Array+Extension.swift in Sources */,
+				9FB16110243B6D8D00495B0E /* PostListViewModel.swift in Sources */,
+				9F7FC3DA242F1E62006DD0AF /* NSImage.swift in Sources */,
+				9F0512DC242A52E300ED64FE /* DetailViewController.swift in Sources */,
+				9F47C1A72457044600970CFB /* Strings.swift in Sources */,
+				9FCF3765242E45CC004BDD22 /* SidebarSubredditCell.swift in Sources */,
+				9F7FC3E8242F315A006DD0AF /* LinkArticleCell.swift in Sources */,
+				9FFF0DCF243F516900651DB2 /* PhotoViewerWindowController.swift in Sources */,
+				9F1B3E932448AD10003BBB95 /* MailViewModel.swift in Sources */,
+				9FCF3763242E4552004BDD22 /* TableViewCells.swift in Sources */,
+				9F0512F9242D260900ED64FE /* IdentifierConstants.swift in Sources */,
+				9F1B3E8B24489E4E003BBB95 /* WindowResizeManager.swift in Sources */,
+				9F50BD44244CBA2400A54B6E /* NButton+Extension.swift in Sources */,
+				9F0512E7242BAD1A00ED64FE /* WebViewWindowController.swift in Sources */,
+				9F9C1FB8242625E10001DF9E /* SideBarViewModel.swift in Sources */,
+				9F3EBBB2244DE97E00E85D5F /* SessionManager.swift in Sources */,
+				9FBA01732449815F00C9A8FE /* CommentTableViewCellView.swift in Sources */,
+				9FBA01662448AFF600C9A8FE /* MailTableViewCell.swift in Sources */,
+				9FA57408243B8D9D00B9384C /* PostDetailDelegate.swift in Sources */,
+				9FFF0DD6243F5B9300651DB2 /* PhotoViewerControllerRootView.swift in Sources */,
+				9F2D1D092449ACF200B6C905 /* LayoutConstants.swift in Sources */,
+				9FBA01752449831600C9A8FE /* CommentTopView.swift in Sources */,
+				9F9C1FBA242625EB0001DF9E /* SidebarViewController.swift in Sources */,
+				9FFF0DDB243F719C00651DB2 /* LinkVideoCell.swift in Sources */,
+				9F0512DF242A535B00ED64FE /* SplitViewController.swift in Sources */,
+				9FAA536A244B45D0009A58A5 /* MailViewModelDelegate.swift in Sources */,
+				9F20BE4F244F65D200BC8415 /* SidebarDefaultItem.swift in Sources */,
+				9F7FC3D1242E5CB0006DD0AF /* SidebarSectionHeaderCell.swift in Sources */,
+				9F97B493243775AF0059B45F /* PostListViewController.swift in Sources */,
+				9F7FC3E0242F24AB006DD0AF /* SidebarOutlineView.swift in Sources */,
+				9FCF375E242E417F004BDD22 /* SidebarDataSource.swift in Sources */,
+				9F1B3E8E2448AA2D003BBB95 /* MailWindowController.swift in Sources */,
+				9F3A795F242FB57900AA8834 /* SubredditHeaderView.swift in Sources */,
+				9FAA5370244C1359009A58A5 /* CommentLoadingCell.swift in Sources */,
+				9F7FC3DE242F2188006DD0AF /* PostListDataSource.swift in Sources */,
+				9FE566BB24540E3000A108C4 /* PostDetailHeaderCell.swift in Sources */,
+				9FBA01632448AE1400C9A8FE /* MailViewDelegate.swift in Sources */,
+				9FC1B37D2437AFD800C60A4C /* PostDetailViewModel.swift in Sources */,
+				9F6AC378243B44DE00BB31FF /* CommentOutlineView.swift in Sources */,
+				9FCF3760242E423F004BDD22 /* SidebarSection.swift in Sources */,
+				9F2D1D112449E10400B6C905 /* GreyButton.swift in Sources */,
+				9F0512F7242D1BF500ED64FE /* WebViewViewModel.swift in Sources */,
+				9F2D1D152449F26700B6C905 /* NSTableView+Extension.swift in Sources */,
+				9F3A795D242FA63A00AA8834 /* ImageCacheManager.swift in Sources */,
+				9FBE4DAF2451FE0D005FEBEB /* SortItem.swift in Sources */,
+				9F7FC3D4242E5D6F006DD0AF /* NSImageView.swift in Sources */,
+				9FC13D4F24541A1B004FCA0F /* PostDetailContentView.swift in Sources */,
+				9F0512E4242A701200ED64FE /* HeaderView.swift in Sources */,
+				9FFFEDE524363E6E001B860E /* PostDetailViewController.swift in Sources */,
+				9F321B0F244DDF6400B39813 /* NSNotification+Extension.swift in Sources */,
+				9F921B292459D407008E7701 /* RedditClient.swift in Sources */,
+				9F2D1D0B2449B62700B6C905 /* Comment+Extension.swift in Sources */,
+				9F2D1D0D2449D3F900B6C905 /* CommentTextBoxCell.swift in Sources */,
+				9F2D1D132449E6C500B6C905 /* CommentReplyCache.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9C1FBC2426281D0001DF9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F009611243876510084C68D /* CommentResponse.swift in Sources */,
+				9F921B2B2459D44D008E7701 /* APIClient.swift in Sources */,
+				9F5AC60E24274A8A00D23FEA /* Thing.swift in Sources */,
+				9F0512EE242D0BDE00ED64FE /* OAuthTokenResponse.swift in Sources */,
+				9F6AC3762439B27400BB31FF /* MoreCommentResponse.swift in Sources */,
+				9FBA01702448C58200C9A8FE /* User.swift in Sources */,
+				9F5AC61024274AD000D23FEA /* Votable.swift in Sources */,
+				9FC13D582454746F004FCA0F /* Array.swift in Sources */,
+				9F5AC6032427437600D23FEA /* PostRouter.swift in Sources */,
+				9F2A8A0B2430F70C00AF3CA4 /* VoteRouter.swift in Sources */,
+				9F0512F4242D168400ED64FE /* MySubredditListResponse.swift in Sources */,
+				9F5AC61C2427506800D23FEA /* DistinguishType.swift in Sources */,
+				9F5AC61A2427503C00D23FEA /* Media.swift in Sources */,
+				9F05128F242782B600ED64FE /* Subreddit.swift in Sources */,
+				9F5AC61624274C2600D23FEA /* Link.swift in Sources */,
+				9F5AC61224274B2100D23FEA /* VoteDirection.swift in Sources */,
+				9F921B2D2459F1FF008E7701 /* RequestInterceptor.swift in Sources */,
+				9F5AC6242427804F00D23FEA /* PostServices.swift in Sources */,
+				9F2A8A0D2430FA4F00AF3CA4 /* AuthenticationRouter.swift in Sources */,
+				9FBA016C2448B91200C9A8FE /* Comment.swift in Sources */,
+				9F5AC60C24274A7100D23FEA /* Listing.swift in Sources */,
+				9F0512D7242A40DB00ED64FE /* SubredditResponse.swift in Sources */,
+				9F0512EB242CED3F00ED64FE /* AuthenticationServices.swift in Sources */,
+				9F0512F0242D12B400ED64FE /* UserRouter.swift in Sources */,
+				9FBA016A2448B8EA00C9A8FE /* MailboxResponse.swift in Sources */,
+				9F0512F2242D13FF00ED64FE /* UserServices.swift in Sources */,
+				9F7FC3D6242E6462006DD0AF /* SubredditRouter.swift in Sources */,
+				9FBA016E2448BAB300C9A8FE /* InboxReply.swift in Sources */,
+				9F5AC60A24274A3900D23FEA /* Paginator.swift in Sources */,
+				9F7FC3D8242E67F5006DD0AF /* TrendingSubredditsResponse.swift in Sources */,
+				9F5AC62224277C7C00D23FEA /* Sort.swift in Sources */,
+				9F5AC61E2427509C00D23FEA /* Oembed.swift in Sources */,
+				9F7FC3EC242F3326006DD0AF /* LinkType.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FA5740A243B931700B9384C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FA57411243B931700B9384C /* NiceaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9F9C1FC62426281D0001DF9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F9C1FBF2426281D0001DF9E /* APIClient */;
+			targetProxy = 9F9C1FC52426281D0001DF9E /* PBXContainerItemProxy */;
+		};
+		9FA57414243B931700B9384C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F9C1FA12426252E0001DF9E /* Nicea */;
+			targetProxy = 9FA57413243B931700B9384C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9F9C1FAB242625300001DF9E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F9C1FAC242625300001DF9E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9F9C1FB0242625300001DF9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9F9C1FB1242625300001DF9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		9F9C1FB3242625300001DF9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Nicea/Nicea.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = U352XG8SZU;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
+				INFOPLIST_FILE = Nicea/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.Nicea;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9F9C1FB4242625300001DF9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Nicea/Nicea.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = U352XG8SZU;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
+				INFOPLIST_FILE = Nicea/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.Nicea;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9F9C1FCA2426281D0001DF9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = U352XG8SZU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
+				INFOPLIST_FILE = APIClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/WhiteFlowerFactory.framework",
+					"$(PROJECT_DIR)/Carthage/Build/Mac/WhiteFlowerFactory.framework/Versions/A",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.APIClient;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9F9C1FCB2426281D0001DF9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = U352XG8SZU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
+				INFOPLIST_FILE = APIClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/WhiteFlowerFactory.framework",
+					"$(PROJECT_DIR)/Carthage/Build/Mac/WhiteFlowerFactory.framework/Versions/A",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.APIClient;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9FA57416243B931700B9384C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = U352XG8SZU;
+				INFOPLIST_FILE = NiceaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.NiceaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Nicea;
+			};
+			name = Debug;
+		};
+		9FA57417243B931700B9384C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = U352XG8SZU;
+				INFOPLIST_FILE = NiceaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.NiceaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Nicea;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9F9C1F9D2426252E0001DF9E /* Build configuration list for PBXProject "Nicea" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F9C1FB0242625300001DF9E /* Debug */,
+				9F9C1FB1242625300001DF9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F9C1FB2242625300001DF9E /* Build configuration list for PBXNativeTarget "Nicea" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F9C1FB3242625300001DF9E /* Debug */,
+				9F9C1FB4242625300001DF9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F9C1FC92426281D0001DF9E /* Build configuration list for PBXNativeTarget "APIClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F9C1FCA2426281D0001DF9E /* Debug */,
+				9F9C1FCB2426281D0001DF9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9FA57415243B931700B9384C /* Build configuration list for PBXNativeTarget "NiceaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FA57416243B931700B9384C /* Debug */,
+				9FA57417243B931700B9384C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9F9C1F9A2426252E0001DF9E /* Project object */;
+}
