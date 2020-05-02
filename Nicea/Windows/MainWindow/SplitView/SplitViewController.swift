@@ -33,11 +33,11 @@ final class SplitViewController: NSSplitViewController {
     
     private func loadInitialSubreddit() {
         if let unwrappedInitialSubreddit = initialSubreddit {
-            didSelectItem(item: unwrappedInitialSubreddit)
+            detailViewController?.didSelectNewSubreddit(subreddit: unwrappedInitialSubreddit, isHomeFeed: false)
         } else if SessionManager.shared.isLoggedIn {
-            didSelectItem(item: SidebarDefaultItem(title: "Home", imageName: ""))
+            detailViewController?.didSelectNewSubreddit(subreddit: "home", isHomeFeed: true)
         } else {
-            didSelectItem(item: "popular")
+            detailViewController?.didSelectNewSubreddit(subreddit: "popular", isHomeFeed: false)
         }
     }
 }
@@ -59,13 +59,16 @@ extension SplitViewController {
 
 extension SplitViewController: SidebarViewControllerDelegate {
     
-    func didSelectItem(item: Any) {
-        if let subreddit = item as? Subreddit {
-            detailViewController?.didSelectNewSubreddit(subreddit: subreddit.data.displayName!, isHomeFeed: false)
-        } else if let trendingSubreddit = item as? String {
-            detailViewController?.didSelectNewSubreddit(subreddit: trendingSubreddit, isHomeFeed: false)
-        } else if let defaltFeedSubreddit = item as? SidebarDefaultItem {
-            detailViewController?.didSelectNewSubreddit(subreddit: defaltFeedSubreddit.title, isHomeFeed: defaltFeedSubreddit.title == "Home")
+    func didSelectItem(item: SidebarItem) {
+        switch item {
+        case .search: break
+        case .trendingSubreddit(let name, _):
+            detailViewController?.didSelectNewSubreddit(subreddit: name, isHomeFeed: false)
+        case .subscriptionSubreddit(let subreddit):
+            guard let subredditName = subreddit.data.displayName else { return }
+            detailViewController?.didSelectNewSubreddit(subreddit: subredditName, isHomeFeed: false)
+        case .defaultRedditFeed(let name, _):
+            detailViewController?.didSelectNewSubreddit(subreddit: name, isHomeFeed: name.lowercased() == "home")
         }
         
         sidebarViewController?.viewModel.getCurrentUser()

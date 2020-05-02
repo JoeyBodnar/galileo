@@ -11,24 +11,35 @@ import APIClient
 
 final class TableViewCells {
     
-    static func sidebarSubredditCell(_ outlineView: NSOutlineView, subreddit: Subreddit, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+    static func sideBarItemCell(_ outlineView: NSOutlineView, item: SidebarItem, viewFor tableColumn: NSTableColumn?) -> NSView? {
+        switch item {
+        case .trendingSubreddit(let name, let imageName):
+            return sidebarTrendingSubredditCell(outlineView, text: name, imageName: imageName, viewFor: tableColumn)
+        case .subscriptionSubreddit(let subreddit):
+            return sidebarSubredditCell(outlineView, subreddit: subreddit, viewFor: tableColumn)
+        case .search:
+            return searchCell(outlineView, viewFor: tableColumn)
+        case .defaultRedditFeed(let name, let imageName):
+            return sidebarTrendingSubredditCell(outlineView, text: name, imageName: imageName, viewFor: tableColumn)
+        }
+    }
+    
+    static func sidebarSubredditCell(_ outlineView: NSOutlineView, subreddit: Subreddit, viewFor tableColumn: NSTableColumn?) -> NSView? {
         let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SidebarSubredditCell), owner: self) as? SidebarSubredditCell
         view?.wantsLayer = true
         view?.configure(subreddit: subreddit)
         return view
     }
     
-    static func sidebarTrendingSubredditCell(_ outlineView: NSOutlineView, text: String, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+    static func sidebarTrendingSubredditCell(_ outlineView: NSOutlineView, text: String, imageName: String, viewFor tableColumn: NSTableColumn?) -> NSView? {
         let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SidebarSubredditCell), owner: self) as? SidebarSubredditCell
         view?.wantsLayer = true
-        view?.configure(trendingSubreddit: text)
+        view?.configure(subreddit: text, imageName: imageName)
         return view
     }
     
-    static func sidebarDefaultRedditFeedCell(_ outlineView: NSOutlineView, defaultfeedItem: SidebarDefaultItem, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SidebarSubredditCell), owner: self) as? SidebarSubredditCell
-        view?.wantsLayer = true
-        view?.configure(defaultFeedItem: defaultfeedItem)
+    static func searchCell(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?) -> NSView? {
+        let view: SidebarSearchCell? = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("SidebarSearchCell"), owner: self) as? SidebarSearchCell
         return view
     }
     
@@ -44,17 +55,17 @@ final class TableViewCells {
         let linkType: LinkType = LinkType(link: link)
         switch linkType {
         case .linkedArticle, .selfText:
-            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkArticleCell), owner: self) as! LinkArticleCell
+            let view: LinkArticleCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkArticleCell), owner: self) as! LinkArticleCell
             view.wantsLayer = true
             view.configure(link: link)
             return view
         case .imageReddit, .imageImgur, .gifImgur:
-            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkImageCell), owner: self) as! LinkImageCell
+            let view: LinkImageCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkImageCell), owner: self) as! LinkImageCell
             view.wantsLayer = true
             view.configure(link: link)
             return view
         case .hostedVideo, .youtubeVideo, .gyfcatVideo, .richVideoGeneric:
-            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkVideoCell), owner: self) as! LinkVideoCell
+            let view: LinkVideoCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkVideoCell), owner: self) as! LinkVideoCell
             view.wantsLayer = true
             view.configure(link: link)
             return view

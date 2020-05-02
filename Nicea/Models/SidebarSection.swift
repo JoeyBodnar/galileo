@@ -13,26 +13,25 @@ enum SectionType {
     case trending
     case mySubscriptions
     case `default`
+    case search
     
     var name: String {
         switch self {
         case .trending: return "Trending"
         case .mySubscriptions: return "My subscriptions"
         case .default: return "Reddit feeds"
+        case .search: return "Search"
         }
     }
 }
 
 final class SidebarSection {
     var sectionType: SectionType
-    var children: [Any] = []
+    var children: [SidebarItem] = []
     
-    init(sectionType: SectionType, children: [Any] = []) {
+    init(sectionType: SectionType, children: [SidebarItem] = []) {
         self.sectionType = sectionType
         self.children = children
     }
     
-    func addChild(child: Subreddit) {
-        children.append(child)
-    }
 }

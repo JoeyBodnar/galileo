@@ -56,6 +56,10 @@ final class DetailViewController: NSViewController {
         postListViewController.setLoading(true, isNewSubreddit: true)
         postListViewController.viewModel.didSelectSubreddit(subreddit: subreddit, isHomeFeed: isHomeFeed)
     }
+    
+    func didSelectSearch() {
+        
+    }
 }
 
 extension DetailViewController: PostDetailViewControllerDelegate {

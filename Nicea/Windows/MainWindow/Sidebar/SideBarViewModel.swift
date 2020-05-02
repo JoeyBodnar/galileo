@@ -6,7 +6,7 @@
 //  Copyright © 2020 Stephen Bodnar. All rights reserved.
 //
 
-import Foundation
+import AppKit
 import APIClient
 
 protocol SidebarViewModelDelegate: AnyObject {
@@ -23,11 +23,11 @@ final class SidebarViewModel {
     
     init() { }
     
-    var redditFeeds: [SidebarDefaultItem] {
+    var redditFeeds: [SidebarItem] {
         if SessionManager.shared.isLoggedIn {
-            return [SidebarDefaultItem(title: "Home", imageName: "home"), SidebarDefaultItem(title: "Popular", imageName: "trending"), SidebarDefaultItem(title: "All", imageName: "home")]
+            return [SidebarItem.defaultRedditFeed(name: "Home", image: ImageNames.home), SidebarItem.defaultRedditFeed(name: "Popular", image: ImageNames.trending), SidebarItem.defaultRedditFeed(name: "All", image: ImageNames.home)]
         } else {
-            return [SidebarDefaultItem(title: "Popular", imageName: "home"), SidebarDefaultItem(title: "All", imageName: "home")]
+            return [SidebarItem.defaultRedditFeed(name: "Popular", image: ImageNames.trending), SidebarItem.defaultRedditFeed(name: "All", image: ImageNames.home)]
         }
     }
     
@@ -44,7 +44,13 @@ final class SidebarViewModel {
     }
     
     private func setDataSource(subredditListResponse: MySubredditListResponse) {
-        let section: SidebarSection = SidebarSection(sectionType: .mySubscriptions, children: subredditListResponse.data.children!)
+        let subreddits: [Subreddit] = subredditListResponse.data.children ?? []
+        
+        let sideBarItems: [SidebarItem] = subreddits.map { subreddit -> SidebarItem in
+            return SidebarItem.subscriptionSubreddit(subreddit: subreddit)
+        }
+        
+        let section: SidebarSection = SidebarSection(sectionType: .mySubscriptions, children: sideBarItems)
         dataSource.sections.append(section)
         delegate?.didFetchSubredditSbscriptions()
     }
@@ -53,11 +59,17 @@ final class SidebarViewModel {
         PostServices.shared.trendingSubreddits { [weak self] result in
             switch result {
             case .success(let trendingResponse):
-                let section: SidebarSection = SidebarSection(sectionType: .trending, children: trendingResponse.subreddits)
+                let trendingItems: [String] = trendingResponse.subreddits
+                let trendingSidebarItems: [SidebarItem] = trendingItems.map { SidebarItem.trendingSubreddit(name: $0, image: ImageNames.trending)}
+                let trendingSection: SidebarSection = SidebarSection(sectionType: .trending, children: trendingSidebarItems)
                 
                 let redditSection: SidebarSection = SidebarSection(sectionType: .default, children: self?.redditFeeds ?? [])
-                self?.dataSource.sections.insert(redditSection, at: 0)
-                self?.dataSource.sections.insert(section, at: 1)
+                
+                let searchSection: SidebarSection = SidebarSection(sectionType: .search, children: [SidebarItem.search])
+                
+                self?.dataSource.sections.insert(searchSection, at: 0)
+                self?.dataSource.sections.insert(redditSection, at: 1)
+                self?.dataSource.sections.insert(trendingSection, at: 2)
                 self?.delegate?.didFetchSubredditSbscriptions()
             case .failure(let error): print(error)
             }
@@ -75,6 +87,10 @@ final class SidebarViewModel {
                 weakSelf.delegate?.sidebarViewModel(weakSelf, didFailToRetrieveCurrentUser: error)
             }
         }
+    }
+    
+    func shouldSelectItem(_ outlineView: NSOutlineView, item: Any) -> Bool {
+        return true
     }
     
 }

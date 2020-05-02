@@ -10,7 +10,7 @@ import AppKit
 import APIClient
 
 protocol SidebarViewControllerDelegate: AnyObject {
-    func didSelectItem(item: Any)
+    func didSelectItem(item: SidebarItem)
 }
 
 final class SidebarViewController: NSViewController {
@@ -79,7 +79,10 @@ extension SidebarViewController: NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        delegate?.didSelectItem(item: item)
+        if let sidebarItem = item as? SidebarItem {
+            delegate?.didSelectItem(item: sidebarItem)
+        }
+        
         return true
     }
     

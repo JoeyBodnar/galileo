@@ -44,4 +44,5 @@ struct ImageNames {
     static let play: String = "play"
     static let trending: String = "trending"
     static let mailFill: String = "mail-fill"
+    static let home: String = "home"
 }
