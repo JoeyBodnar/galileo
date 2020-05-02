@@ -9,24 +9,6 @@
 import AppKit
 import APIClient
 
-protocol PostDetailViewModelDelegate: AnyObject {
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didRetrieveComments commentResponse: [Comment])
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, insertItemAtIndex index: IndexSet, forParent parent: Comment)
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didSelectCancel comment: Comment)
-    
-    /// called for submitting comment on another comment
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didSelectSubmit comment: Comment, commentTextBox: CommentTextBoxCell)
-    
-    /// called when you successfully reply to another comment
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didReplyToComment comment: Comment, withNewComment newComment: Comment)
-    
-    /// called when you successfully reply to the parent link
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didReplyToLink link: Link, withNewComment newComment: Comment)
-    
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didSelectBackButton sender: NSButton)
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didVoteOnComment comment: Comment, direction: VoteDirection, result: Result<Bool, Error>)
-}
-
 final class PostDetailViewModel {
     
     /// the current subreddit
@@ -59,7 +41,8 @@ final class PostDetailViewModel {
     
     func loadMoreCommentsOnParentArticle(comment: Comment) {
         guard let children = comment.data.commentChildren, let parentId = link?.data.name else { return }
-        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, id: comment.data.id!, childrenIds: children) { [weak self] result in
+        
+        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, childrenIds: children) { [weak self] result in
             switch result {
             case .success(let newComments):
                 self?.handleDidFetchNewComments(newComments, parentComment: comment)
@@ -72,6 +55,7 @@ final class PostDetailViewModel {
     private func handleDidLoadInitialComments(commentResponse: CommentResponse, originalLink: Link) {
         guard let children = commentResponse.data?.children else { return }
         self.dataSource.comments = [originalLink] + children
+        
         self.delegate?.postDetailViewModel(self, didRetrieveComments: children)
     }
     
@@ -96,13 +80,16 @@ final class PostDetailViewModel {
             return matchesParent && isTopLevel
         }
         
-        self.dataSource.comments.append(contentsOf: commentsOnParentPost)
-
+        // then append
+        dataSource.comments.append(contentsOf: commentsOnParentPost)
+        
         // comments not on the parent post, but responding to other comments
         let commentChildren: [Comment] = comments.filter { comment -> Bool in
-           let first2: String = String(comment.data.parentId!.prefix(2))
-           return first2 == "t1"
+            guard let commentParendId = comment.data.parentId else { return false }
+            let first2: String = String(commentParendId.prefix(2))
+            return first2 == "t1"
         }
+        
         let commentSet: [Comment] = dataSource.comments.filter { $0 is Comment } as! [Comment]
         addCommentsToCommentTree(commentSet, newComments: commentChildren, parentId: parentId)
     }
@@ -111,16 +98,18 @@ final class PostDetailViewModel {
     private func addCommentsToCommentTree(_ originalCommentSet: [Comment], newComments: [Comment], parentId: String) {
         for originalComment in originalCommentSet {
             for new in newComments {
-                if new.data.parentId == originalComment.data.name! {
-                    if let iReplies = originalComment.data.replies { // if already exists, append it
-                        iReplies.data?.children?.append(new)
-                    } else { // does not exist yet, create new instance
-                        let constructedListing: ListingResponse<Comment> = ListingResponse(modhash: nil, before: nil, after: nil, dist: nil, children: [new])
-                        let commentReplyData = CommentReplyData(kind: "t1", data: constructedListing)
-                        originalComment.data.replies = commentReplyData
+                if let originalCommentname = originalComment.data.name {
+                    if new.data.parentId == originalCommentname {
+                        if let iReplies = originalComment.data.replies { // if already exists, append it
+                            iReplies.data?.children?.append(new)
+                        } else { // does not exist yet, create new instance
+                            let constructedListing: ListingResponse<Comment> = ListingResponse(modhash: nil, before: nil, after: nil, dist: nil, children: [new])
+                            let commentReplyData = CommentReplyData(kind: "t1", data: constructedListing)
+                            originalComment.data.replies = commentReplyData
+                        }
+                        
+                        addCommentsToCommentTree([new], newComments: newComments, parentId: new.data.name!)
                     }
-                    
-                    addCommentsToCommentTree([new], newComments: newComments, parentId: new.data.name!)
                 }
             }
         }
