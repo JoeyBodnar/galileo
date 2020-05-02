@@ -59,7 +59,7 @@ extension SplitViewController {
 
 extension SplitViewController: SidebarViewControllerDelegate {
     
-    func didSelectItem(item: SidebarItem) {
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, didSelectItem item: SidebarItem) {
         switch item {
         case .search, .searchOptions: break
         case .trendingSubreddit(let name, _):
@@ -70,8 +70,13 @@ extension SplitViewController: SidebarViewControllerDelegate {
         case .defaultRedditFeed(let name, _):
             detailViewController?.didSelectNewSubreddit(subreddit: name, isHomeFeed: name.lowercased() == "home")
         }
-        
-        sidebarViewController?.viewModel.getCurrentUser()
     }
     
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, didReceiveSearchResults result: Result<SearchResponse, Error>) {
+        switch result {
+        case .success(let searchResponse):
+            print("")
+        case .failure: break
+        }
+    }
 }

@@ -11,7 +11,7 @@ import APIClient
 
 protocol SearchHandlerDelegate: AnyObject {
     
-    func searchHandler(_ searchHandler: SearchHandler)
+    func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<SearchResponse, Error>)
 }
 
 final class SearchHandler {
@@ -25,6 +25,9 @@ final class SearchHandler {
     }
     
     func search(text: String) {
-        
+        SearchServices.shared.search(text: text, subreddit: "iosprogramming", isSubredditOnly: searchType == .subreddit) { [weak self] result in
+            guard let weakSelf = self else { return }
+            weakSelf.delegate?.searchHandler(weakSelf, didRetrieveResult: result)
+        }
     }
 }

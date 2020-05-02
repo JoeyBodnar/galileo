@@ -10,7 +10,9 @@ import AppKit
 import APIClient
 
 protocol SidebarViewControllerDelegate: AnyObject {
-    func didSelectItem(item: SidebarItem)
+    
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, didSelectItem item: SidebarItem)
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, didReceiveSearchResults result: Result<SearchResponse, Error>)
 }
 
 final class SidebarViewController: NSViewController {
@@ -80,9 +82,10 @@ extension SidebarViewController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         if let sidebarItem = item as? SidebarItem {
-            delegate?.didSelectItem(item: sidebarItem)
+            delegate?.sidebarViewController(self, didSelectItem: sidebarItem)
         }
         
+        viewModel.getCurrentUser()
         return viewModel.shouldSelectItem(outlineView, item: item)
     }
     
@@ -101,13 +104,20 @@ extension SidebarViewController: NSOutlineViewDelegate {
 extension SidebarViewController: SidebarSearchCellDelegate {
     
     func sidebarSearchCell(_ sidebarSearchCell: SidebarSearchCell, didStartSearching searchField: NSSearchField) {
-        
+        viewModel.searchHandler.search(text: searchField.stringValue)
     }
 }
 
 extension SidebarViewController: SidebarSearchToggleCellDelegate {
     
     func sidebarSearchToggleCell(_ sidebarSearchToggleCell: SidebarSearchToggleCell, searchTypeDidChange searchType: SearchType) {
+        viewModel.searchHandler.searchTypeDidChange(newValue: searchType)
+    }
+}
+
+extension SidebarViewController: SearchHandlerDelegate {
+    
+    func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<SearchResponse, Error>) {
         
     }
 }
@@ -138,7 +148,7 @@ extension SidebarViewController {
     
     private func setupviews() {
         headerView.delegate = self
-        
+        viewModel.searchHandler.delegate = self
         contentView.outlineView.delegate = self
         contentView.outlineView.dataSource = self
         

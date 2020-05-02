@@ -23,6 +23,8 @@ final class SidebarViewModel {
     
     init() { }
     
+    var searchHandler: SearchHandler = SearchHandler()
+    
     var redditFeeds: [SidebarItem] {
         if SessionManager.shared.isLoggedIn {
             return [SidebarItem.defaultRedditFeed(name: "Home", image: ImageNames.home), SidebarItem.defaultRedditFeed(name: "Popular", image: ImageNames.trending), SidebarItem.defaultRedditFeed(name: "All", image: ImageNames.home)]
@@ -101,5 +103,4 @@ final class SidebarViewModel {
         }
         return true
     }
-    
 }

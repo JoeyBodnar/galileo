@@ -27,8 +27,15 @@ final class SidebarSearchCell: NSTableCellView {
 
 extension SidebarSearchCell: NSSearchFieldDelegate {
     
-    func searchFieldDidStartSearching(_ sender: NSSearchField) {
-        delegate?.sidebarSearchCell(self, didStartSearching: searchField)
-        print("searching")
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if (commandSelector == #selector(NSResponder.insertNewline(_:))) {
+            // Do something against ENTER key
+            print("enter pressed")
+            if searchField.stringValue.count < 2 { return true}
+            delegate?.sidebarSearchCell(self, didStartSearching: searchField)
+        }
+
+        // return true if the action was handled; otherwise false
+        return false
     }
 }

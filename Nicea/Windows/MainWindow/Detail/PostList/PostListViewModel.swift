@@ -28,9 +28,9 @@ final class PostListViewModel {
     var paginator: Paginator = Paginator()
     var subreddit: String = ""
     
-    var isFetching: Bool = false // set to true in PostListViewModel, set to false when Tableview updates in DetailviewController
+    var isFetching: Bool = false // set to true in PostListViewModel, set to false when tableview updates in DetailviewController
     
-    var isViewingHome: Bool = true // need a special flag for this because "home" is actually its own subreddit
+    var listType: PostListType = PostListType.subreddit
     
     /// set in didSelectSubreddit method
     var currentSort: MenuSortItem = MenuSortItem(title: SortItemTitles.hot, sort: .hot)
@@ -64,10 +64,9 @@ final class PostListViewModel {
         }
         
         paginator = Paginator() // reset as if it were a new subreddit, because we will have to reset paginator as well
-        if isViewingHome {
-            fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
-        } else {
-            fetchPosts(isNewSubreddit: true)
+        switch listType {
+        case .home: fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
+        default: fetchPosts(isNewSubreddit: true)
         }
     }
     
@@ -87,25 +86,31 @@ final class PostListViewModel {
     }
     
     func getNextPosts() {
-        if isViewingHome {
-            fetchHomeFeed(isNewSubreddit: false, sort: currentSort.sort)
-        } else {
-            fetchPosts(isNewSubreddit: false)
+        switch listType {
+        case .home: fetchHomeFeed(isNewSubreddit: false, sort: currentSort.sort)
+        default: fetchPosts(isNewSubreddit: false)
         }
     }
     
     /// the method called from SplitViewController when you first select a sidebar item
     func didSelectSubreddit(subreddit: String, isHomeFeed: Bool) {
-        isViewingHome = isHomeFeed
+        listType = isHomeFeed ? PostListType.home : PostListType.subreddit
+        //isViewingHome = isHomeFeed
         paginator = Paginator() // reset paginator for new subreddit
         currentSort = MenuSortItem(title: SortItemTitles.hot, sort: .hot)
         
-        if isHomeFeed {
+        switch listType {
+        case .home: fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
+        default:
+            self.subreddit = subreddit
+            fetchPosts(isNewSubreddit: true)
+        }
+        /*if isHomeFeed {
             fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
         } else {
             self.subreddit = subreddit
             fetchPosts(isNewSubreddit: true)
-        }
+        }*/
     }
     
     func pauseOffScreenVideos(rows: [NSTableRowView]) {
@@ -126,6 +131,10 @@ final class PostListViewModel {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
             button.title = Strings.shareButtonText
         }
+    }
+    
+    func didGetSearchResults(links: [Link]) {
+        
     }
     
     // MAARK: - Private
