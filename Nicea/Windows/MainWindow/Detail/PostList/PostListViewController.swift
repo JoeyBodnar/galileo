@@ -23,7 +23,7 @@ final class PostListViewController: NSViewController {
     let viewModel: PostListViewModel = PostListViewModel()
     
     private lazy var tableViewDelegate: PostListDelegate = {
-        return PostListDelegate(dataSource: viewModel.dataSource, cellDelegate: self, headerDelegate: self, linkArticleDelegate: self)
+        return PostListDelegate(dataSource: viewModel.dataSource, cellDelegate: self, headerDelegate: self, linkArticleDelegate: self, viewModel: viewModel)
     }()
     
     weak var delegate: PostListViewControllerDelegate?

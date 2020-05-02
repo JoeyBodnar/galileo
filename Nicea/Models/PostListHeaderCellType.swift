@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import APIClient
 
 enum PostListHeaderCellType {
     
-    case subreddit
+    case subreddit(subreddit: Subreddit)
     case defaultRedditFeed(name: String)
     case searchResults
 }

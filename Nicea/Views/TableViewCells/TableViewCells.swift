@@ -109,4 +109,24 @@ final class TableViewCells {
         }
         return nil
     }
+    
+    static func postListTableViewCell(_ tableView: NSTableView, item: Any, sort: MenuSortItem, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if let link = item as? Link {
+            let view: NSView? = TableViewCells.linkCell(tableView, link: link, viewFor: tableColumn, row: row)
+            return view
+        } else if let redditDefaultFeedItem = item as? PostListHeaderCellType {
+            let view: SubredditHeaderCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SubredditHeaderCell), owner: self) as! SubredditHeaderCell
+            switch redditDefaultFeedItem {
+            case .defaultRedditFeed(let name):
+                view.configure(defaultFeedItem: name, sort: sort)
+            case .subreddit(let subreddit):
+                view.configure(subreddit: subreddit, sort: sort)
+            default: break
+            }
+            return view
+        }
+        
+        
+        return nil
+    }
 }
