@@ -108,6 +108,7 @@
 		9F8CAF9F245DD1E20063C156 /* SearchServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAF9E245DD1E20063C156 /* SearchServices.swift */; };
 		9F8CAFA1245DD4C90063C156 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAFA0245DD4C90063C156 /* SearchResponse.swift */; };
 		9F8CAFA3245DDA5C0063C156 /* PostListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAFA2245DDA5C0063C156 /* PostListType.swift */; };
+		9F8CAFA5245DDFBF0063C156 /* PostListHeaderCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAFA4245DDFBF0063C156 /* PostListHeaderCellType.swift */; };
 		9F921B292459D407008E7701 /* RedditClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B282459D407008E7701 /* RedditClient.swift */; };
 		9F921B2B2459D44D008E7701 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B2A2459D44D008E7701 /* APIClient.swift */; };
 		9F921B2D2459F1FF008E7701 /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */; };
@@ -345,6 +346,7 @@
 		9F8CAF9E245DD1E20063C156 /* SearchServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServices.swift; sourceTree = "<group>"; };
 		9F8CAFA0245DD4C90063C156 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		9F8CAFA2245DDA5C0063C156 /* PostListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListType.swift; sourceTree = "<group>"; };
+		9F8CAFA4245DDFBF0063C156 /* PostListHeaderCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListHeaderCellType.swift; sourceTree = "<group>"; };
 		9F921B282459D407008E7701 /* RedditClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditClient.swift; sourceTree = "<group>"; };
 		9F921B2A2459D44D008E7701 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 				9FBE4DAE2451FE0D005FEBEB /* SortItem.swift */,
 				9F8CAF9A245DCD990063C156 /* SearchType.swift */,
 				9F8CAFA2245DDA5C0063C156 /* PostListType.swift */,
+				9F8CAFA4245DDFBF0063C156 /* PostListHeaderCellType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				9FF8450A243E357500A60D9C /* LoggedInHeaderContentView.swift in Sources */,
 				9F7FC3F0242F3B1B006DD0AF /* PostMetaInfoView.swift in Sources */,
 				9FFF0DD8243F6AA500651DB2 /* VideoView.swift in Sources */,
+				9F8CAFA5245DDFBF0063C156 /* PostListHeaderCellType.swift in Sources */,
 				9F0512E9242BAD3500ED64FE /* WebViewController.swift in Sources */,
 				9FC1B37F243858A000C60A4C /* PostDetailDataSource.swift in Sources */,
 				9F1B3E7D2444D33B003BBB95 /* URL.swift in Sources */,

@@ -105,12 +105,6 @@ final class PostListViewModel {
             self.subreddit = subreddit
             fetchPosts(isNewSubreddit: true)
         }
-        /*if isHomeFeed {
-            fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
-        } else {
-            self.subreddit = subreddit
-            fetchPosts(isNewSubreddit: true)
-        }*/
     }
     
     func pauseOffScreenVideos(rows: [NSTableRowView]) {
@@ -134,7 +128,8 @@ final class PostListViewModel {
     }
     
     func didGetSearchResults(links: [Link]) {
-        
+        listType = .searchResults
+        delegate?.postListViewModel(self, didRetrievePosts: links, isNewSubreddit: true)
     }
     
     // MAARK: - Private
@@ -200,7 +195,7 @@ final class PostListViewModel {
             if let unwrappedRetrievedSubreddit = newSubreddit {
                 allItems = [unwrappedRetrievedSubreddit] + posts
             } else {
-                allItems = [weakSelf.subreddit] + posts // in this case it will be "All" or "Popular" for the subreddit
+                allItems = [PostListHeaderCellType.defaultRedditFeed(name: weakSelf.subreddit)] + posts // in this case it will be "All" or "Popular" for the subreddit
             }
             
             weakSelf.delegate?.postListViewModel(weakSelf, didRetrievePosts: allItems, isNewSubreddit: true)
@@ -218,7 +213,7 @@ final class PostListViewModel {
             case .success(let subredditResponse):
                 weakSelf.paginator = subredditResponse.paginator
                 var posts: [Any] = subredditResponse.data.children ?? []
-                if isNewSubreddit { posts = ["home"] + posts }
+                if isNewSubreddit { posts = [PostListHeaderCellType.defaultRedditFeed(name: "home")] + posts }
                 weakSelf.delegate?.postListViewModel(weakSelf, didRetrievePosts: posts, isNewSubreddit: isNewSubreddit)
             case .failure(let error): print(error)
             }

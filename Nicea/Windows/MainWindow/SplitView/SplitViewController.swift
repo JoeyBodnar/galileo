@@ -75,7 +75,7 @@ extension SplitViewController: SidebarViewControllerDelegate {
     func sidebarViewController(_ sidebarViewController: SidebarViewController, didReceiveSearchResults result: Result<SearchResponse, Error>) {
         switch result {
         case .success(let searchResponse):
-            print("")
+            self.detailViewController?.postListViewController.viewModel.didGetSearchResults(links: searchResponse.data.children ?? [])
         case .failure: break
         }
     }

@@ -118,7 +118,7 @@ extension SidebarViewController: SidebarSearchToggleCellDelegate {
 extension SidebarViewController: SearchHandlerDelegate {
     
     func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<SearchResponse, Error>) {
-        
+        delegate?.sidebarViewController(self, didReceiveSearchResults: result)
     }
 }
 
