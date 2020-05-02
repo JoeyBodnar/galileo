@@ -28,7 +28,6 @@ final class PostDetailViewModel {
     /// after loading comments we need to autoexpand some nodes, and during this split second, we suspend normal operations that we would do when manually expanding a node (for example, like loading more comments on node expand. Only want to do that for when a user manually expands a a node)
     var isAutoExpanding: Bool = false
     
-    private var parentLinkMoreCommentList: [String] = []
     private let commentLoadMoreLimit: Int = 100
     
     func loadArticleAndComments(for link: Link) {
@@ -43,12 +42,9 @@ final class PostDetailViewModel {
     }
     
     func loadMoreCommentsOnParentArticle(comment: Comment) {
-        let parentLinkChildrenIds: [String] = Array(parentLinkMoreCommentList.prefix(commentLoadMoreLimit))
         guard let children = comment.data.commentChildren, let parentId = link?.data.name else { return }
         
-        let childrenIdsToRetrieve: [String] = comment.isTopLevelComment ? parentLinkChildrenIds : children
-        
-        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, childrenIds: childrenIdsToRetrieve) { [weak self] result in
+        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, childrenIds: children) { [weak self] result in
             switch result {
             case .success(let newComments):
                 self?.handleDidFetchNewComments(newComments, parentComment: comment)
@@ -62,7 +58,6 @@ final class PostDetailViewModel {
         guard let children = commentResponse.data?.children else { return }
         self.dataSource.comments = [originalLink] + children
         
-        self.parentLinkMoreCommentList = children.last?.data.commentChildren ?? []
         self.delegate?.postDetailViewModel(self, didRetrieveComments: children)
     }
     
@@ -81,45 +76,20 @@ final class PostDetailViewModel {
     
     /// add top level comments to the article. parentId will be `t3_xxxxx` because the parent will be a link
     private func addTopLevelComments(_ comments: [Comment], parentId: String) {
-        var commentsOnParentPost: [Comment] = comments.filter { comment -> Bool in
+        let commentsOnParentPost: [Comment] = comments.filter { comment -> Bool in
             let matchesParent: Bool = comment.data.parentId! == parentId
             let isTopLevel = comment.isTopLevelComment
             return matchesParent && isTopLevel
         }
         
-        print("last comment type from server is \(commentsOnParentPost.last?.kind)")
-        // first, remove last comment that is the "load more.." comment
-        dataSource.comments.remove(at: dataSource.comments.count - 1)
-        
-        if commentsOnParentPost.last!.isMoreItem { // then remove
-            commentsOnParentPost.removeLast(1)
-        }
-        
         // then append
         dataSource.comments.append(contentsOf: commentsOnParentPost)
         
-        // filter parentLinkMoreCommentList to remove all IDs that were added
-        parentLinkMoreCommentList = parentLinkMoreCommentList.filter({ commentId -> Bool in
-            return !comments.contains { comment -> Bool in
-                return (comment.data.id ?? "") == commentId
-            }
-        })
-        
-        //if !commentsOnParentPost.last!.isMoreItem {
-            // then create new "load more" comment with new count
-            let commentData: CommentData = CommentData()
-            commentData.commentChildren = parentLinkMoreCommentList
-            commentData.parentId = parentId
-            let loadMoreComment: Comment = Comment(kind: "more", data: commentData)
-
-            // then append that comment to the end
-            dataSource.comments.append(loadMoreComment)
-        //}
-        
         // comments not on the parent post, but responding to other comments
         let commentChildren: [Comment] = comments.filter { comment -> Bool in
-           let first2: String = String(comment.data.parentId!.prefix(2))
-           return first2 == "t1"
+            guard let commentParendId = comment.data.parentId else { return false }
+            let first2: String = String(commentParendId.prefix(2))
+            return first2 == "t1"
         }
         
         let commentSet: [Comment] = dataSource.comments.filter { $0 is Comment } as! [Comment]
@@ -143,7 +113,6 @@ final class PostDetailViewModel {
                         addCommentsToCommentTree([new], newComments: newComments, parentId: new.data.name!)
                     }
                 }
-                
             }
         }
     }

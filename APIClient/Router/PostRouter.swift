@@ -34,7 +34,7 @@ enum PostRouter: Provider {
     // Public - can be accessed by non logged in users
     case getPostsForSubreddit(subreddit: String, paginator: Paginator, sort: Sort = .hot, isLoggedIn: Bool)
     case getCommentsForPost(subreddit: String, id: String, isLoggedIn: Bool)
-    case getMoreComments(parentId: String, children: [String])
+    case getMoreComments
     
     // Authenticated - Only accessible to logged in users
     /// the home feed for a signed in user
@@ -55,10 +55,9 @@ enum PostRouter: Provider {
             }
         case .getCommentsForPost(let subreddit, let id, let isLoggedIn):
             let urlString: String = url(isLoggedIn: isLoggedIn)
-            return "\(urlString)r/\(subreddit)/comments/\(id).json?limit=350"
-        case .getMoreComments(let parentId, let children):
-            let kids: String = children.joined(separator: ",")
-            return "https://api.reddit.com/api/morechildren?api_type=json&link_id=\(parentId)&showmore=true&children=\(kids)"
+            return "\(urlString)r/\(subreddit)/comments/\(id).json?sort=best&limit=250"
+        case .getMoreComments:
+            return "https://api.reddit.com/api/morechildren"
         case .replyToPost:
             return "\(url(isLoggedIn: true))api/comment"
         case.markCommentsRead:

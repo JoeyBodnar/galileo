@@ -41,7 +41,9 @@ public class PostServices {
     }
     
     public func getMoreComments(subreddit: String, parentId: String, childrenIds: [String], completion: @escaping (Result<[Comment], Error>) -> Void) {
-        let request = WhiteFlowerRequest(method: .get, endPoint: PostRouter.getMoreComments(parentId: parentId, children: childrenIds), headers: nil)
+        let ids: String = childrenIds.joined(separator: ",")
+        let parameters: [String: Any] = ["sort": "best", "api_type": "json", "link_id": parentId, "children": ids, "showmore": true]
+        let request: WhiteFlowerRequest = WhiteFlowerRequest(method: .post, endPoint: PostRouter.getMoreComments, params: parameters, headers: nil)
         APIClient.shared.dataRequest(whiteFlowerRequest: request, forType: MoreCommentResponseParentJSON.self) { result in
             switch result {
             case .success(let commentResponse):
