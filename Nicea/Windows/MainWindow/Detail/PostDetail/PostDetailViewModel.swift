@@ -28,8 +28,6 @@ final class PostDetailViewModel {
     /// after loading comments we need to autoexpand some nodes, and during this split second, we suspend normal operations that we would do when manually expanding a node (for example, like loading more comments on node expand. Only want to do that for when a user manually expands a a node)
     var isAutoExpanding: Bool = false
     
-    private let commentLoadMoreLimit: Int = 100
-    
     func loadArticleAndComments(for link: Link) {
         PostServices.shared.getComments(subreddit: link.data.subreddit, articleId: link.data.id, isLoggedIn: SessionManager.shared.isLoggedIn) { [weak self] result in
             switch result {
