@@ -40,27 +40,15 @@ public class PostServices {
         APIClient.shared.dataRequest(whiteFlowerRequest: WhiteFlowerRequest(method: .get, endPoint: PostRouter.getCommentsForPost(subreddit: subreddit, id: articleId, isLoggedIn: isLoggedIn), headers: nil), forType: CommentResponse.self, completion: completion)
     }
     
-    public func getMoreComments(subreddit: String, parentId: String, id: String, childrenIds: [String], completion: @escaping (Result<[Comment], Error>) -> Void) {
-        let chunked: [[String]] = childrenIds.chunked(into: 100)
-        
-        let requests: [WhiteFlowerRequest] = chunked.map { childIds -> WhiteFlowerRequest in
-            return WhiteFlowerRequest(method: .get, endPoint: PostRouter.getMoreComments(parentId: parentId, children: childIds), headers: [HTTPHeader(field: "User-Agent", value: "stephen macbook")])
-        }
-        
-        let queue: WhiteFlowerConcurrentQueue = WhiteFlowerConcurrentQueue(requests: requests, queue: DispatchQueue.main)
-        queue.execute { responses in
-            var allComments: [Comment] = []
-            for response in responses {
-                switch response.serializeTo(type: MoreCommentResponseParentJSON.self) {
-                case .success(let commentResponse):
-                    allComments.append(contentsOf: commentResponse.json.data.things)
-                case .failure(let error):
-                    completion(.failure(error))
-                    return
-                }
+    public func getMoreComments(subreddit: String, parentId: String, childrenIds: [String], completion: @escaping (Result<[Comment], Error>) -> Void) {
+        let request = WhiteFlowerRequest(method: .get, endPoint: PostRouter.getMoreComments(parentId: parentId, children: childrenIds), headers: nil)
+        APIClient.shared.dataRequest(whiteFlowerRequest: request, forType: MoreCommentResponseParentJSON.self) { result in
+            switch result {
+            case .success(let commentResponse):
+                completion(.success(commentResponse.json.data.things))
+            case .failure(let error):
+                completion(.failure(error))
             }
-            
-            completion(.success(allComments))
         }
     }
     
