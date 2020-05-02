@@ -61,7 +61,7 @@ extension SplitViewController: SidebarViewControllerDelegate {
     
     func didSelectItem(item: SidebarItem) {
         switch item {
-        case .search: break
+        case .search, .searchOptions: break
         case .trendingSubreddit(let name, _):
             detailViewController?.didSelectNewSubreddit(subreddit: name, isHomeFeed: false)
         case .subscriptionSubreddit(let subreddit):

@@ -19,6 +19,8 @@ final class TableViewCells {
             return sidebarSubredditCell(outlineView, subreddit: subreddit, viewFor: tableColumn)
         case .search:
             return searchCell(outlineView, viewFor: tableColumn)
+        case .searchOptions:
+            return searchOptionsCell(outlineView, viewFor: tableColumn)
         case .defaultRedditFeed(let name, let imageName):
             return sidebarTrendingSubredditCell(outlineView, text: name, imageName: imageName, viewFor: tableColumn)
         }
@@ -35,6 +37,11 @@ final class TableViewCells {
         let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SidebarSubredditCell), owner: self) as? SidebarSubredditCell
         view?.wantsLayer = true
         view?.configure(subreddit: text, imageName: imageName)
+        return view
+    }
+    
+    static func searchOptionsCell(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?) -> NSView? {
+        let view: SidebarSearchToggleCell? = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("SidebarSearchToggleCell"), owner: self) as? SidebarSearchToggleCell
         return view
     }
     

@@ -83,7 +83,7 @@ extension SidebarViewController: NSOutlineViewDelegate {
             delegate?.didSelectItem(item: sidebarItem)
         }
         
-        return true
+        return viewModel.shouldSelectItem(outlineView, item: item)
     }
     
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
@@ -91,7 +91,24 @@ extension SidebarViewController: NSOutlineViewDelegate {
     }
 
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        return viewModel.dataSource.outlineView(outlineView, viewFor: tableColumn, item: item)
+        let view: NSView? = viewModel.dataSource.outlineView(outlineView, viewFor: tableColumn, item: item)
+        (view as? SidebarSearchCell)?.delegate = self
+        (view as? SidebarSearchToggleCell)?.delegate = self
+        return view
+    }
+}
+
+extension SidebarViewController: SidebarSearchCellDelegate {
+    
+    func sidebarSearchCell(_ sidebarSearchCell: SidebarSearchCell, didStartSearching searchField: NSSearchField) {
+        
+    }
+}
+
+extension SidebarViewController: SidebarSearchToggleCellDelegate {
+    
+    func sidebarSearchToggleCell(_ sidebarSearchToggleCell: SidebarSearchToggleCell, searchTypeDidChange searchType: SearchType) {
+        
     }
 }
 

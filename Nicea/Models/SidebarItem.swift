@@ -12,6 +12,7 @@ import APIClient
 enum SidebarItem {
     
     case search
+    case searchOptions
     case trendingSubreddit(name: String, image: String)
     case subscriptionSubreddit(subreddit: Subreddit)
     case defaultRedditFeed(name: String, image: String) // "popular", "all", "home"

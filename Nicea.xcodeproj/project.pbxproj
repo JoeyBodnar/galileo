@@ -101,6 +101,10 @@
 		9F8CAF8B245D97390063C156 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAF8A245D97390063C156 /* SearchRouter.swift */; };
 		9F8CAF93245DA2250063C156 /* SidebarSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAF92245DA2250063C156 /* SidebarSearchCell.swift */; };
 		9F8CAF95245DA22F0063C156 /* SidebarSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F8CAF94245DA22F0063C156 /* SidebarSearchCell.xib */; };
+		9F8CAF97245DC9890063C156 /* SidebarSearchToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAF96245DC9890063C156 /* SidebarSearchToggleCell.swift */; };
+		9F8CAF99245DC9A20063C156 /* SidebarSearchToggleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F8CAF98245DC9A20063C156 /* SidebarSearchToggleCell.xib */; };
+		9F8CAF9B245DCD990063C156 /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAF9A245DCD990063C156 /* SearchType.swift */; };
+		9F8CAF9D245DCFF50063C156 /* SearchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CAF9C245DCFF50063C156 /* SearchHandler.swift */; };
 		9F921B292459D407008E7701 /* RedditClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B282459D407008E7701 /* RedditClient.swift */; };
 		9F921B2B2459D44D008E7701 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B2A2459D44D008E7701 /* APIClient.swift */; };
 		9F921B2D2459F1FF008E7701 /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */; };
@@ -331,6 +335,10 @@
 		9F8CAF8A245D97390063C156 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		9F8CAF92245DA2250063C156 /* SidebarSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSearchCell.swift; sourceTree = "<group>"; };
 		9F8CAF94245DA22F0063C156 /* SidebarSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidebarSearchCell.xib; sourceTree = "<group>"; };
+		9F8CAF96245DC9890063C156 /* SidebarSearchToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSearchToggleCell.swift; sourceTree = "<group>"; };
+		9F8CAF98245DC9A20063C156 /* SidebarSearchToggleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidebarSearchToggleCell.xib; sourceTree = "<group>"; };
+		9F8CAF9A245DCD990063C156 /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
+		9F8CAF9C245DCFF50063C156 /* SearchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHandler.swift; sourceTree = "<group>"; };
 		9F921B282459D407008E7701 /* RedditClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditClient.swift; sourceTree = "<group>"; };
 		9F921B2A2459D44D008E7701 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
@@ -536,6 +544,7 @@
 				9FCF375F242E423F004BDD22 /* SidebarSection.swift */,
 				9F20BE4E244F65D200BC8415 /* SidebarItem.swift */,
 				9FBE4DAE2451FE0D005FEBEB /* SortItem.swift */,
+				9F8CAF9A245DCD990063C156 /* SearchType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -682,6 +691,8 @@
 				9F7FC3CE242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib */,
 				9F8CAF92245DA2250063C156 /* SidebarSearchCell.swift */,
 				9F8CAF94245DA22F0063C156 /* SidebarSearchCell.xib */,
+				9F8CAF96245DC9890063C156 /* SidebarSearchToggleCell.swift */,
+				9F8CAF98245DC9A20063C156 /* SidebarSearchToggleCell.xib */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -811,6 +822,7 @@
 				9FCF375D242E417F004BDD22 /* SidebarDataSource.swift */,
 				9F7FC3DF242F24AB006DD0AF /* SidebarOutlineView.swift */,
 				9F7FC3E1242F259C006DD0AF /* SidebarContentView.swift */,
+				9F8CAF9C245DCFF50063C156 /* SearchHandler.swift */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -1162,6 +1174,7 @@
 				9FBA01682448B0CB00C9A8FE /* MailTableViewCell.xib in Resources */,
 				9FCF3767242E4868004BDD22 /* SidebarSubredditCell.xib in Resources */,
 				9F7FC3CF242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib in Resources */,
+				9F8CAF99245DC9A20063C156 /* SidebarSearchToggleCell.xib in Resources */,
 				9F7FC3EA242F3166006DD0AF /* LinkArticleCell.xib in Resources */,
 				9FFF0DDD243F721800651DB2 /* LinkVideoCell.xib in Resources */,
 				9F7FC403242F75B2006DD0AF /* LinkImageCell.xib in Resources */,
@@ -1282,11 +1295,13 @@
 				9FB16110243B6D8D00495B0E /* PostListViewModel.swift in Sources */,
 				9F7FC3DA242F1E62006DD0AF /* NSImage.swift in Sources */,
 				9F0512DC242A52E300ED64FE /* DetailViewController.swift in Sources */,
+				9F8CAF9B245DCD990063C156 /* SearchType.swift in Sources */,
 				9F47C1A72457044600970CFB /* Strings.swift in Sources */,
 				9FCF3765242E45CC004BDD22 /* SidebarSubredditCell.swift in Sources */,
 				9F7FC3E8242F315A006DD0AF /* LinkArticleCell.swift in Sources */,
 				9FFF0DCF243F516900651DB2 /* PhotoViewerWindowController.swift in Sources */,
 				9F1B3E932448AD10003BBB95 /* MailViewModel.swift in Sources */,
+				9F8CAF97245DC9890063C156 /* SidebarSearchToggleCell.swift in Sources */,
 				9FCF3763242E4552004BDD22 /* TableViewCells.swift in Sources */,
 				9F0512F9242D260900ED64FE /* IdentifierConstants.swift in Sources */,
 				9F1B3E8B24489E4E003BBB95 /* WindowResizeManager.swift in Sources */,
@@ -1331,6 +1346,7 @@
 				9F321B0F244DDF6400B39813 /* NSNotification+Extension.swift in Sources */,
 				9F921B292459D407008E7701 /* RedditClient.swift in Sources */,
 				9F2D1D0B2449B62700B6C905 /* Comment+Extension.swift in Sources */,
+				9F8CAF9D245DCFF50063C156 /* SearchHandler.swift in Sources */,
 				9F2D1D0D2449D3F900B6C905 /* CommentTextBoxCell.swift in Sources */,
 				9F2D1D132449E6C500B6C905 /* CommentReplyCache.swift in Sources */,
 			);

@@ -65,7 +65,7 @@ final class SidebarViewModel {
                 
                 let redditSection: SidebarSection = SidebarSection(sectionType: .default, children: self?.redditFeeds ?? [])
                 
-                let searchSection: SidebarSection = SidebarSection(sectionType: .search, children: [SidebarItem.search])
+                let searchSection: SidebarSection = SidebarSection(sectionType: .search, children: [SidebarItem.search, SidebarItem.searchOptions])
                 
                 self?.dataSource.sections.insert(searchSection, at: 0)
                 self?.dataSource.sections.insert(redditSection, at: 1)
@@ -90,6 +90,15 @@ final class SidebarViewModel {
     }
     
     func shouldSelectItem(_ outlineView: NSOutlineView, item: Any) -> Bool {
+        if let sidebarItem = item as? SidebarItem {
+            switch sidebarItem {
+            case .search:
+                let row = outlineView.row(forItem: item)
+                let view = outlineView.view(atColumn: 0, row: row, makeIfNecessary: false) as! SidebarSearchCell
+                view.searchField.becomeFirstResponder()
+            default: break
+            }
+        }
         return true
     }
     

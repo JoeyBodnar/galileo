@@ -8,9 +8,16 @@
 
 import AppKit
 
+protocol SidebarSearchCellDelegate: AnyObject {
+    
+    func sidebarSearchCell(_ sidebarSearchCell: SidebarSearchCell, didStartSearching searchField: NSSearchField)
+}
+
 final class SidebarSearchCell: NSTableCellView {
     
     @IBOutlet weak var searchField: NSSearchField!
+    
+    weak var delegate: SidebarSearchCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +28,7 @@ final class SidebarSearchCell: NSTableCellView {
 extension SidebarSearchCell: NSSearchFieldDelegate {
     
     func searchFieldDidStartSearching(_ sender: NSSearchField) {
+        delegate?.sidebarSearchCell(self, didStartSearching: searchField)
         print("searching")
     }
 }
