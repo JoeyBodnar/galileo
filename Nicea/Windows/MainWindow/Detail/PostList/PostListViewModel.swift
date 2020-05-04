@@ -260,7 +260,9 @@ extension PostListViewModel: SearchHandlerDelegate {
     
     private func handleSearchResponse(searchResponse: SearchResponse) {
         let links: [Link] = searchResponse.data.children ?? []
-        let headerItem: SearchResultHeaderItem = SearchResultHeaderItem(searchTerm: searchTerm ?? "", resultCount: links.count, subreddit: self.subreddit)
+        let subredditSearched: String = subreddit == "" ? "All" : subreddit
+        let headerItem: SearchResultHeaderItem = SearchResultHeaderItem(searchTerm:
+            searchTerm ?? "", resultCount: links.count, subreddit: subredditSearched)
         listType = .searchResults
         let items: [Any] = [PostListHeaderCellType.searchResults(headerItem: headerItem)] + links
         delegate?.postListViewModel(self, didRetrievePosts: items, isNewSubreddit: true)

@@ -16,7 +16,8 @@ enum SearchRouter: Provider {
         switch self {
         case .search(let subreddit, let query, let searchOnlySubreddit):
             let onlySubreddiText: String = searchOnlySubreddit ? "on" : "off"
-            return "https://www.reddit.com/r/\(subreddit)/search.json?q=\(query)&restrict_sr=\(onlySubreddiText)&include_over_18=on&sort=relevance"
+            let urlSafeQuery: String = query.escaped()
+            return "https://www.reddit.com/r/\(subreddit)/search.json?q=\(urlSafeQuery)&restrict_sr=\(onlySubreddiText)&include_over_18=on&sort=relevance&limit=60"
             
         }
     }
@@ -27,5 +28,13 @@ enum SearchRouter: Provider {
     
     static var name: String {
         return "VoteRouter"
+    }
+}
+
+extension String{
+    
+    func escaped() -> String {
+        let allowedCharacters = addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        return allowedCharacters
     }
 }

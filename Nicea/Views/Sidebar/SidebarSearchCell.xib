@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <tableCellView identifier="SidebarSearchCell" id="81D-8O-3Dz" customClass="SidebarSearchCell" customModule="Nicea" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="203" height="25"/>
+        <tableCellView identifier="SidebarSearchCell" misplaced="YES" id="81D-8O-3Dz" customClass="SidebarSearchCell" customModule="Nicea" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="203" height="26"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTg-9R-6pf">
-                    <rect key="frame" x="0.0" y="0.0" width="203" height="22"/>
+                    <rect key="frame" x="0.0" y="2" width="203" height="22"/>
                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="IZ7-ea-Llu">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -25,8 +25,8 @@
             <constraints>
                 <constraint firstItem="GTg-9R-6pf" firstAttribute="leading" secondItem="81D-8O-3Dz" secondAttribute="leading" id="3Ad-Yt-gFv"/>
                 <constraint firstAttribute="trailing" secondItem="GTg-9R-6pf" secondAttribute="trailing" id="hXt-P4-ToC"/>
-                <constraint firstAttribute="bottom" secondItem="GTg-9R-6pf" secondAttribute="bottom" id="u0J-Qm-kjk"/>
-                <constraint firstItem="GTg-9R-6pf" firstAttribute="top" secondItem="81D-8O-3Dz" secondAttribute="top" constant="3" id="xWt-Lw-Lvn"/>
+                <constraint firstAttribute="bottom" secondItem="GTg-9R-6pf" secondAttribute="bottom" constant="2" id="u0J-Qm-kjk"/>
+                <constraint firstItem="GTg-9R-6pf" firstAttribute="top" secondItem="81D-8O-3Dz" secondAttribute="top" constant="2" id="xWt-Lw-Lvn"/>
             </constraints>
             <connections>
                 <outlet property="searchField" destination="GTg-9R-6pf" id="Fo6-ee-p3j"/>
