@@ -55,7 +55,7 @@ extension SidebarSearchToggleCell {
         allRedditButton.action = #selector(radioButtonSelected(sender:))
         thisSubredditButton.action = #selector(radioButtonSelected(sender:))
         
-        thisSubredditButton.state = .on
+        allRedditButton.state = .on
     }
     
     private func layoutViews() {

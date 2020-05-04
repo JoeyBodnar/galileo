@@ -16,7 +16,7 @@ protocol SearchHandlerDelegate: AnyObject {
 
 final class SearchHandler {
     
-    var searchType: SearchType = .subreddit
+    var searchType: SearchType = .allReddit
     
     weak var delegate: SearchHandlerDelegate?
     

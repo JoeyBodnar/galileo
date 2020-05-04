@@ -88,8 +88,12 @@ extension PostListViewController {
             let totalContentSize: CGFloat = tableView.intrinsicContentSize.height
             
             if endY > (totalContentSize - 100) {
-                setLoading(true)
-                viewModel.getNextPosts()
+                switch viewModel.listType {
+                case .searchResults: break
+                default:
+                    setLoading(true)
+                    viewModel.getNextPosts()
+                }
             }
            
             let invisibleRows: [NSTableRowView] = viewModel.dataSource.invisibleRows(inScrollView: scrollView, endY: endY)

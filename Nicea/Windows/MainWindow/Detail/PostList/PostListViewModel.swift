@@ -102,6 +102,7 @@ final class PostListViewModel {
     func getNextPosts() {
         switch listType {
         case .home: fetchHomeFeed(isNewSubreddit: false, sort: currentSort.sort)
+        case .searchResults: break
         default: fetchPosts(isNewSubreddit: false)
         }
     }
@@ -109,7 +110,7 @@ final class PostListViewModel {
     /// the method called from SplitViewController when you first select a sidebar item
     func didSelectSubreddit(subreddit: String, isHomeFeed: Bool) {
         listType = isHomeFeed ? PostListType.home : PostListType.subreddit
-        //isViewingHome = isHomeFeed
+        
         paginator = Paginator() // reset paginator for new subreddit
         currentSort = MenuSortItem(title: SortItemTitles.hot, sort: .hot)
         
@@ -144,7 +145,8 @@ final class PostListViewModel {
     func handleSearchPressed(text: String) {
         searchTerm = text
         searchHandler.searchType = self.searchType
-        searchHandler.search(text: text, subreddit: self.subreddit)
+        let subredditToSearch: String = subreddit == "" ? "all" : subreddit
+        searchHandler.search(text: text, subreddit: subredditToSearch)
     }
     
     // MAARK: - Private
