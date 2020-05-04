@@ -17,17 +17,50 @@ final class SidebarSearchToggleCell: NSTableCellView {
     
     private let segmentedControl: NSSegmentedControl = NSSegmentedControl()
     
+    private let allRedditButton: NSButton = NSButton(radioButtonWithTitle: "search all reddit", target: self, action: nil)
+    private let thisSubredditButton: NSButton = NSButton(radioButtonWithTitle: "search r/iosprogramming", target: self, action: nil)
+    
     weak var delegate: SidebarSearchToggleCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        segmentedControl.setupForAutolayout(superView: self)
-        segmentedControl.pinToSides(superView: self)
+        layoutViews()
+        setupViews()
+    }
+    
+    @objc func radioButtonSelected(sender: NSButton) {
+        if allRedditButton.state == .on {
+            delegate?.sidebarSearchToggleCell(self, searchTypeDidChange: SearchType.allReddit)
+        } else if thisSubredditButton.state == .on {
+            delegate?.sidebarSearchToggleCell(self, searchTypeDidChange: SearchType.subreddit)
+        }
+    }
+}
+
+extension SidebarSearchToggleCell {
+    
+    private func setupViews() {
+        allRedditButton.target = self
+        thisSubredditButton.target = self
         
-        segmentedControl.segmentCount = 2
-        segmentedControl.setLabel(SearchType.subreddit.title, forSegment: 0)
-        segmentedControl.setLabel(SearchType.allReddit.title, forSegment: 1)
+        allRedditButton.action = #selector(radioButtonSelected(sender:))
+        thisSubredditButton.action = #selector(radioButtonSelected(sender:))
         
-        segmentedControl.setSelected(true, forSegment: 0)
+        thisSubredditButton.state = .on
+    }
+    
+    private func layoutViews() {
+        allRedditButton.setupForAutolayout(superView: self)
+        thisSubredditButton.setupForAutolayout(superView: self)
+        
+        allRedditButton.leadingAnchor.constraint(equalTo: leadingAnchor).activate()
+        allRedditButton.topAnchor.constraint(equalTo: topAnchor, constant: 5).activate()
+        allRedditButton.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
+        allRedditButton.heightAnchor.constraint(equalToConstant: 22).activate()
+        
+        thisSubredditButton.leadingAnchor.constraint(equalTo: leadingAnchor).activate()
+        thisSubredditButton.topAnchor.constraint(equalTo: allRedditButton.bottomAnchor, constant: 5).activate()
+        thisSubredditButton.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
+        thisSubredditButton.heightAnchor.constraint(equalToConstant: 22).activate()
     }
 }

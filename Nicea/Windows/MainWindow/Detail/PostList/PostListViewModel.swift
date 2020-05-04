@@ -193,7 +193,7 @@ final class PostListViewModel {
         group.notify(queue: DispatchQueue.main) { [weak self] in
             guard let weakSelf = self else { return }
             if let unwrappedRetrievedSubreddit = newSubreddit {
-                allItems = [unwrappedRetrievedSubreddit] + posts
+                allItems = [PostListHeaderCellType.subreddit(subreddit: unwrappedRetrievedSubreddit)] + posts
             } else {
                 allItems = [PostListHeaderCellType.defaultRedditFeed(name: weakSelf.subreddit)] + posts // in this case it will be "All" or "Popular" for the subreddit
             }

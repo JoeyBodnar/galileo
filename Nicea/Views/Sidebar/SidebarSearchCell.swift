@@ -19,6 +19,8 @@ final class SidebarSearchCell: NSTableCellView {
     
     weak var delegate: SidebarSearchCellDelegate?
     
+    private let tableView: NSTableView = NSTableView()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         searchField.delegate = self

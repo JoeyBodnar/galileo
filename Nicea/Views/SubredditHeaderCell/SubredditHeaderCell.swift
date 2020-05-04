@@ -75,6 +75,11 @@ final class SubredditHeaderCell: NSTableCellView {
         sortButton.selectItem(withTitle: sort.title)
     }
     
+    func configure(searchTerm: String, resultCount: Int, sort: MenuSortItem) {
+        nameLabel.stringValue = "Search Results for \(searchTerm)"
+        infoLabel.stringValue = "\(resultCount) results"
+    }
+    
     @objc func menuItemPressed(sender: NSMenuItem) {
         delegate?.subredditHeaderCell(self, didSelectMenItem: sender)
     }

@@ -77,7 +77,7 @@ extension SidebarViewController: HeaderViewDelegate {
 extension SidebarViewController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        return item is SidebarSection ? 35 : 28
+        return viewModel.heightOfRow(outlineView, heightOfRowByItem: item)
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {

@@ -103,4 +103,14 @@ final class SidebarViewModel {
         }
         return true
     }
+    
+    func heightOfRow(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+        if item is SidebarSection { return 35 }
+        
+        guard let sidebarItem = item as? SidebarItem else { return 0 }
+        switch sidebarItem {
+        case .searchOptions: return 55
+        default: return 28
+        }
+    }
 }
