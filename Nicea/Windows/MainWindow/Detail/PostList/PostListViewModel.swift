@@ -145,8 +145,14 @@ final class PostListViewModel {
     func handleSearchPressed(text: String) {
         searchTerm = text
         searchHandler.searchType = self.searchType
-        let subredditToSearch: String = subreddit == "" ? "all" : subreddit
-        searchHandler.search(text: text, subreddit: subredditToSearch)
+        
+        switch searchType {
+        case .allReddit: searchHandler.subreddit = "all"
+        case .subreddit: searchHandler.subreddit = subreddit
+        }
+        
+        searchHandler.searchTerm = text
+        searchHandler.search()
     }
     
     // MAARK: - Private
@@ -250,21 +256,14 @@ final class PostListViewModel {
 
 extension PostListViewModel: SearchHandlerDelegate {
     
-    func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<SearchResponse, Error>) {
+    func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<[Link], Error>) {
         switch result {
-        case .success(let searchResponse):
-            handleSearchResponse(searchResponse: searchResponse)
+        case .success(let links):
+            listType = .searchResults
+            let headerItem: SearchResultHeaderItem = SearchResultHeaderItem(searchTerm: searchHandler.searchTerm, resultCount: links.count, subreddit: searchHandler.subreddit)
+            let items: [Any] = [PostListHeaderCellType.searchResults(headerItem: headerItem)] + links
+            delegate?.postListViewModel(self, didRetrievePosts: items, isNewSubreddit: true)
         case .failure: break
         }
-    }
-    
-    private func handleSearchResponse(searchResponse: SearchResponse) {
-        let links: [Link] = searchResponse.data.children ?? []
-        let subredditSearched: String = subreddit == "" ? "All" : subreddit
-        let headerItem: SearchResultHeaderItem = SearchResultHeaderItem(searchTerm:
-            searchTerm ?? "", resultCount: links.count, subreddit: subredditSearched)
-        listType = .searchResults
-        let items: [Any] = [PostListHeaderCellType.searchResults(headerItem: headerItem)] + links
-        delegate?.postListViewModel(self, didRetrievePosts: items, isNewSubreddit: true)
     }
 }
