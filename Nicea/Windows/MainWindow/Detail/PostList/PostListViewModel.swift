@@ -10,6 +10,7 @@ import AppKit
 import APIClient
 
 protocol PostListViewModelDelegate: AnyObject {
+    
     func postListViewModel(_ postListViewModelDelegate: PostListViewModel, didRetrievePosts posts: [Any], isNewSubreddit newSubreddit: Bool)
     
     /// called when successfully voted on a post
@@ -17,16 +18,24 @@ protocol PostListViewModelDelegate: AnyObject {
     
     /// the string is the text to assign to the button
     func postListViewModel(_ viewModel: PostListViewModel, didCompleteSaveOperation result: Result<String, Error>, wasSave: Bool, post: Link, button: ClearButton)
+    
+    func postListViewModel(_ viewModel: PostListViewModel, subredditDidChange subreddit: String)
 }
 
 final class PostListViewModel {
     
-    init() { }
+    init() {
+        searchHandler.delegate = self
+    }
     
     weak var delegate: PostListViewModelDelegate?
     
     var paginator: Paginator = Paginator()
-    var subreddit: String = ""
+    var subreddit: String = "" {
+        didSet {
+            delegate?.postListViewModel(self, subredditDidChange: subreddit)
+        }
+    }
     
     var isFetching: Bool = false // set to true in PostListViewModel, set to false when tableview updates in DetailviewController
     
@@ -36,6 +45,11 @@ final class PostListViewModel {
     var currentSort: MenuSortItem = MenuSortItem(title: SortItemTitles.hot, sort: .hot)
     
     let dataSource: PostListDataSource = PostListDataSource(posts: [])
+    
+    // MARK: - Search
+    var searchTerm: String?
+    var searchType: SearchType = .allReddit
+    let searchHandler: SearchHandler = SearchHandler()
     
     func vote(post: Link, direction: VoteDirection, upvoteDownvoteView: UpvoteDownvoteView) {
         guard SessionManager.shared.isLoggedIn else { return }
@@ -127,9 +141,10 @@ final class PostListViewModel {
         }
     }
     
-    func didGetSearchResults(links: [Link]) {
-        listType = .searchResults
-        delegate?.postListViewModel(self, didRetrievePosts: links, isNewSubreddit: true)
+    func handleSearchPressed(text: String) {
+        searchTerm = text
+        searchHandler.searchType = self.searchType
+        searchHandler.search(text: text)
     }
     
     // MAARK: - Private
@@ -228,5 +243,24 @@ final class PostListViewModel {
             self.delegate?.postListViewModel(self, didRetrievePosts: subredditResponse.data.children ?? [], isNewSubreddit: isNewSubreddit)
         case .failure(let error): print(error)
         }
+    }
+}
+
+extension PostListViewModel: SearchHandlerDelegate {
+    
+    func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<SearchResponse, Error>) {
+        switch result {
+        case .success(let searchResponse):
+            handleSearchResponse(searchResponse: searchResponse)
+        case .failure: break
+        }
+    }
+    
+    private func handleSearchResponse(searchResponse: SearchResponse) {
+        let links: [Link] = searchResponse.data.children ?? []
+        let headerItem: SearchResultHeaderItem = SearchResultHeaderItem(searchTerm: searchTerm ?? "", resultCount: links.count, subreddit: self.subreddit)
+        listType = .searchResults
+        let items: [Any] = [PostListHeaderCellType.searchResults(headerItem: headerItem)] + links
+        delegate?.postListViewModel(self, didRetrievePosts: items, isNewSubreddit: true)
     }
 }

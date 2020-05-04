@@ -10,7 +10,9 @@ import AppKit
 import APIClient
 
 protocol PostListViewControllerDelegate: AnyObject {
+    
     func postListViewController(_ postListViewController: PostListViewController, didSelectViewComments link: Link)
+    func postListViewController(_ postListViewController: PostListViewController, subredditDidChange subreddit: String)
 }
 
 /// Main post list in the content view
@@ -160,6 +162,10 @@ extension PostListViewController: LinkParentCellDelegate {
 
 // MARK: - PostListViewModelDelegate
 extension PostListViewController: PostListViewModelDelegate {
+    
+    func postListViewModel(_ viewModel: PostListViewModel, subredditDidChange subreddit: String) {
+        delegate?.postListViewController(self, subredditDidChange: subreddit)
+    }
     
     func postListViewModel(_ viewModel: PostListViewModel, didCompleteSaveOperation result: Result<String, Error>, wasSave: Bool, post: Link, button: ClearButton) {
         switch result {

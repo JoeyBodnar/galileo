@@ -18,7 +18,7 @@ final class SidebarSearchToggleCell: NSTableCellView {
     private let segmentedControl: NSSegmentedControl = NSSegmentedControl()
     
     private let allRedditButton: NSButton = NSButton(radioButtonWithTitle: "search all reddit", target: self, action: nil)
-    private let thisSubredditButton: NSButton = NSButton(radioButtonWithTitle: "search r/iosprogramming", target: self, action: nil)
+    private let thisSubredditButton: NSButton = NSButton(radioButtonWithTitle: "search subreddit", target: self, action: nil)
     
     weak var delegate: SidebarSearchToggleCellDelegate?
     
@@ -33,6 +33,15 @@ final class SidebarSearchToggleCell: NSTableCellView {
             delegate?.sidebarSearchToggleCell(self, searchTypeDidChange: SearchType.allReddit)
         } else if thisSubredditButton.state == .on {
             delegate?.sidebarSearchToggleCell(self, searchTypeDidChange: SearchType.subreddit)
+        }
+    }
+    
+    func configure(item: SearchSubredditItem) {
+        switch item {
+        case .all: thisSubredditButton.isEnabled = false
+        case .subreddit(let subreddit):
+            thisSubredditButton.isEnabled = true
+            thisSubredditButton.title = "search r/\(subreddit)"
         }
     }
 }

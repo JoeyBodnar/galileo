@@ -48,6 +48,7 @@ extension SplitViewController {
         self.sidebarViewController = SidebarViewController()
         self.detailViewController = DetailViewController()
         sidebarViewController?.delegate = self
+        detailViewController?.delegate = self
         
         let sidebarItem: NSSplitViewItem = NSSplitViewItem(sidebarWithViewController: sidebarViewController!)
         sidebarItem.minimumThickness = 203
@@ -57,7 +58,27 @@ extension SplitViewController {
     }
 }
 
+extension SplitViewController: DetailViewControllerDelegate {
+    
+    func detailViewController(_ detailViewController: DetailViewController, subredditDidChange subreddit: String) {
+        let lowercased: String = subreddit.lowercased()
+        if lowercased == "all" || lowercased == "home" || lowercased == "popular" {
+            sidebarViewController?.viewModel.searchSubredditItem = SearchSubredditItem.all
+        } else {
+            sidebarViewController?.viewModel.searchSubredditItem = SearchSubredditItem.subreddit(subreddit: subreddit)
+        }
+    }
+}
+
 extension SplitViewController: SidebarViewControllerDelegate {
+    
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchPressed searchField: NSSearchField) {
+        detailViewController?.postListViewController.viewModel.handleSearchPressed(text: searchField.stringValue)
+    }
+    
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchTypeDidChange searchType: SearchType) {
+        detailViewController?.postListViewController.viewModel.searchType = searchType
+    }
     
     func sidebarViewController(_ sidebarViewController: SidebarViewController, didSelectItem item: SidebarItem) {
         switch item {
@@ -69,14 +90,6 @@ extension SplitViewController: SidebarViewControllerDelegate {
             detailViewController?.didSelectNewSubreddit(subreddit: subredditName, isHomeFeed: false)
         case .defaultRedditFeed(let name, _):
             detailViewController?.didSelectNewSubreddit(subreddit: name, isHomeFeed: name.lowercased() == "home")
-        }
-    }
-    
-    func sidebarViewController(_ sidebarViewController: SidebarViewController, didReceiveSearchResults result: Result<SearchResponse, Error>) {
-        switch result {
-        case .success(let searchResponse):
-            self.detailViewController?.postListViewController.viewModel.didGetSearchResults(links: searchResponse.data.children ?? [])
-        case .failure: break
         }
     }
 }

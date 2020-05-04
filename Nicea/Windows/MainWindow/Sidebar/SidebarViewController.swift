@@ -12,7 +12,8 @@ import APIClient
 protocol SidebarViewControllerDelegate: AnyObject {
     
     func sidebarViewController(_ sidebarViewController: SidebarViewController, didSelectItem item: SidebarItem)
-    func sidebarViewController(_ sidebarViewController: SidebarViewController, didReceiveSearchResults result: Result<SearchResponse, Error>)
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchPressed searchField: NSSearchField)
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchTypeDidChange searchType: SearchType)
 }
 
 final class SidebarViewController: NSViewController {
@@ -49,6 +50,13 @@ final class SidebarViewController: NSViewController {
 
 extension SidebarViewController: SidebarViewModelDelegate {
     
+    func sidebarViewModel(_ viewModel: SidebarViewModel, didChangeSearchSubreddit item: Any) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.contentView.outlineView.reloadData()
+        }
+        
+    }
+    
     func sidebarViewModel(_ viewModel: SidebarViewModel, didFailToRetrieveCurrentUser error: Error) {
         headerView.loggedIn = false
     }
@@ -65,9 +73,7 @@ extension SidebarViewController: SidebarViewModelDelegate {
 
 extension SidebarViewController: HeaderViewDelegate {
     
-    func headerView(_ headerView: HeaderView, didFailToLoginWithError error: Error) {
-        
-    }
+    func headerView(_ headerView: HeaderView, didFailToLoginWithError error: Error) { }
     
     func headerView(_ headerView: HeaderView, didLoginWithUser user: User) {
         viewModel.getSubscribedSubreddits()
@@ -104,21 +110,14 @@ extension SidebarViewController: NSOutlineViewDelegate {
 extension SidebarViewController: SidebarSearchCellDelegate {
     
     func sidebarSearchCell(_ sidebarSearchCell: SidebarSearchCell, didStartSearching searchField: NSSearchField) {
-        viewModel.searchHandler.search(text: searchField.stringValue)
+        delegate?.sidebarViewController(self, searchPressed: searchField)
     }
 }
 
 extension SidebarViewController: SidebarSearchToggleCellDelegate {
     
     func sidebarSearchToggleCell(_ sidebarSearchToggleCell: SidebarSearchToggleCell, searchTypeDidChange searchType: SearchType) {
-        viewModel.searchHandler.searchTypeDidChange(newValue: searchType)
-    }
-}
-
-extension SidebarViewController: SearchHandlerDelegate {
-    
-    func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<SearchResponse, Error>) {
-        delegate?.sidebarViewController(self, didReceiveSearchResults: result)
+        delegate?.sidebarViewController(self, searchTypeDidChange: searchType)
     }
 }
 
@@ -139,16 +138,13 @@ extension SidebarViewController: NSOutlineViewDataSource {
 
 extension SidebarViewController: LoggedInHeaderContentViewDelegate {
     
-    func loggedInHeaderContentView(_ loggedInHeaderContentView: LoggedInHeaderContentView, didSelectMailButton button: ImageButton, withEmptyMailbox mailBoxIsEmpty: Bool) {
-        
-    }
+    func loggedInHeaderContentView(_ loggedInHeaderContentView: LoggedInHeaderContentView, didSelectMailButton button: ImageButton, withEmptyMailbox mailBoxIsEmpty: Bool) { }
 }
 
 extension SidebarViewController {
     
     private func setupviews() {
         headerView.delegate = self
-        viewModel.searchHandler.delegate = self
         contentView.outlineView.delegate = self
         contentView.outlineView.dataSource = self
         

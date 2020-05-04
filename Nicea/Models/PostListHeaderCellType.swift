@@ -13,5 +13,5 @@ enum PostListHeaderCellType {
     
     case subreddit(subreddit: Subreddit)
     case defaultRedditFeed(name: String)
-    case searchResults
+    case searchResults(headerItem: SearchResultHeaderItem)
 }

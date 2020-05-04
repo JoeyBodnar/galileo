@@ -9,11 +9,18 @@
 import AppKit
 import APIClient
 
+enum SearchSubredditItem {
+    
+    case all
+    case subreddit(subreddit: String)
+}
+
 protocol SidebarViewModelDelegate: AnyObject {
     
     func didFetchSubredditSbscriptions()
     func sidebarViewModel(_ viewModel: SidebarViewModel, didRetrieveCurrentUser user: User)
     func sidebarViewModel(_ viewModel: SidebarViewModel, didFailToRetrieveCurrentUser error: Error)
+    func sidebarViewModel(_ viewModel: SidebarViewModel, didChangeSearchSubreddit item: Any)
 }
 
 final class SidebarViewModel {
@@ -23,7 +30,17 @@ final class SidebarViewModel {
     
     init() { }
     
-    var searchHandler: SearchHandler = SearchHandler()
+    var searchSubredditItem: SearchSubredditItem = .all {
+        didSet {
+            let searchItem: SidebarItem = SidebarItem.search(subreddit: searchSubredditItem)
+            let searchOptionsItem: SidebarItem = SidebarItem.searchOptions(subreddit: searchSubredditItem)
+            dataSource.sections[0].children[0] = searchItem
+            dataSource.sections[0].children[1] = searchOptionsItem
+            
+            delegate?.sidebarViewModel(self, didChangeSearchSubreddit: searchItem)
+            delegate?.sidebarViewModel(self, didChangeSearchSubreddit: searchOptionsItem)
+        }
+    }
     
     var redditFeeds: [SidebarItem] {
         if SessionManager.shared.isLoggedIn {
@@ -59,15 +76,22 @@ final class SidebarViewModel {
     
     func getTrendingSubreddits() {
         PostServices.shared.trendingSubreddits { [weak self] result in
+            guard let weakSelf = self else { return }
             switch result {
             case .success(let trendingResponse):
+                
+                // trending section
                 let trendingItems: [String] = trendingResponse.subreddits
                 let trendingSidebarItems: [SidebarItem] = trendingItems.map { SidebarItem.trendingSubreddit(name: $0, image: ImageNames.trending)}
                 let trendingSection: SidebarSection = SidebarSection(sectionType: .trending, children: trendingSidebarItems)
                 
-                let redditSection: SidebarSection = SidebarSection(sectionType: .default, children: self?.redditFeeds ?? [])
+                // reddit default feeds
+                let redditSection: SidebarSection = SidebarSection(sectionType: .default, children: weakSelf.redditFeeds)
                 
-                let searchSection: SidebarSection = SidebarSection(sectionType: .search, children: [SidebarItem.search, SidebarItem.searchOptions])
+                // search
+                let searchItem: SidebarItem = SidebarItem.search(subreddit: weakSelf.searchSubredditItem)
+                let searchOptionsItem: SidebarItem = SidebarItem.searchOptions(subreddit: weakSelf.searchSubredditItem)
+                let searchSection: SidebarSection = SidebarSection(sectionType: .search, children: [searchItem, searchOptionsItem])
                 
                 self?.dataSource.sections.insert(searchSection, at: 0)
                 self?.dataSource.sections.insert(redditSection, at: 1)
