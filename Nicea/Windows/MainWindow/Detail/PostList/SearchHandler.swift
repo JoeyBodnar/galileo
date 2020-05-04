@@ -24,8 +24,8 @@ final class SearchHandler {
         self.searchType = newValue
     }
     
-    func search(text: String) {
-        SearchServices.shared.search(text: text, subreddit: "iosprogramming", isSubredditOnly: searchType == .subreddit) { [weak self] result in
+    func search(text: String, subreddit: String) {
+        SearchServices.shared.search(text: text, subreddit: subreddit, isSubredditOnly: searchType == .subreddit) { [weak self] result in
             guard let weakSelf = self else { return }
             weakSelf.delegate?.searchHandler(weakSelf, didRetrieveResult: result)
         }

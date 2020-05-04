@@ -74,6 +74,7 @@ extension SplitViewController: SidebarViewControllerDelegate {
     
     func sidebarViewController(_ sidebarViewController: SidebarViewController, searchPressed searchField: NSSearchField) {
         detailViewController?.postListViewController.viewModel.handleSearchPressed(text: searchField.stringValue)
+        detailViewController?.searchPressed()
     }
     
     func sidebarViewController(_ sidebarViewController: SidebarViewController, searchTypeDidChange searchType: SearchType) {

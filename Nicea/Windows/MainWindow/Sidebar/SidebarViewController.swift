@@ -54,7 +54,6 @@ extension SidebarViewController: SidebarViewModelDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.contentView.outlineView.reloadData()
         }
-        
     }
     
     func sidebarViewModel(_ viewModel: SidebarViewModel, didFailToRetrieveCurrentUser error: Error) {

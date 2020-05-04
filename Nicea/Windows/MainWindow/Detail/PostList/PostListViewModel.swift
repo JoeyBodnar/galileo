@@ -144,7 +144,7 @@ final class PostListViewModel {
     func handleSearchPressed(text: String) {
         searchTerm = text
         searchHandler.searchType = self.searchType
-        searchHandler.search(text: text)
+        searchHandler.search(text: text, subreddit: self.subreddit)
     }
     
     // MAARK: - Private
