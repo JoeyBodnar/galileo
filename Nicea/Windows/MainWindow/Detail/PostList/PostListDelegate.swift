@@ -26,6 +26,14 @@ final class PostListDelegate: NSObject, NSTableViewDelegate {
         self.viewModel = viewModel
     }
     
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        if row == 0, let headerView = tableView.view(atColumn: 0, row: row, makeIfNecessary: false) as? SubredditHeaderCell {
+            headerView.goToSubredditField.becomeFirstResponder()
+        }
+        
+        return false
+    }
+    
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if dataSource.posts.indices.contains(row) {
             if let post = dataSource.posts[row] as? Link {

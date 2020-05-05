@@ -51,9 +51,7 @@ final class SidebarViewController: NSViewController {
 extension SidebarViewController: SidebarViewModelDelegate {
     
     func sidebarViewModel(_ viewModel: SidebarViewModel, didChangeSearchSubreddit item: Any) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.contentView.outlineView.reloadData()
-        }
+        self.contentView.outlineView.reloadItem(viewModel.dataSource.sections[0], reloadChildren: true)
     }
     
     func sidebarViewModel(_ viewModel: SidebarViewModel, didFailToRetrieveCurrentUser error: Error) {

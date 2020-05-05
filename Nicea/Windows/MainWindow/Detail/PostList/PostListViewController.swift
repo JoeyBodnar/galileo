@@ -105,6 +105,11 @@ extension PostListViewController {
 // MARK: - SubredditHeaderCellDelegate
 extension PostListViewController: SubredditHeaderCellDelegate {
     
+    func subredditHeaderCell(_ subredditHeaderCell: SubredditHeaderCell, didPressEnterForSearch searchField: NSSearchField) {
+        viewModel.didSelectSubreddit(subreddit: searchField.stringValue, isHomeFeed: false)
+        setLoading(isNewSubreddit: true)
+    }
+    
     func subredditHeaderCell(_ subredditHeaderCell: SubredditHeaderCell, didSelectMenItem menuItem: NSMenuItem) {
         setLoading(isNewSubreddit: true)
         viewModel.didSelectSortMenuItem(menuItem: menuItem)

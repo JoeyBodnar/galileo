@@ -12,6 +12,7 @@ import APIClient
 protocol SubredditHeaderCellDelegate: AnyObject {
     
     func subredditHeaderCell(_ subredditHeaderCell: SubredditHeaderCell, didSelectMenItem menuItem: NSMenuItem)
+    func subredditHeaderCell(_ subredditHeaderCell: SubredditHeaderCell, didPressEnterForSearch searchField: NSSearchField)
 }
 
 final class SubredditHeaderCell: NSTableCellView {
@@ -24,10 +25,18 @@ final class SubredditHeaderCell: NSTableCellView {
     private let sortButton: NSPopUpButton = NSPopUpButton()
     
     weak var delegate: SubredditHeaderCellDelegate?
+    let goToSubredditField: NSSearchField = NSSearchField()
     
+    private var sortButtonWidthConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
     private struct Constants {
         static let imageHeightWidth: CGFloat = 60
+        
+        static let sortButtonWidth: CGFloat = 130
+        static let sortButtonTrailingAnchor: CGFloat = 20
+        
+        static let goToSubredditButtonSize: NSSize = NSSize(width: 180, height: 24)
+        static let iconImageViewLeadingAnchor: CGFloat = 50
     }
     
     override init(frame frameRect: NSRect) {
@@ -65,16 +74,20 @@ final class SubredditHeaderCell: NSTableCellView {
         
         sortButton.alphaValue = 1
         sortButton.selectItem(withTitle: sort.title)
+        
         iconImageView.alphaValue = 1
+        sortButtonWidthConstraint.constant = Constants.sortButtonWidth
     }
     
     func configure(defaultFeedItem: String, sort: MenuSortItem) {
         nameLabel.stringValue = "r/\(defaultFeedItem.lowercased())"
         infoLabel.stringValue = ""
         iconImageView.image = NSImage(named: ImageNames.subredditIconDefault)
+        iconImageView.alphaValue = 1
         
         sortButton.alphaValue = 1
         sortButton.selectItem(withTitle: sort.title)
+        sortButtonWidthConstraint.constant = Constants.sortButtonWidth
     }
     
     func configure(searchResultHeaderItem: SearchResultHeaderItem) {
@@ -83,10 +96,23 @@ final class SubredditHeaderCell: NSTableCellView {
         
         iconImageView.alphaValue = 0
         sortButton.alphaValue = 0
+        sortButtonWidthConstraint.constant = 0
     }
     
     @objc func menuItemPressed(sender: NSMenuItem) {
         delegate?.subredditHeaderCell(self, didSelectMenItem: sender)
+    }
+}
+
+extension SubredditHeaderCell: NSSearchFieldDelegate {
+    
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if (commandSelector == #selector(NSResponder.insertNewline(_:))) {
+            if goToSubredditField.stringValue.count < 2 { return true }
+            delegate?.subredditHeaderCell(self, didPressEnterForSearch: goToSubredditField)
+        }
+
+        return false
     }
 }
 
@@ -111,6 +137,9 @@ extension SubredditHeaderCell {
         
         let menuItemsSet2: [MenuSortItem] = [MenuSortItem(title: SortItemTitles.topWeekly, sort: .topWeekly), MenuSortItem(title: SortItemTitles.topMonthly, sort: .topMonthly), MenuSortItem(title: SortItemTitles.topYearly, sort: .topYearly), MenuSortItem(title: SortItemTitles.topAllTime, sort: .topAllTime)]
         addItems(items: menuItemsSet2)
+        
+        goToSubredditField.placeholderString = "Go to subreddit"
+        goToSubredditField.delegate = self
     }
     
     private func addItems(items: [MenuSortItem]) {
@@ -127,13 +156,14 @@ extension SubredditHeaderCell {
         nameLabel.setupForAutolayout(superView: self)
         infoLabel.setupForAutolayout(superView: self)
         sortButton.setupForAutolayout(superView: self)
+        goToSubredditField.setupForAutolayout(superView: self)
         
         topView.leadingAnchor.constraint(equalTo: leadingAnchor).activate()
         topView.topAnchor.constraint(equalTo: topAnchor).activate()
         topView.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
         topView.heightAnchor.constraint(equalToConstant: LayoutConstants.subredditHeaderCellTopViewHeight).activate()
         
-        iconImageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 50).activate()
+        iconImageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: Constants.iconImageViewLeadingAnchor).activate()
         iconImageView.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: 15).activate()
         iconImageView.heightAnchor.constraint(equalToConstant: Constants.imageHeightWidth).activate()
         iconImageView.widthAnchor.constraint(equalToConstant: Constants.imageHeightWidth).activate()
@@ -141,10 +171,18 @@ extension SubredditHeaderCell {
         nameLabel.leadingAnchor.constraint(equalTo: iconImageView.leadingAnchor, constant: 0).activate()
         nameLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 10).activate()
         
-        sortButton.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 20).activate()
+        sortButton.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: Constants.sortButtonTrailingAnchor).activate()
         sortButton.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).activate()
+        sortButton.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -Constants.sortButtonWidth).activate()
+        sortButtonWidthConstraint = sortButton.widthAnchor.constraint(equalToConstant: Constants.sortButtonWidth)
+        sortButtonWidthConstraint.activate()
         
         infoLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).activate()
         infoLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).activate()
+        
+        goToSubredditField.leadingAnchor.constraint(equalTo: sortButton.trailingAnchor, constant: 5).activate()
+        goToSubredditField.centerYAnchor.constraint(equalTo: sortButton.centerYAnchor).activate()
+        goToSubredditField.widthAnchor.constraint(equalToConstant: Constants.goToSubredditButtonSize.width).activate()
+        goToSubredditField.heightAnchor.constraint(equalToConstant: Constants.goToSubredditButtonSize.height).activate()
     }
 }
