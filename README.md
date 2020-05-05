@@ -1,5 +1,7 @@
 Galileo is a Reddit browser for macOS. It is built with Swift and AppKit using Xcode 11.4.
 
+<img src="https://ucarecdn.com/8850b166-168d-4321-ac45-7f7d0bd1e4c5/ScreenShot20200505at110423PM.png" style="width: 450px; height: 294px"></img>
+
 #### Features
 
 Features currently supported:
