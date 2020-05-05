@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import WhiteFlowerFactory
 
 enum VoteRouter: Provider {

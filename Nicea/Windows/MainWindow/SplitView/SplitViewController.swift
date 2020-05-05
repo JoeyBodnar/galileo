@@ -33,11 +33,11 @@ final class SplitViewController: NSSplitViewController {
     
     private func loadInitialSubreddit() {
         if let unwrappedInitialSubreddit = initialSubreddit {
-            didSelectItem(item: unwrappedInitialSubreddit)
+            detailViewController?.didSelectNewSubreddit(subreddit: unwrappedInitialSubreddit, isHomeFeed: false)
         } else if SessionManager.shared.isLoggedIn {
-            didSelectItem(item: SidebarDefaultItem(title: "Home", imageName: ""))
+            detailViewController?.didSelectNewSubreddit(subreddit: "home", isHomeFeed: true)
         } else {
-            didSelectItem(item: "popular")
+            detailViewController?.didSelectNewSubreddit(subreddit: "popular", isHomeFeed: false)
         }
     }
 }
@@ -48,6 +48,7 @@ extension SplitViewController {
         self.sidebarViewController = SidebarViewController()
         self.detailViewController = DetailViewController()
         sidebarViewController?.delegate = self
+        detailViewController?.delegate = self
         
         let sidebarItem: NSSplitViewItem = NSSplitViewItem(sidebarWithViewController: sidebarViewController!)
         sidebarItem.minimumThickness = 203
@@ -57,18 +58,39 @@ extension SplitViewController {
     }
 }
 
+extension SplitViewController: DetailViewControllerDelegate {
+    
+    func detailViewController(_ detailViewController: DetailViewController, subredditDidChange subreddit: String) {
+        let lowercased: String = subreddit.lowercased()
+        if lowercased == "all" || lowercased == "home" || lowercased == "popular" {
+            sidebarViewController?.viewModel.searchSubredditItem = SearchSubredditItem.all
+        } else {
+            sidebarViewController?.viewModel.searchSubredditItem = SearchSubredditItem.subreddit(subreddit: subreddit)
+        }
+    }
+}
+
 extension SplitViewController: SidebarViewControllerDelegate {
     
-    func didSelectItem(item: Any) {
-        if let subreddit = item as? Subreddit {
-            detailViewController?.didSelectNewSubreddit(subreddit: subreddit.data.displayName!, isHomeFeed: false)
-        } else if let trendingSubreddit = item as? String {
-            detailViewController?.didSelectNewSubreddit(subreddit: trendingSubreddit, isHomeFeed: false)
-        } else if let defaltFeedSubreddit = item as? SidebarDefaultItem {
-            detailViewController?.didSelectNewSubreddit(subreddit: defaltFeedSubreddit.title, isHomeFeed: defaltFeedSubreddit.title == "Home")
-        }
-        
-        sidebarViewController?.viewModel.getCurrentUser()
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchPressed searchField: NSSearchField) {
+        detailViewController?.postListViewController.viewModel.handleSearchPressed(text: searchField.stringValue)
+        detailViewController?.searchPressed()
     }
     
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchTypeDidChange searchType: SearchType) {
+        detailViewController?.postListViewController.viewModel.searchType = searchType
+    }
+    
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, didSelectItem item: SidebarItem) {
+        switch item {
+        case .search, .searchOptions: break
+        case .trendingSubreddit(let name, _):
+            detailViewController?.didSelectNewSubreddit(subreddit: name, isHomeFeed: false)
+        case .subscriptionSubreddit(let subreddit):
+            guard let subredditName = subreddit.data.displayName else { return }
+            detailViewController?.didSelectNewSubreddit(subreddit: subredditName, isHomeFeed: false)
+        case .defaultRedditFeed(let name, _):
+            detailViewController?.didSelectNewSubreddit(subreddit: name, isHomeFeed: name.lowercased() == "home")
+        }
+    }
 }

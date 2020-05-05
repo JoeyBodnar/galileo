@@ -55,7 +55,7 @@ enum PostRouter: Provider {
             }
         case .getCommentsForPost(let subreddit, let id, let isLoggedIn):
             let urlString: String = url(isLoggedIn: isLoggedIn)
-            return "\(urlString)r/\(subreddit)/comments/\(id).json?sort=best&limit=250"
+            return "\(urlString)r/\(subreddit)/comments/\(id).json?&limit=250"
         case .getMoreComments:
             return "https://api.reddit.com/api/morechildren"
         case .replyToPost:

@@ -10,7 +10,10 @@ import AppKit
 import APIClient
 
 protocol SidebarViewControllerDelegate: AnyObject {
-    func didSelectItem(item: Any)
+    
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, didSelectItem item: SidebarItem)
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchPressed searchField: NSSearchField)
+    func sidebarViewController(_ sidebarViewController: SidebarViewController, searchTypeDidChange searchType: SearchType)
 }
 
 final class SidebarViewController: NSViewController {
@@ -47,6 +50,12 @@ final class SidebarViewController: NSViewController {
 
 extension SidebarViewController: SidebarViewModelDelegate {
     
+    func sidebarViewModel(_ viewModel: SidebarViewModel, didChangeSearchSubreddit item: Any) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.contentView.outlineView.reloadData()
+        }
+    }
+    
     func sidebarViewModel(_ viewModel: SidebarViewModel, didFailToRetrieveCurrentUser error: Error) {
         headerView.loggedIn = false
     }
@@ -63,9 +72,7 @@ extension SidebarViewController: SidebarViewModelDelegate {
 
 extension SidebarViewController: HeaderViewDelegate {
     
-    func headerView(_ headerView: HeaderView, didFailToLoginWithError error: Error) {
-        
-    }
+    func headerView(_ headerView: HeaderView, didFailToLoginWithError error: Error) { }
     
     func headerView(_ headerView: HeaderView, didLoginWithUser user: User) {
         viewModel.getSubscribedSubreddits()
@@ -75,12 +82,16 @@ extension SidebarViewController: HeaderViewDelegate {
 extension SidebarViewController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        return item is SidebarSection ? 35 : 28
+        return viewModel.heightOfRow(outlineView, heightOfRowByItem: item)
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        delegate?.didSelectItem(item: item)
-        return true
+        if let sidebarItem = item as? SidebarItem {
+            delegate?.sidebarViewController(self, didSelectItem: sidebarItem)
+        }
+        
+        viewModel.getCurrentUser()
+        return viewModel.shouldSelectItem(outlineView, item: item)
     }
     
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
@@ -88,7 +99,24 @@ extension SidebarViewController: NSOutlineViewDelegate {
     }
 
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        return viewModel.dataSource.outlineView(outlineView, viewFor: tableColumn, item: item)
+        let view: NSView? = viewModel.dataSource.outlineView(outlineView, viewFor: tableColumn, item: item)
+        (view as? SidebarSearchCell)?.delegate = self
+        (view as? SidebarSearchToggleCell)?.delegate = self
+        return view
+    }
+}
+
+extension SidebarViewController: SidebarSearchCellDelegate {
+    
+    func sidebarSearchCell(_ sidebarSearchCell: SidebarSearchCell, didStartSearching searchField: NSSearchField) {
+        delegate?.sidebarViewController(self, searchPressed: searchField)
+    }
+}
+
+extension SidebarViewController: SidebarSearchToggleCellDelegate {
+    
+    func sidebarSearchToggleCell(_ sidebarSearchToggleCell: SidebarSearchToggleCell, searchTypeDidChange searchType: SearchType) {
+        delegate?.sidebarViewController(self, searchTypeDidChange: searchType)
     }
 }
 
@@ -109,16 +137,13 @@ extension SidebarViewController: NSOutlineViewDataSource {
 
 extension SidebarViewController: LoggedInHeaderContentViewDelegate {
     
-    func loggedInHeaderContentView(_ loggedInHeaderContentView: LoggedInHeaderContentView, didSelectMailButton button: ImageButton, withEmptyMailbox mailBoxIsEmpty: Bool) {
-        
-    }
+    func loggedInHeaderContentView(_ loggedInHeaderContentView: LoggedInHeaderContentView, didSelectMailButton button: ImageButton, withEmptyMailbox mailBoxIsEmpty: Bool) { }
 }
 
 extension SidebarViewController {
     
     private func setupviews() {
         headerView.delegate = self
-        
         contentView.outlineView.delegate = self
         contentView.outlineView.dataSource = self
         

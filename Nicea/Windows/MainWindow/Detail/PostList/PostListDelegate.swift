@@ -16,12 +16,14 @@ final class PostListDelegate: NSObject, NSTableViewDelegate {
     private let cellDelegate: LinkParentCellDelegate
     private let headerDelegate: SubredditHeaderCellDelegate
     private let linkArticleDelegate: LinkArticleCellDelegate
+    private let viewModel: PostListViewModel
     
-    init(dataSource: PostListDataSource, cellDelegate: LinkParentCellDelegate, headerDelegate: SubredditHeaderCellDelegate, linkArticleDelegate: LinkArticleCellDelegate) {
+    init(dataSource: PostListDataSource, cellDelegate: LinkParentCellDelegate, headerDelegate: SubredditHeaderCellDelegate, linkArticleDelegate: LinkArticleCellDelegate, viewModel: PostListViewModel) {
         self.dataSource = dataSource
         self.cellDelegate = cellDelegate
         self.headerDelegate = headerDelegate
         self.linkArticleDelegate = linkArticleDelegate
+        self.viewModel = viewModel
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
@@ -38,27 +40,11 @@ final class PostListDelegate: NSObject, NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if dataSource.posts.indices.contains(row) {
-            if let link = dataSource.posts[row] as? Link {
-                let view: NSView? = TableViewCells.linkCell(tableView, link: link, viewFor: tableColumn, row: row)
-                (view as? LinkParentCell)?.delegate = cellDelegate
-                (view as? LinkArticleCell)?.linkArticleDelegate = linkArticleDelegate
-                return view
-            } else if let subreddit = dataSource.posts[row] as? Subreddit {
-                let view: SubredditHeaderCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SubredditHeaderCell), owner: self) as! SubredditHeaderCell
-                view.delegate = headerDelegate
-                if let del = headerDelegate as? PostListViewController {
-                    view.configure(subreddit: subreddit, sort: del.viewModel.currentSort)
-                }
-                return view
-            } // used for Home, Popular, and All
-            else if let redditDefaultFeedItem = dataSource.posts[row] as? String {
-                let view: SubredditHeaderCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SubredditHeaderCell), owner: self) as! SubredditHeaderCell
-                view.delegate = headerDelegate
-                if let del = headerDelegate as? PostListViewController {
-                    view.configure(defaultFeedItem: redditDefaultFeedItem, sort: del.viewModel.currentSort)
-                }
-                return view
-            }
+            let cell: NSView? = TableViewCells.postListTableViewCell(tableView, item: dataSource.posts[row], sort: viewModel.currentSort, viewFor: tableColumn, row: row)
+            (cell as? LinkParentCell)?.delegate = cellDelegate
+            (cell as? LinkArticleCell)?.linkArticleDelegate = linkArticleDelegate
+            (cell as? SubredditHeaderCell)?.delegate = headerDelegate
+            return cell
         }
         
         return nil

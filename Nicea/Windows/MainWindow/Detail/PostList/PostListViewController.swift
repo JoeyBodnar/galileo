@@ -10,7 +10,9 @@ import AppKit
 import APIClient
 
 protocol PostListViewControllerDelegate: AnyObject {
+    
     func postListViewController(_ postListViewController: PostListViewController, didSelectViewComments link: Link)
+    func postListViewController(_ postListViewController: PostListViewController, subredditDidChange subreddit: String)
 }
 
 /// Main post list in the content view
@@ -23,7 +25,7 @@ final class PostListViewController: NSViewController {
     let viewModel: PostListViewModel = PostListViewModel()
     
     private lazy var tableViewDelegate: PostListDelegate = {
-        return PostListDelegate(dataSource: viewModel.dataSource, cellDelegate: self, headerDelegate: self, linkArticleDelegate: self)
+        return PostListDelegate(dataSource: viewModel.dataSource, cellDelegate: self, headerDelegate: self, linkArticleDelegate: self, viewModel: viewModel)
     }()
     
     weak var delegate: PostListViewControllerDelegate?
@@ -86,8 +88,12 @@ extension PostListViewController {
             let totalContentSize: CGFloat = tableView.intrinsicContentSize.height
             
             if endY > (totalContentSize - 100) {
-                setLoading(true)
-                viewModel.getNextPosts()
+                switch viewModel.listType {
+                case .searchResults: break
+                default:
+                    setLoading(true)
+                    viewModel.getNextPosts()
+                }
             }
            
             let invisibleRows: [NSTableRowView] = viewModel.dataSource.invisibleRows(inScrollView: scrollView, endY: endY)
@@ -160,6 +166,10 @@ extension PostListViewController: LinkParentCellDelegate {
 
 // MARK: - PostListViewModelDelegate
 extension PostListViewController: PostListViewModelDelegate {
+    
+    func postListViewModel(_ viewModel: PostListViewModel, subredditDidChange subreddit: String) {
+        delegate?.postListViewController(self, subredditDidChange: subreddit)
+    }
     
     func postListViewModel(_ viewModel: PostListViewModel, didCompleteSaveOperation result: Result<String, Error>, wasSave: Bool, post: Link, button: ClearButton) {
         switch result {

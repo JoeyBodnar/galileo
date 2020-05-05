@@ -11,24 +11,43 @@ import APIClient
 
 final class TableViewCells {
     
-    static func sidebarSubredditCell(_ outlineView: NSOutlineView, subreddit: Subreddit, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+    static func sideBarItemCell(_ outlineView: NSOutlineView, item: SidebarItem, viewFor tableColumn: NSTableColumn?) -> NSView? {
+        switch item {
+        case .trendingSubreddit(let name, let imageName):
+            return sidebarTrendingSubredditCell(outlineView, text: name, imageName: imageName, viewFor: tableColumn)
+        case .subscriptionSubreddit(let subreddit):
+            return sidebarSubredditCell(outlineView, subreddit: subreddit, viewFor: tableColumn)
+        case .search:
+            return searchCell(outlineView, viewFor: tableColumn)
+        case .searchOptions(let searchSubredditItem):
+            return searchOptionsCell(outlineView, searchItem: searchSubredditItem, viewFor: tableColumn)
+        case .defaultRedditFeed(let name, let imageName):
+            return sidebarTrendingSubredditCell(outlineView, text: name, imageName: imageName, viewFor: tableColumn)
+        }
+    }
+    
+    static func sidebarSubredditCell(_ outlineView: NSOutlineView, subreddit: Subreddit, viewFor tableColumn: NSTableColumn?) -> NSView? {
         let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SidebarSubredditCell), owner: self) as? SidebarSubredditCell
         view?.wantsLayer = true
         view?.configure(subreddit: subreddit)
         return view
     }
     
-    static func sidebarTrendingSubredditCell(_ outlineView: NSOutlineView, text: String, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+    static func sidebarTrendingSubredditCell(_ outlineView: NSOutlineView, text: String, imageName: String, viewFor tableColumn: NSTableColumn?) -> NSView? {
         let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SidebarSubredditCell), owner: self) as? SidebarSubredditCell
         view?.wantsLayer = true
-        view?.configure(trendingSubreddit: text)
+        view?.configure(subreddit: text, imageName: imageName)
         return view
     }
     
-    static func sidebarDefaultRedditFeedCell(_ outlineView: NSOutlineView, defaultfeedItem: SidebarDefaultItem, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SidebarSubredditCell), owner: self) as? SidebarSubredditCell
-        view?.wantsLayer = true
-        view?.configure(defaultFeedItem: defaultfeedItem)
+    static func searchOptionsCell(_ outlineView: NSOutlineView, searchItem: SearchSubredditItem, viewFor tableColumn: NSTableColumn?) -> NSView? {
+        let view: SidebarSearchToggleCell? = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("SidebarSearchToggleCell"), owner: self) as? SidebarSearchToggleCell
+        view?.configure(item: searchItem)
+        return view
+    }
+    
+    static func searchCell(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?) -> NSView? {
+        let view: SidebarSearchCell? = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("SidebarSearchCell"), owner: self) as? SidebarSearchCell
         return view
     }
     
@@ -44,17 +63,17 @@ final class TableViewCells {
         let linkType: LinkType = LinkType(link: link)
         switch linkType {
         case .linkedArticle, .selfText:
-            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkArticleCell), owner: self) as! LinkArticleCell
+            let view: LinkArticleCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkArticleCell), owner: self) as! LinkArticleCell
             view.wantsLayer = true
             view.configure(link: link)
             return view
         case .imageReddit, .imageImgur, .gifImgur:
-            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkImageCell), owner: self) as! LinkImageCell
+            let view: LinkImageCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkImageCell), owner: self) as! LinkImageCell
             view.wantsLayer = true
             view.configure(link: link)
             return view
         case .hostedVideo, .youtubeVideo, .gyfcatVideo, .richVideoGeneric:
-            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkVideoCell), owner: self) as! LinkVideoCell
+            let view: LinkVideoCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.LinkVideoCell), owner: self) as! LinkVideoCell
             view.wantsLayer = true
             view.configure(link: link)
             return view
@@ -89,6 +108,27 @@ final class TableViewCells {
                 return cell
             }
         }
+        return nil
+    }
+    
+    static func postListTableViewCell(_ tableView: NSTableView, item: Any, sort: MenuSortItem, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if let link = item as? Link {
+            let view: NSView? = TableViewCells.linkCell(tableView, link: link, viewFor: tableColumn, row: row)
+            return view
+        } else if let redditDefaultFeedItem = item as? PostListHeaderCellType {
+            let view: SubredditHeaderCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.SubredditHeaderCell), owner: self) as! SubredditHeaderCell
+            switch redditDefaultFeedItem {
+            case .defaultRedditFeed(let name):
+                view.configure(defaultFeedItem: name, sort: sort)
+            case .subreddit(let subreddit):
+                view.configure(subreddit: subreddit, sort: sort)
+            case .searchResults(let headerItem):
+                view.configure(searchResultHeaderItem: headerItem)
+            }
+            return view
+        }
+        
+        
         return nil
     }
 }

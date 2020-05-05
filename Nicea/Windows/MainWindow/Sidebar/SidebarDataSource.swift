@@ -18,14 +18,9 @@ final class SidebarDataSource {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         if let section = item as? SidebarSection {
             return TableViewCells.sidebarSectionHeaderCell(outlineView, text: section.sectionType.name, viewFor: tableColumn, item: item)
-        } else if let child = item as? Subreddit {
-            return TableViewCells.sidebarSubredditCell(outlineView, subreddit: child, viewFor: tableColumn, item: item)
-        } else if let child = item as? String {
-            return TableViewCells.sidebarTrendingSubredditCell(outlineView, text: child, viewFor: tableColumn, item: item)
-        } else if let child = item as? SidebarDefaultItem {
-            return TableViewCells.sidebarDefaultRedditFeedCell(outlineView, defaultfeedItem: child, viewFor: tableColumn, item: item)
+        } else if let child = item as? SidebarItem {
+            return TableViewCells.sideBarItemCell(outlineView, item: child, viewFor: tableColumn)
         }
-        
         return nil
     }
     

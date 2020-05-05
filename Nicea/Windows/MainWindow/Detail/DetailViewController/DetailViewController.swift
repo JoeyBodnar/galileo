@@ -9,10 +9,17 @@
 import AppKit
 import APIClient
 
+protocol DetailViewControllerDelegate: AnyObject {
+    
+    func detailViewController(_ detailViewController: DetailViewController, subredditDidChange subreddit: String)
+}
+
 final class DetailViewController: NSViewController {
     
     var postDetailViewController: PostDetailViewController?
     let postListViewController: PostListViewController = PostListViewController()
+    
+    weak var delegate: DetailViewControllerDelegate?
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nil)
@@ -56,6 +63,13 @@ final class DetailViewController: NSViewController {
         postListViewController.setLoading(true, isNewSubreddit: true)
         postListViewController.viewModel.didSelectSubreddit(subreddit: subreddit, isHomeFeed: isHomeFeed)
     }
+    
+    func searchPressed() {
+        postDetailViewController?.view.alphaValue = 0
+        postDetailViewController?.view.removeFromSuperview()
+        
+        postListViewController.setLoading(true, isNewSubreddit: true)
+    }
 }
 
 extension DetailViewController: PostDetailViewControllerDelegate {
@@ -66,6 +80,10 @@ extension DetailViewController: PostDetailViewControllerDelegate {
 }
 
 extension DetailViewController: PostListViewControllerDelegate {
+    
+    func postListViewController(_ postListViewController: PostListViewController, subredditDidChange subreddit: String) {
+        delegate?.detailViewController(self, subredditDidChange: subreddit)
+    }
     
     func postListViewController(_ postListViewController: PostListViewController, didSelectViewComments link: Link) {
         addPostsDetailView(link: link)

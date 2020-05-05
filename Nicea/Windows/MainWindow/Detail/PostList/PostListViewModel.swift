@@ -10,6 +10,7 @@ import AppKit
 import APIClient
 
 protocol PostListViewModelDelegate: AnyObject {
+    
     func postListViewModel(_ postListViewModelDelegate: PostListViewModel, didRetrievePosts posts: [Any], isNewSubreddit newSubreddit: Bool)
     
     /// called when successfully voted on a post
@@ -17,25 +18,38 @@ protocol PostListViewModelDelegate: AnyObject {
     
     /// the string is the text to assign to the button
     func postListViewModel(_ viewModel: PostListViewModel, didCompleteSaveOperation result: Result<String, Error>, wasSave: Bool, post: Link, button: ClearButton)
+    
+    func postListViewModel(_ viewModel: PostListViewModel, subredditDidChange subreddit: String)
 }
 
 final class PostListViewModel {
     
-    init() { }
+    init() {
+        searchHandler.delegate = self
+    }
     
     weak var delegate: PostListViewModelDelegate?
     
     var paginator: Paginator = Paginator()
-    var subreddit: String = ""
+    var subreddit: String = "" {
+        didSet {
+            delegate?.postListViewModel(self, subredditDidChange: subreddit)
+        }
+    }
     
-    var isFetching: Bool = false // set to true in PostListViewModel, set to false when Tableview updates in DetailviewController
+    var isFetching: Bool = false // set to true in PostListViewModel, set to false when tableview updates in DetailviewController
     
-    var isViewingHome: Bool = true // need a special flag for this because "home" is actually its own subreddit
+    var listType: PostListType = PostListType.subreddit
     
     /// set in didSelectSubreddit method
     var currentSort: MenuSortItem = MenuSortItem(title: SortItemTitles.hot, sort: .hot)
     
     let dataSource: PostListDataSource = PostListDataSource(posts: [])
+    
+    // MARK: - Search
+    var searchTerm: String?
+    var searchType: SearchType = .allReddit
+    let searchHandler: SearchHandler = SearchHandler()
     
     func vote(post: Link, direction: VoteDirection, upvoteDownvoteView: UpvoteDownvoteView) {
         guard SessionManager.shared.isLoggedIn else { return }
@@ -64,10 +78,9 @@ final class PostListViewModel {
         }
         
         paginator = Paginator() // reset as if it were a new subreddit, because we will have to reset paginator as well
-        if isViewingHome {
-            fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
-        } else {
-            fetchPosts(isNewSubreddit: true)
+        switch listType {
+        case .home: fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
+        default: fetchPosts(isNewSubreddit: true)
         }
     }
     
@@ -87,22 +100,23 @@ final class PostListViewModel {
     }
     
     func getNextPosts() {
-        if isViewingHome {
-            fetchHomeFeed(isNewSubreddit: false, sort: currentSort.sort)
-        } else {
-            fetchPosts(isNewSubreddit: false)
+        switch listType {
+        case .home: fetchHomeFeed(isNewSubreddit: false, sort: currentSort.sort)
+        case .searchResults: break
+        default: fetchPosts(isNewSubreddit: false)
         }
     }
     
     /// the method called from SplitViewController when you first select a sidebar item
     func didSelectSubreddit(subreddit: String, isHomeFeed: Bool) {
-        isViewingHome = isHomeFeed
+        listType = isHomeFeed ? PostListType.home : PostListType.subreddit
+        
         paginator = Paginator() // reset paginator for new subreddit
         currentSort = MenuSortItem(title: SortItemTitles.hot, sort: .hot)
         
-        if isHomeFeed {
-            fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
-        } else {
+        switch listType {
+        case .home: fetchHomeFeed(isNewSubreddit: true, sort: currentSort.sort)
+        default:
             self.subreddit = subreddit
             fetchPosts(isNewSubreddit: true)
         }
@@ -126,6 +140,19 @@ final class PostListViewModel {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
             button.title = Strings.shareButtonText
         }
+    }
+    
+    func handleSearchPressed(text: String) {
+        searchTerm = text
+        searchHandler.searchType = self.searchType
+        
+        switch searchType {
+        case .allReddit: searchHandler.subreddit = "all"
+        case .subreddit: searchHandler.subreddit = subreddit
+        }
+        
+        searchHandler.searchTerm = text
+        searchHandler.search()
     }
     
     // MAARK: - Private
@@ -189,9 +216,9 @@ final class PostListViewModel {
         group.notify(queue: DispatchQueue.main) { [weak self] in
             guard let weakSelf = self else { return }
             if let unwrappedRetrievedSubreddit = newSubreddit {
-                allItems = [unwrappedRetrievedSubreddit] + posts
+                allItems = [PostListHeaderCellType.subreddit(subreddit: unwrappedRetrievedSubreddit)] + posts
             } else {
-                allItems = [weakSelf.subreddit] + posts // in this case it will be "All" or "Popular" for the subreddit
+                allItems = [PostListHeaderCellType.defaultRedditFeed(name: weakSelf.subreddit)] + posts // in this case it will be "All" or "Popular" for the subreddit
             }
             
             weakSelf.delegate?.postListViewModel(weakSelf, didRetrievePosts: allItems, isNewSubreddit: true)
@@ -209,7 +236,7 @@ final class PostListViewModel {
             case .success(let subredditResponse):
                 weakSelf.paginator = subredditResponse.paginator
                 var posts: [Any] = subredditResponse.data.children ?? []
-                if isNewSubreddit { posts = ["home"] + posts }
+                if isNewSubreddit { posts = [PostListHeaderCellType.defaultRedditFeed(name: "home")] + posts }
                 weakSelf.delegate?.postListViewModel(weakSelf, didRetrievePosts: posts, isNewSubreddit: isNewSubreddit)
             case .failure(let error): print(error)
             }
@@ -223,6 +250,20 @@ final class PostListViewModel {
             self.paginator = subredditResponse.paginator
             self.delegate?.postListViewModel(self, didRetrievePosts: subredditResponse.data.children ?? [], isNewSubreddit: isNewSubreddit)
         case .failure(let error): print(error)
+        }
+    }
+}
+
+extension PostListViewModel: SearchHandlerDelegate {
+    
+    func searchHandler(_ searchHandler: SearchHandler, didRetrieveResult result: Result<[Link], Error>) {
+        switch result {
+        case .success(let links):
+            listType = .searchResults
+            let headerItem: SearchResultHeaderItem = SearchResultHeaderItem(searchTerm: searchHandler.searchTerm, resultCount: links.count, subreddit: searchHandler.subreddit)
+            let items: [Any] = [PostListHeaderCellType.searchResults(headerItem: headerItem)] + links
+            delegate?.postListViewModel(self, didRetrievePosts: items, isNewSubreddit: true)
+        case .failure: break
         }
     }
 }

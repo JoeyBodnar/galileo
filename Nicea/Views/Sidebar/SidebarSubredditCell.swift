@@ -39,15 +39,9 @@ class SidebarSubredditCell: NSTableCellView {
         iconImageView.layer?.borderWidth = 0.5
     }
     
-    func configure(trendingSubreddit: String) {
-        label.stringValue = trendingSubreddit
-        self.iconImageView.image = NSImage(named: ImageNames.trending)?.image(withTintColor: NSColor.red)
-        iconImageView.layer?.borderWidth = 0
-    }
-    
-    func configure(defaultFeedItem: SidebarDefaultItem) {
-        label.stringValue = defaultFeedItem.title
-        self.iconImageView.image = NSImage(named: defaultFeedItem.imageName)?.image(withTintColor: NSColor.red)
+    func configure(subreddit: String, imageName: String) {
+        label.stringValue = subreddit
+        iconImageView.image = NSImage(named: imageName)?.image(withTintColor: NSColor.red)
         iconImageView.layer?.borderWidth = 0
     }
 }

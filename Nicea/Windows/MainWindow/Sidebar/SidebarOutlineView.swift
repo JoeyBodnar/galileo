@@ -20,6 +20,8 @@ final class SidebarOutlineView: NSOutlineView {
         
         register(NSNib(nibNamed: "SidebarSubredditCell", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SidebarSubredditCell"))
         register(NSNib(nibNamed: "SidebarSectionHeaderCell", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SidebarSectionHeaderCell"))
+        register(NSNib(nibNamed: "SidebarSearchCell", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SidebarSearchCell"))
+        register(NSNib(nibNamed: "SidebarSearchToggleCell", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SidebarSearchToggleCell"))
         selectionHighlightStyle = .sourceList
         indentationPerLevel = 6.0
     }

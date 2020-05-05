@@ -63,8 +63,9 @@ final class SubredditHeaderCell: NSTableCellView {
             topView.layer?.backgroundColor = primaryNSColor.cgColor
         }
         
+        sortButton.alphaValue = 1
         sortButton.selectItem(withTitle: sort.title)
-        iconImageView.alphaValue = 1.0
+        iconImageView.alphaValue = 1
     }
     
     func configure(defaultFeedItem: String, sort: MenuSortItem) {
@@ -72,7 +73,16 @@ final class SubredditHeaderCell: NSTableCellView {
         infoLabel.stringValue = ""
         iconImageView.image = NSImage(named: ImageNames.subredditIconDefault)
         
+        sortButton.alphaValue = 1
         sortButton.selectItem(withTitle: sort.title)
+    }
+    
+    func configure(searchResultHeaderItem: SearchResultHeaderItem) {
+        nameLabel.stringValue = "Search Results for \(searchResultHeaderItem.searchTerm) in r/ \(searchResultHeaderItem.subreddit)"
+        infoLabel.stringValue = "\(searchResultHeaderItem.resultCount) results"
+        
+        iconImageView.alphaValue = 0
+        sortButton.alphaValue = 0
     }
     
     @objc func menuItemPressed(sender: NSMenuItem) {
