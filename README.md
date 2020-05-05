@@ -12,7 +12,7 @@ Features currently supported:
 - View trending subreddits
 - Search all reddit or search a specific subreddit
 - View posts and comments. 
-- upvote/downvote  on comments
+- upvote/downvot comments
 - Respond to comments
 - View your mailbox, and respond to comments in your mailbox
 - Sort posts
@@ -21,11 +21,12 @@ Features currently supported:
 - Tabbed windows
 
 Features Planning to support:
+- Logout
 - Save comments
 - autofill subreddit suggestions when typing in "go to subreddit" box
 - add links to Post detail view for link posts
 - better support for window resizing
-- Change "All" icon on sidebar to be different from that of thhe Home button
+- Change "All" icon on sidebar to be different from that of the Home button
 - CMD+T for opening a new window
 - handle callbacks for errors when commenting
 - sorting comments
@@ -33,6 +34,10 @@ Features Planning to support:
 Features I am not planning to support (but would welcome a pull request on):
 - create a post
 - view user's profiles
+
+### Run the app locally
+
+To run the app locally, you will need to create an app with the Reddit API (https://www.reddit.com/prefs/apps/) and then use your client ID (`REDDIT_CLIENT_ID` in this project). For `BEARER_AUTH_HEADER`, you will need to use Basic HTTP athenticatin, using your client ID as the username and an empty string as the password. So your `BEARER_AUTH_HEADER` value will be something like `Basic xxxxxxx`. `REDDIT_AUTH_URL_STATE` can be any random string you would like.
 
 #### Tech
 
