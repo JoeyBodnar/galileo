@@ -32,6 +32,7 @@ final class SidebarViewModel {
     
     var searchSubredditItem: SearchSubredditItem = .all {
         didSet {
+            guard dataSource.sections.count > 1 else { return }
             let searchItem: SidebarItem = SidebarItem.search(subreddit: searchSubredditItem)
             let searchOptionsItem: SidebarItem = SidebarItem.searchOptions(subreddit: searchSubredditItem)
             dataSource.sections[0].children[0] = searchItem
@@ -122,6 +123,8 @@ final class SidebarViewModel {
                 let row = outlineView.row(forItem: item)
                 let view = outlineView.view(atColumn: 0, row: row, makeIfNecessary: false) as! SidebarSearchCell
                 view.searchField.becomeFirstResponder()
+                return false
+            case .searchOptions: return false
             default: break
             }
         }
