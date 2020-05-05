@@ -22,7 +22,11 @@ class DefaultsManager {
         get {
             return UserDefaults.standard.value(forKey: Keys.userAuthorizationToken) as? String
         } set {
-            UserDefaults.standard.set(newValue, forKey: Keys.userAuthorizationToken)
+            if newValue == nil {
+                UserDefaults.standard.removeObject(forKey: Keys.userAuthorizationToken)
+            } else {
+                UserDefaults.standard.set(newValue, forKey: Keys.userAuthorizationToken)
+            }
         }
     }
     
@@ -30,7 +34,11 @@ class DefaultsManager {
         get {
             return UserDefaults.standard.value(forKey: Keys.userRefreshToken) as? String
         } set {
-            UserDefaults.standard.set(newValue, forKey: Keys.userRefreshToken)
+            if newValue == nil {
+                UserDefaults.standard.removeObject(forKey: Keys.userRefreshToken)
+            } else {
+                UserDefaults.standard.set(newValue, forKey: Keys.userRefreshToken)
+            }
         }
     }
 }

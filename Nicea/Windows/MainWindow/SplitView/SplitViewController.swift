@@ -19,6 +19,7 @@ final class SplitViewController: NSSplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Setup API Client
         RedditClient.shared.apiClient.authToken = DefaultsManager.shared.userAuthorizationToken
         RedditClient.shared.apiClient.refreshToken = DefaultsManager.shared.userRefreshToken
