@@ -1,0 +1,41 @@
+name: Build and deploy
+
+on:
+  push:
+    tags:
+      - release/*
+    branches:
+      - test/*
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Bundle install
+        run: bundle install
+      - name: Increment build number
+        run: fastlane run increment_build_number
+      - name: Install plugins
+        run: fastlane install_plugins
+      - name: Build and Archive
+        run:  xcodebuild clean -project Nicea.xcodeproj -scheme "Nicea" -configuration Release archive -archivePath build/result.xcarchive
+      - name: Export and code sign archive
+        run: |
+          xcodebuild archive -archivePath build/result.xcarchive -exportArchive -exportOptionsPlist exportOptions.plist -exportPath app
+      - name: Create dmg
+        run: fastlane create_dmg
+      - name: Notarize dmg
+        run: |
+          requestUUID=$(xcrun altool --notarize-app \
+            --primary-bundle-id "stephenbodnar.Nicea" \
+            --username "${{ secrets.APPLE_ID_EMAIL }}" \
+            --password "${{ secrets.NOTARIZATION_PASSWORD }}" \
+            --asc-provider "${{ secrets.TEAM_ID }}" \
+            --file "app/Nicea.app.dmg" \
+              | awk '/RequestUUID/ { print $NF; }')
+      - name: Check notarization status
+        run: bash notarizationStatus.sh
+      - name: Staple notarization
+        run: xcrun stapler staple app/Nicea.app.dmg
