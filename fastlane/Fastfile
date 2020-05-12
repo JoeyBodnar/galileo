@@ -1,0 +1,9 @@
+default_platform(:mac)
+
+platform :mac do
+  desc "create a dmg"
+
+  lane :create_dmg do
+    dmg(path: "archive/Nicea.app")
+  end
+end
