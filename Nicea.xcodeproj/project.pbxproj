@@ -766,13 +766,6 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		9F921B2E245BDCD2008E7701 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
 		9F97B490243775620059B45F /* PostDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,7 +804,6 @@
 		9F9C1FA42426252E0001DF9E /* Nicea */ = {
 			isa = PBXGroup;
 			children = (
-				9F921B2E245BDCD2008E7701 /* Config */,
 				9F921B212459D3EE008E7701 /* Networking */,
 				9FCF3761242E4547004BDD22 /* Views */,
 				9F0512FD242E368300ED64FE /* Models */,
