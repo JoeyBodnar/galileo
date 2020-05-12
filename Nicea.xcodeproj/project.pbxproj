@@ -352,7 +352,6 @@
 		9F921B282459D407008E7701 /* RedditClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditClient.swift; sourceTree = "<group>"; };
 		9F921B2A2459D44D008E7701 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
-		9F921B2F245BDCE7008E7701 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		9F97B492243775AF0059B45F /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		9F9C1FA22426252E0001DF9E /* Nicea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nicea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9C1FA52426252E0001DF9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -770,7 +769,6 @@
 		9F921B2E245BDCD2008E7701 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				9F921B2F245BDCE7008E7701 /* Config.xcconfig */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1453,7 +1451,6 @@
 /* Begin XCBuildConfiguration section */
 		9F9C1FB0242625300001DF9E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1514,7 +1511,6 @@
 		};
 		9F9C1FB1242625300001DF9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1568,7 +1564,6 @@
 		};
 		9F9C1FB3242625300001DF9E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1598,7 +1593,6 @@
 		};
 		9F9C1FB4242625300001DF9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1628,7 +1622,6 @@
 		};
 		9F9C1FCA2426281D0001DF9E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1665,7 +1658,6 @@
 		};
 		9F9C1FCB2426281D0001DF9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F921B2F245BDCE7008E7701 /* Config.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

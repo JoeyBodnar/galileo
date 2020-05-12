@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BearerAuthHeader</key>
-	<string>$(BEARER_AUTH_HEADER)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -34,9 +32,5 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
-	<key>RedditAuthUrlState</key>
-	<string>$(REDDIT_AUTH_URL_STATE)</string>
-	<key>RedditClientId</key>
-	<string>$(REDDIT_CLIENT_ID)</string>
 </dict>
 </plist>
