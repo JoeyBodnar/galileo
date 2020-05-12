@@ -4,6 +4,6 @@ platform :mac do
   desc "create a dmg"
 
   lane :create_dmg do
-    dmg(path: "app/Nicea.app")
+    dmg(path: "archive/Nicea.app")
   end
 end
