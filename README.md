@@ -1,6 +1,6 @@
 Galileo is a Reddit browser for macOS. It is built with Swift and AppKit using Xcode 11.4.
 
-You can download the app [here](https://github.com/JoeyBodnar/galileo/raw/master/release/Nicea.app.dmg), or read below about how to run is locally in Xcode.
+You can download the app [here](https://github.com/JoeyBodnar/galileo/raw/master/release/Nicea.app.dmg), or read below about how to run it locally in Xcode.
 
 
 <img src="https://ucarecdn.com/8850b166-168d-4321-ac45-7f7d0bd1e4c5/ScreenShot20200505at110423PM.png" style="width: 450px; height: 294px;"></img>
