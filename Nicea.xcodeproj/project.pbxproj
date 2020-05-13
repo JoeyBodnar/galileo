@@ -292,6 +292,7 @@
 		9F3A795C242FA63A00AA8834 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		9F3A795E242FB57900AA8834 /* SubredditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditHeaderView.swift; sourceTree = "<group>"; };
 		9F3EBBB1244DE97E00E85D5F /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		9F4688F9246C372C00A7ED0A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		9F47C1A62457044600970CFB /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		9F50BD41244CB9ED00A54B6E /* NSWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extension.swift"; sourceTree = "<group>"; };
 		9F50BD43244CBA2400A54B6E /* NButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NButton+Extension.swift"; sourceTree = "<group>"; };
@@ -402,7 +403,6 @@
 		9FCF3766242E4868004BDD22 /* SidebarSubredditCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidebarSubredditCell.xib; sourceTree = "<group>"; };
 		9FE566BA24540E3000A108C4 /* PostDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailHeaderCell.swift; sourceTree = "<group>"; };
 		9FE566BD24540FD800A108C4 /* PostDetailHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailHeaderCell.xib; sourceTree = "<group>"; };
-		9FE8E27B246C2CDB00EF2395 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaMarkdown.xcodeproj; path = CocoaMarkdown/CocoaMarkdown.xcodeproj; sourceTree = "<group>"; };
 		9FF6D513245896CB005B4C57 /* NSSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSize.swift; sourceTree = "<group>"; };
 		9FF84509243E357500A60D9C /* LoggedInHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInHeaderContentView.swift; sourceTree = "<group>"; };
@@ -805,7 +805,6 @@
 		9F9C1FA42426252E0001DF9E /* Nicea */ = {
 			isa = PBXGroup;
 			children = (
-				9FE8E27B246C2CDB00EF2395 /* Config.xcconfig */,
 				9F921B212459D3EE008E7701 /* Networking */,
 				9FCF3761242E4547004BDD22 /* Views */,
 				9F0512FD242E368300ED64FE /* Models */,
@@ -816,6 +815,7 @@
 				9F9C1FAB242625300001DF9E /* Main.storyboard */,
 				9F9C1FAE242625300001DF9E /* Info.plist */,
 				9F9C1FAF242625300001DF9E /* Nicea.entitlements */,
+				9F4688F9246C372C00A7ED0A /* Config.xcconfig */,
 			);
 			path = Nicea;
 			sourceTree = "<group>";
@@ -1445,7 +1445,6 @@
 /* Begin XCBuildConfiguration section */
 		9F9C1FB0242625300001DF9E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FE8E27B246C2CDB00EF2395 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1506,7 +1505,6 @@
 		};
 		9F9C1FB1242625300001DF9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FE8E27B246C2CDB00EF2395 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1566,7 +1564,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nicea/Nicea.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = U352XG8SZU;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
@@ -1595,7 +1593,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nicea/Nicea.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = U352XG8SZU;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
@@ -1622,11 +1620,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 79;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U352XG8SZU;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 72;
+				DYLIB_CURRENT_VERSION = 79;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
 				INFOPLIST_FILE = APIClient/Info.plist;
@@ -1658,11 +1656,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 79;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U352XG8SZU;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 72;
+				DYLIB_CURRENT_VERSION = 79;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/Mac";
 				INFOPLIST_FILE = APIClient/Info.plist;
