@@ -37,7 +37,9 @@ Features I am not planning to support (but would welcome a pull request on):
 
 ### Run the app locally
 
-To run the app locally, you will need to create an app with the Reddit API (https://www.reddit.com/prefs/apps/) and then use your client ID (`REDDIT_CLIENT_ID` in this project). For `BEARER_AUTH_HEADER`, you will need to use Basic HTTP athenticatin, using your client ID as the username and an empty string as the password. So your `BEARER_AUTH_HEADER` value will be something like `Basic xxxxxxx`. `REDDIT_AUTH_URL_STATE` can be any random string you would like.
+First, create a file `Config.xcconfig` and place it in under the main Nicea app folder. This app relies on Reddit API keys, but the keys are in a config file which I do not check into this repository. 
+
+Once you create the file, you will need to create an app with the Reddit API (https://www.reddit.com/prefs/apps/) and then use your client ID (`REDDIT_CLIENT_ID` in this project). For `BEARER_AUTH_HEADER`, you will need to use Basic HTTP authentication, using your client ID as the username and an empty string as the password. So your `BEARER_AUTH_HEADER` value will be something like `Basic xxxxxxx`. `REDDIT_AUTH_URL_STATE` can be any random string you would like. Set the values for REDDIT_CLIENT_ID, BEARER_AUTH_HEADER, and REDDIT_AUTH_URL_STATE in the xcconfig file you created above. Then build and run!
 
 #### Tech
 
