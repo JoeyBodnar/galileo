@@ -68,7 +68,7 @@ final public class APIClient {
     
     // MARK: - Private
     private func refreshToken<T: Decodable>(originalRequest: WhiteFlowerRequest, forType type: T.Type, isDataRequest: Bool, dataCompletion: ((Result<T, Error>) -> Void)?, okCompletion: ((Result<Bool, Error>) -> Void)?) {
-        guard let refresh = refreshToken, let authToken = ProcessInfo.processInfo.environment["BEARER_AUTH_HEADER"] else { return }
+        guard let refresh = refreshToken, let authToken = Bundle.main.infoDictionary?["BearerAuthHeader"] as? String else { return }
         whiteFlower.post(urlString: "https://www.reddit.com/api/v1/access_token", params: ["grant_type": "refresh_token", "refresh_token": refresh], headers: [HTTPHeader(field: HTTPHeaderField.contentType, value: HTTPContentType.urlEncoded.rawValue), HTTPHeader(field: HTTPHeaderField.authorization, value: authToken)]) { [weak self] response in
             guard let weakSelf = self else { return }
             switch response.serializeTo(type: OAuthTokenResponse.self) {

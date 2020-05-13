@@ -13,9 +13,9 @@ final class PostListDelegate: NSObject, NSTableViewDelegate {
     
     let dataSource: PostListDataSource
     
-    private let cellDelegate: LinkParentCellDelegate
-    private let headerDelegate: SubredditHeaderCellDelegate
-    private let linkArticleDelegate: LinkArticleCellDelegate
+    private weak var cellDelegate: LinkParentCellDelegate?
+    private weak var headerDelegate: SubredditHeaderCellDelegate?
+    private weak var linkArticleDelegate: LinkArticleCellDelegate?
     private let viewModel: PostListViewModel
     
     init(dataSource: PostListDataSource, cellDelegate: LinkParentCellDelegate, headerDelegate: SubredditHeaderCellDelegate, linkArticleDelegate: LinkArticleCellDelegate, viewModel: PostListViewModel) {
