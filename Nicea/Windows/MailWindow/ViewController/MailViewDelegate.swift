@@ -12,8 +12,8 @@ import APIClient
 final class MailViewDelegate: NSObject, NSOutlineViewDelegate {
     
     private let dataSource: MailViewDataSource
-    private let cellDelegate: CommentTableViewCellViewDelegate
-    private let textBoxCellDelegate: CommentTextBoxDelegate
+    private weak var cellDelegate: CommentTableViewCellViewDelegate?
+    private weak var textBoxCellDelegate: CommentTextBoxDelegate?
     
     init(dataSource: MailViewDataSource, cellDelegate: CommentTableViewCellViewDelegate, textBoxCellDelegate: CommentTextBoxDelegate) {
         self.dataSource = dataSource

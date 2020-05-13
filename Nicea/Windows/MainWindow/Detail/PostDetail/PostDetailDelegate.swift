@@ -12,10 +12,10 @@ import APIClient
 final class PostDetailDelegate: NSObject, NSOutlineViewDelegate {
     
     let dataSource: PostDetailDataSource
-    let viewModel: PostDetailViewModel
-    let commentCellDelegate: CommentTableViewCellViewDelegate
-    let textBoxDelegate: CommentTextBoxDelegate
-    let postDetailHeaderDelegate: PostDetailHeaderCellDelegate
+    weak var viewModel: PostDetailViewModel?
+    weak var commentCellDelegate: CommentTableViewCellViewDelegate?
+    weak var textBoxDelegate: CommentTextBoxDelegate?
+    weak var postDetailHeaderDelegate: PostDetailHeaderCellDelegate?
     
     init(dataSource: PostDetailDataSource, viewModel: PostDetailViewModel, commentCellDelegate: CommentTableViewCellViewDelegate, textBoxDelegate: CommentTextBoxDelegate, postDetailHeaderDelegate: PostDetailHeaderCellDelegate) {
         self.dataSource = dataSource
@@ -26,6 +26,7 @@ final class PostDetailDelegate: NSObject, NSOutlineViewDelegate {
     }
     
     func outlineViewItemDidExpand(_ notification: Notification) {
+        guard let viewModel = viewModel else { return }
         if viewModel.isAutoExpanding { return }
         if let comment = notification.userInfo?["NSObject"] as? Comment, comment.isMoreItem {
             viewModel.loadMoreCommentsOnParentArticle(comment: comment)
@@ -39,7 +40,8 @@ final class PostDetailDelegate: NSObject, NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldExpandItem item: Any) -> Bool {
-        if let comment = item as? Comment, comment.isMoreItem, viewModel.isAutoExpanding {
+        let isAutoExpanding: Bool = viewModel?.isAutoExpanding ?? false
+        if let comment = item as? Comment, comment.isMoreItem, isAutoExpanding {
             return false
         }
         
