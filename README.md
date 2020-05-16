@@ -24,7 +24,7 @@ Features currently supported:
 - Tabbed windows
 
 Features Planning to support:
-- Logout
+- <s>Logout</s> ✅
 - Save comments
 - autofill subreddit suggestions when typing in "go to subreddit" box
 - add links to Post detail view for link posts
