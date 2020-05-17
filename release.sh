@@ -44,9 +44,9 @@ else
   mkdir release
   mv archive/Galileo.app.dmg release/Galileo.app.dmg
 
-  git add Nicea/Info.plist
+  git add Galileo/Info.plist
   git add APIClient/Info.plist
-  git add Nicea.xcodeproj/project.pbxproj
+  git add Galileo.xcodeproj/project.pbxproj
 
   git commit -m "release v $3"
   git push
