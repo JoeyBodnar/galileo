@@ -10,8 +10,10 @@ import AppKit
 import APIClient
 
 protocol HeaderViewDelegate: AnyObject {
+    
     func headerView(_ headerView: HeaderView, didLoginWithUser user: User)
     func headerView(_ headerView: HeaderView, didFailToLoginWithError error: Error)
+    func headerViewDidSelectLogout(_ headerView: HeaderView)
 }
 
 final class HeaderView: NSView {
@@ -28,7 +30,7 @@ final class HeaderView: NSView {
             setAlphasForLoggedIn()
         }
     }
-    
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         wantsLayer = true
@@ -57,6 +59,14 @@ final class HeaderView: NSView {
     }
 }
 
+extension HeaderView: LoggedInHeaderContentViewDelegate {
+    
+    func loggedInHeaderContentViewDidSelectLogout(_ loggedInHeaderContentView: LoggedInHeaderContentView) {
+        loggedIn = false
+        delegate?.headerViewDidSelectLogout(self)
+    }
+}
+
 extension HeaderView: WebViewControllerDelegate {
     func webViewController(_ webViewController: WebViewController, withUser user: User) {
         loggedInView.setup(user: user)
@@ -73,6 +83,8 @@ extension HeaderView: WebViewControllerDelegate {
 extension HeaderView {
     
     private func setupViews() {
+        loggedInView.delegate = self
+        
         loggedIn = DefaultsManager.shared.userAuthorizationToken != nil
         seperator.wantsLayer = true
         seperator.layer?.backgroundColor = NSColor.lightGray.cgColor

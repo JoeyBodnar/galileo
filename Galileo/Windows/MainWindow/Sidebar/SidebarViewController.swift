@@ -42,6 +42,10 @@ final class SidebarViewController: NSViewController {
         layout()
         setupviews()
         viewModel.delegate = self
+        setup()
+    }
+    
+    private func setup() {
         viewModel.getTrendingSubreddits()
         viewModel.getSubscribedSubreddits()
         viewModel.getCurrentUser()
@@ -71,6 +75,15 @@ extension SidebarViewController: SidebarViewModelDelegate {
 extension SidebarViewController: HeaderViewDelegate {
     
     func headerView(_ headerView: HeaderView, didFailToLoginWithError error: Error) { }
+    
+    func headerViewDidSelectLogout(_ headerView: HeaderView) {
+        RedditClient.shared.apiClient.authToken = nil
+        RedditClient.shared.apiClient.refreshToken = nil
+        DefaultsManager.shared.userAuthorizationToken = nil
+        viewModel.dataSource.sections = []
+        contentView.outlineView.reloadData()
+        setup()
+    }
     
     func headerView(_ headerView: HeaderView, didLoginWithUser user: User) {
         viewModel.getSubscribedSubreddits()
@@ -133,19 +146,12 @@ extension SidebarViewController: NSOutlineViewDataSource {
     }
 }
 
-extension SidebarViewController: LoggedInHeaderContentViewDelegate {
-    
-    func loggedInHeaderContentView(_ loggedInHeaderContentView: LoggedInHeaderContentView, didSelectMailButton button: ImageButton, withEmptyMailbox mailBoxIsEmpty: Bool) { }
-}
-
 extension SidebarViewController {
     
     private func setupviews() {
         headerView.delegate = self
         contentView.outlineView.delegate = self
         contentView.outlineView.dataSource = self
-        
-        headerView.loggedInView.delegate = self
     }
     
     private func layout() {
