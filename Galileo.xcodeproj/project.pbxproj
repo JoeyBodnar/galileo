@@ -354,7 +354,7 @@
 		9F921B2A2459D44D008E7701 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9F921B2C2459F1FF008E7701 /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
 		9F97B492243775AF0059B45F /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
-		9F9C1FA22426252E0001DF9E /* Nicea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nicea.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9C1FA22426252E0001DF9E /* Galileo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galileo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9C1FA52426252E0001DF9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9C1FA9242625300001DF9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F9C1FAC242625300001DF9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 		9FA57403243B885B00B9384C /* PostListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListDelegate.swift; sourceTree = "<group>"; };
 		9FA57405243B8BEB00B9384C /* NSActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSActivityIndicator.swift; sourceTree = "<group>"; };
 		9FA57407243B8D9D00B9384C /* PostDetailDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailDelegate.swift; sourceTree = "<group>"; };
-		9FA5740E243B931700B9384C /* NiceaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NiceaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FA5740E243B931700B9384C /* GalileoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GalileoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FA57410243B931700B9384C /* NiceaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiceaUITests.swift; sourceTree = "<group>"; };
 		9FA57412243B931700B9384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FAA5369244B45D0009A58A5 /* MailViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewModelDelegate.swift; sourceTree = "<group>"; };
@@ -784,7 +784,7 @@
 			isa = PBXGroup;
 			children = (
 				9FF6D4FB245874D7005B4C57 /* CocoaMarkdown.xcodeproj */,
-				9F9C1FA42426252E0001DF9E /* Nicea */,
+				9F9C1FA42426252E0001DF9E /* Galileo */,
 				9F9C1FC12426281D0001DF9E /* APIClient */,
 				9FA5740F243B931700B9384C /* NiceaUITests */,
 				9F9C1FA32426252E0001DF9E /* Products */,
@@ -795,14 +795,14 @@
 		9F9C1FA32426252E0001DF9E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F9C1FA22426252E0001DF9E /* Nicea.app */,
+				9F9C1FA22426252E0001DF9E /* Galileo.app */,
 				9F9C1FC02426281D0001DF9E /* APIClient.framework */,
-				9FA5740E243B931700B9384C /* NiceaUITests.xctest */,
+				9FA5740E243B931700B9384C /* GalileoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9F9C1FA42426252E0001DF9E /* Nicea */ = {
+		9F9C1FA42426252E0001DF9E /* Galileo */ = {
 			isa = PBXGroup;
 			children = (
 				9F921B212459D3EE008E7701 /* Networking */,
@@ -817,7 +817,7 @@
 				9F9C1FAF242625300001DF9E /* Nicea.entitlements */,
 				9F4688F9246C372C00A7ED0A /* Config.xcconfig */,
 			);
-			path = Nicea;
+			path = Galileo;
 			sourceTree = "<group>";
 		};
 		9F9C1FB6242625C60001DF9E /* Sidebar */ = {
@@ -1021,9 +1021,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9F9C1FA12426252E0001DF9E /* Nicea */ = {
+		9F9C1FA12426252E0001DF9E /* Galileo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F9C1FB2242625300001DF9E /* Build configuration list for PBXNativeTarget "Nicea" */;
+			buildConfigurationList = 9F9C1FB2242625300001DF9E /* Build configuration list for PBXNativeTarget "Galileo" */;
 			buildPhases = (
 				9F9C1F9E2426252E0001DF9E /* Sources */,
 				9F9C1F9F2426252E0001DF9E /* Frameworks */,
@@ -1036,9 +1036,9 @@
 			dependencies = (
 				9F9C1FC62426281D0001DF9E /* PBXTargetDependency */,
 			);
-			name = Nicea;
+			name = Galileo;
 			productName = Nicea;
-			productReference = 9F9C1FA22426252E0001DF9E /* Nicea.app */;
+			productReference = 9F9C1FA22426252E0001DF9E /* Galileo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9F9C1FBF2426281D0001DF9E /* APIClient */ = {
@@ -1060,9 +1060,9 @@
 			productReference = 9F9C1FC02426281D0001DF9E /* APIClient.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9FA5740D243B931700B9384C /* NiceaUITests */ = {
+		9FA5740D243B931700B9384C /* GalileoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9FA57415243B931700B9384C /* Build configuration list for PBXNativeTarget "NiceaUITests" */;
+			buildConfigurationList = 9FA57415243B931700B9384C /* Build configuration list for PBXNativeTarget "GalileoUITests" */;
 			buildPhases = (
 				9FA5740A243B931700B9384C /* Sources */,
 				9FA5740B243B931700B9384C /* Frameworks */,
@@ -1073,9 +1073,9 @@
 			dependencies = (
 				9FA57414243B931700B9384C /* PBXTargetDependency */,
 			);
-			name = NiceaUITests;
+			name = GalileoUITests;
 			productName = NiceaUITests;
-			productReference = 9FA5740E243B931700B9384C /* NiceaUITests.xctest */;
+			productReference = 9FA5740E243B931700B9384C /* GalileoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -1104,7 +1104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9F9C1F9D2426252E0001DF9E /* Build configuration list for PBXProject "Nicea" */;
+			buildConfigurationList = 9F9C1F9D2426252E0001DF9E /* Build configuration list for PBXProject "Galileo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1123,9 +1123,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				9F9C1FA12426252E0001DF9E /* Nicea */,
+				9F9C1FA12426252E0001DF9E /* Galileo */,
 				9F9C1FBF2426281D0001DF9E /* APIClient */,
-				9FA5740D243B931700B9384C /* NiceaUITests */,
+				9FA5740D243B931700B9384C /* GalileoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1426,7 +1426,7 @@
 		};
 		9FA57414243B931700B9384C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F9C1FA12426252E0001DF9E /* Nicea */;
+			target = 9F9C1FA12426252E0001DF9E /* Galileo */;
 			targetProxy = 9FA57413243B931700B9384C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1728,7 +1728,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F9C1F9D2426252E0001DF9E /* Build configuration list for PBXProject "Nicea" */ = {
+		9F9C1F9D2426252E0001DF9E /* Build configuration list for PBXProject "Galileo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9C1FB0242625300001DF9E /* Debug */,
@@ -1737,7 +1737,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F9C1FB2242625300001DF9E /* Build configuration list for PBXNativeTarget "Nicea" */ = {
+		9F9C1FB2242625300001DF9E /* Build configuration list for PBXNativeTarget "Galileo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9C1FB3242625300001DF9E /* Debug */,
@@ -1755,7 +1755,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9FA57415243B931700B9384C /* Build configuration list for PBXNativeTarget "NiceaUITests" */ = {
+		9FA57415243B931700B9384C /* Build configuration list for PBXNativeTarget "GalileoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9FA57416243B931700B9384C /* Debug */,
