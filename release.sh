@@ -52,5 +52,8 @@ else
   git commit -m "new release"
   git push
 
+  git tag release/$3
+  git push origin release/$3
+
   echo "Success!"
 fi
