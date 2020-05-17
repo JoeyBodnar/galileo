@@ -47,9 +47,8 @@ else
   git add Nicea/Info.plist
   git add APIClient/Info.plist
   git add Nicea.xcodeproj/project.pbxproj
-  git add release/Galileo.app.dmg
 
-  git commit -m "new release"
+  git commit -m "release v $3"
   git push
 
   git tag release/$3
