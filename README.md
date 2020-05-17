@@ -1,4 +1,4 @@
-Galileo is a Reddit browser for macOS. It is built with Swift and AppKit using Xcode 11.4.
+Galileo is a Reddit browser for macOS that I've been building during my coronavirus quarantine time as a way to learn macOS programming. It is built with Swift and AppKit using Xcode 11.4.
 
 You can download the app [here](https://github.com/JoeyBodnar/galileo/raw/master/release/Galileo.app.dmg), or read below about how to run it locally in Xcode.
 
