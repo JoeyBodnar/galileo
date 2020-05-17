@@ -122,7 +122,7 @@ final class PostListViewModel {
         }
     }
     
-    func pauseOffScreenVideos(rows: [NSTableRowView]) {
+    func pauseVideos(at rows: [NSTableRowView]) {
         for row in rows {
             if let videoLinkCell = row.view(atColumn: 0) as? LinkVideoCell {
                 if videoLinkCell.videoView.isPlaying {
@@ -130,6 +130,19 @@ final class PostListViewModel {
                 }
             }
         }
+    }
+    
+    func pauseAllVideos(in tableView: NSTableView) {
+        var index: Int = 0
+        var allIndices: [Int] = []
+        for _ in dataSource.posts {
+            allIndices.append(index)
+            index = index + 1
+        }
+        let rows = allIndices.map { index -> NSTableRowView in
+            return tableView.rowView(atRow: index, makeIfNecessary: false) ?? NSTableRowView()
+        }
+        pauseVideos(at: rows)
     }
     
     func didSelectShare(button: ClearButton, shareUrl: String) {

@@ -97,7 +97,7 @@ extension PostListViewController {
             }
            
             let invisibleRows: [NSTableRowView] = viewModel.dataSource.invisibleRows(inScrollView: scrollView, endY: endY)
-            viewModel.pauseOffScreenVideos(rows: invisibleRows)
+            viewModel.pauseVideos(at: invisibleRows)
         }
     }
 }
@@ -166,6 +166,7 @@ extension PostListViewController: LinkParentCellDelegate {
     func linkParentCell(_ linkParentCell: LinkParentCell, postMetaBottomView: PostMetaInfoBottomView, didSelectViewComments button: ClearButton) {
         guard let link: Link = viewModel.dataSource.posts[tableView.row(for: linkParentCell)] as? Link else { return }
         delegate?.postListViewController(self, didSelectViewComments: link)
+        viewModel.pauseAllVideos(in: tableView)
     }
 }
 
