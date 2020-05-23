@@ -19,7 +19,7 @@ final class WebViewViewModel {
     weak var delegate: LoginViewModelDelegate?
     
     var authorizationRequestUrl: String? {
-        if let clientID = ProcessInfo.processInfo.environment["REDDIT_CLIENT_ID"], let state = ProcessInfo.processInfo.environment["REDDIT_AUTH_URL_STATE"] {
+        if let clientID = Bundle.main.infoDictionary?["RedditClientId"] as? String, let state = Bundle.main.infoDictionary?["RedditAuthUrlState"] as? String {
             return "https://www.reddit.com/api/v1/authorize.compact?client_id=\(clientID)&response_type=code&state=\(state)&redirect_uri=https://www.vaporforums.io&duration=permanent&scope=privatemessages%20identity%20account%20vote%20subscribe%20mysubreddits%20edit%20submit%20read%20save%20history%20edit%20wikiread"
         }
         
@@ -36,7 +36,7 @@ final class WebViewViewModel {
     }
     
     private func retrieveAccessToken(code: String?) {
-        guard let unwrappedCode = code, let authHeader = ProcessInfo.processInfo.environment["BEARER_AUTH_HEADER"] else { return }
+        guard let unwrappedCode = code, let authHeader = Bundle.main.infoDictionary?["BearerAuthHeader"] as? String else { return }
         AuthenticationServices.shared.retrieveToken(code: unwrappedCode, authHeader: authHeader) { [weak self] result in
             switch result {
             case .success(let tokenResponse):

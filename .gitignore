@@ -2,7 +2,7 @@ archive/
 Galileo/.DS_Store
 
 Galileo.xcodeproj/xcshareddata
-
+Galileo/Configuration.xcconfig
 build/
 
 fastlane/README.md
