@@ -51,8 +51,13 @@ else
   git commit -m "release v $3"
   git push
 
-  git tag release/$3
-  git push origin release/$3
+  #git tag release/$3
+  #git push origin release/$3
+
+  # releaseZipped will be name of zip file. release is name of folder to zip
+  zip -r releaseZipped release
+
+  hub release create -a releaseZipped.zip -m "Release $3" $3
 
   echo "Success!"
 fi

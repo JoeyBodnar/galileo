@@ -1,8 +1,9 @@
 archive/
-release/
+
 Nicea.xcodeproj/xcshareddata
+build/
 
 fastlane/README.md
 fastlane/report.xml
 
-Nicea/Config.xcconfig
+release/
