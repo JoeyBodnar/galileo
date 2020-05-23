@@ -1,8 +1,14 @@
 archive/
-release/
+Galileo/.DS_Store
+
 Nicea.xcodeproj/xcshareddata
+
+build/
 
 fastlane/README.md
 fastlane/report.xml
 
-Nicea/Config.xcconfig
+release/
+
+app/
+galileo.zip

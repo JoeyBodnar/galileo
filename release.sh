@@ -2,21 +2,36 @@
 
 # script to build, sign, notarize a new version, and upload to Github
 
+# remove previous folders
 rm -rf archive
+rm -rf app
 rm -rf release
 
 fastlane run increment_build_number
-fastlane install_plugins
 
-xcodebuild clean -project Galileo.xcodeproj -scheme "Nicea" -configuration Release archive -archivePath archive/result.xcarchive
+xcodebuild archive \
+  -project Galileo.xcodeproj \
+  -scheme "Nicea" \
+  -configuration Release \
+  -archivePath archive/result.xcarchive
 
-xcodebuild archive -archivePath archive/result.xcarchive -exportArchive -exportOptionsPlist exportOptions.plist -exportPath archive
+# create .app executable
+xcodebuild archive \
+  -archivePath archive/result.xcarchive \
+  -exportArchive \
+  -exportOptionsPlist exportOptions.plist \
+  -exportPath app
 
-fastlane create_dmg
+# remove these so they are not packaged with the dmg
+rm -rf app/Packaging.log
+rm -rf app/DistributionSummary.plist
+rm -rf app/ExportOptions.plist
+
+hdiutil create -format UDZO -srcfolder app Galileo.dmg
 
 echo "Uploading to notary service. This may take a moment..."
 requestInfo=$(xcrun altool --notarize-app \
-            --file "archive/Galileo.app.dmg" \
+            --file "Galileo.dmg" \
             --username "$1" \
             --password "@keychain:notarization-password" \
             --asc-provider "$2" \
@@ -39,10 +54,10 @@ if [[ "$status" != "success" ]]; then
   echo "Error! The status was $status"
   exit 1
 else
-  xcrun stapler staple "archive/Galileo.app.dmg"
+  xcrun stapler staple "Galileo.dmg"
 
   mkdir release
-  mv archive/Galileo.app.dmg release/Galileo.app.dmg
+  mv Galileo.dmg release/Galileo.dmg
 
   git add Galileo/Info.plist
   git add APIClient/Info.plist
@@ -51,8 +66,9 @@ else
   git commit -m "release v $3"
   git push
 
-  git tag release/$3
-  git push origin release/$3
+  zip -r galileo release
+
+  hub release create -a galileo.zip -m "Release $3" $3
 
   echo "Success!"
 fi
