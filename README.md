@@ -25,7 +25,7 @@ Features Planning to support:
 - <s>Logout</s> ✅
 - Save comments
 - autofill subreddit suggestions when typing in "go to subreddit" box
-- add links to Post detail view for link posts
+- <s>add links to Post detail view for link posts</s> ✅
 - better support for window resizing
 - Change "All" icon on sidebar to be different from that of the Home button
 - CMD+T for opening a new window
