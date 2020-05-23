@@ -306,6 +306,7 @@
 		9F6AC3752439B27400BB31FF /* MoreCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentResponse.swift; sourceTree = "<group>"; };
 		9F6AC377243B44DE00BB31FF /* CommentOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentOutlineView.swift; sourceTree = "<group>"; };
 		9F77B9DA24535F23006490A1 /* WebViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegate.swift; sourceTree = "<group>"; };
+		9F78577524798FAA001C6EB4 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		9F7FC3CE242E5C6B006DD0AF /* SidebarSectionHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidebarSectionHeaderCell.xib; sourceTree = "<group>"; };
 		9F7FC3D0242E5CB0006DD0AF /* SidebarSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSectionHeaderCell.swift; sourceTree = "<group>"; };
 		9F7FC3D3242E5D6F006DD0AF /* NSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageView.swift; sourceTree = "<group>"; };
@@ -794,6 +795,7 @@
 				9F9C1FAB242625300001DF9E /* Main.storyboard */,
 				9F9C1FAE242625300001DF9E /* Info.plist */,
 				9F9C1FAF242625300001DF9E /* Nicea.entitlements */,
+				9F78577524798FAA001C6EB4 /* Config.xcconfig */,
 			);
 			path = Galileo;
 			sourceTree = "<group>";
@@ -1370,6 +1372,7 @@
 /* Begin XCBuildConfiguration section */
 		9F9C1FB0242625300001DF9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F78577524798FAA001C6EB4 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1430,6 +1433,7 @@
 		};
 		9F9C1FB1242625300001DF9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F78577524798FAA001C6EB4 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
