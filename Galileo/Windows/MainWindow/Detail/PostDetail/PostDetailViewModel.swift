@@ -221,6 +221,11 @@ extension PostDetailViewModel: CommentTextBoxDelegate {
 
 // MARK: - PostDetailHeaderCellDelegate
 extension PostDetailViewModel: PostDetailHeaderCellDelegate {
+    
+    func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectLink linkButton: ClearButton) {
+        delegate?.postDetailViewMode(self, didSelectArticleLink: linkButton, cell: postDetailHeaderCell)
+    }
+    
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSubmit commentBox: CommentTextBoxCell) {
         guard let link = self.link else { return }
         replyToLink(link: link, text: commentBox.text, textBoxView: commentBox)

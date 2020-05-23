@@ -1,7 +1,0 @@
-Document
-    ↳ Heading - L1
-        ↳ Text - Hello
-    ↳ Paragraph
-        ↳ Text - This is a 
-        ↳ Strong
-            ↳ Text - test!

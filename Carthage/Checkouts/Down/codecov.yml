@@ -1,5 +1,0 @@
-ignore:
-  - "Source/cmark/*"
-  - "Down-Example/*"
-  - "Carthage/*"
-  - "Tests/*"
