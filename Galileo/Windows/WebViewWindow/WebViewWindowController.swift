@@ -22,4 +22,13 @@ final class WebViewWindowController: NSWindowController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    static func present(urlString: String, fromVc vc: NSViewController) {
+        let webViewWindowController: WebViewWindowController = WebViewWindowController(contentType: .article(url: urlString))
+        webViewWindowController.window?.setFrame(LayoutConstants.defaultWebViewWindowRect, display: true)
+        webViewWindowController.window?.setFrameOriginToPositionWindowInCenterOfScreen()
+        DispatchQueue.main.async {
+            webViewWindowController.showWindow(vc)
+        }
+    }
 }

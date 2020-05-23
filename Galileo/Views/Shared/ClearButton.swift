@@ -22,4 +22,9 @@ class ClearButton: NSButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    override func resetCursorRects() {
+        super.resetCursorRects()
+        addCursorRect(bounds, cursor: .pointingHand)
+    }
 }

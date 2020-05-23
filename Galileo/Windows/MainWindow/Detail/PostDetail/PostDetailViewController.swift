@@ -43,6 +43,15 @@ final class PostDetailViewController: NSViewController {
 
 extension PostDetailViewController: PostDetailViewModelDelegate {
     
+    func postDetailViewMode(_ postDetailViewModel: PostDetailViewModel, didSelectArticleLink button: ClearButton, cell: PostDetailHeaderCell) {
+        guard let link = viewModel.dataSource.comments[outlineView.row(for: cell)] as? Link else {
+            return
+        }
+        guard let urlString: String = link.data.url else { return }
+        
+        WebViewWindowController.present(urlString: urlString, fromVc: self)
+    }
+    
     func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didVoteOnComment comment: Comment, direction: VoteDirection, result: Result<Bool, Error>) {
         switch result {
         case .success:

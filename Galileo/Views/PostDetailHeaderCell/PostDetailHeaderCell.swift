@@ -14,6 +14,7 @@ protocol PostDetailHeaderCellDelegate: AnyObject {
     
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectBackButton sender: NSButton)
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSubmit commentBox: CommentTextBoxCell)
+    func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectLink linkButton: ClearButton)
 }
 
 final class PostDetailHeaderCell: NSTableCellView {
@@ -27,6 +28,9 @@ final class PostDetailHeaderCell: NSTableCellView {
     
     private let commentBox: CommentTextBoxCell = CommentTextBoxCell()
     private let backButton: NSButton = NSButton()
+    
+    private let urlLinkButton: ClearButton = ClearButton()
+    private var urlLinkButtonHeightAnchor: NSLayoutConstraint = NSLayoutConstraint()
     
     weak var delegate: PostDetailHeaderCellDelegate?
     
@@ -78,13 +82,22 @@ final class PostDetailHeaderCell: NSTableCellView {
             contentView.configureForImage(link: link)
         case .hostedVideo, .gyfcatVideo, .youtubeVideo:
             contentView.configureForVideo(link: link)
+        case .linkedArticle:
+            let attributes = [NSAttributedString.Key.foregroundColor: NSColor.linkColor] as [NSAttributedString.Key : Any]
+
+            let attributedTitle = NSAttributedString(string: link.data.url ?? "---", attributes: attributes)
+            urlLinkButton.attributedTitle = attributedTitle
+            urlLinkButtonHeightAnchor.constant = LinkCellConstants.urlLinkTextHeight
         default: break
         }
-        
     }
     
     @objc func backButtonPressed() {
         delegate?.postDetailHeaderCell(self, didSelectBackButton: backButton)
+    }
+    
+    @objc func didSelectLink() {
+        delegate?.postDetailHeaderCell(self, didSelectLink: urlLinkButton)
     }
 }
 
@@ -138,7 +151,13 @@ extension PostDetailHeaderCell {
         dummyTitleLabel.isEditable = false
         let titleHeight: CGFloat = dummyTitleLabel.bestHeight(for: link.data.title, width: width, font: LinkCellConstants.titleLabelFont)
         
-        return backButtonHeight + backButtonTopMargin + topViewMetaHeight + bottomInfoViewHeight + contentHeight + textBoxHeight + (Constants.contentVeritcalPadding * 2) + Constants.commentboxTopPadding + titleHeight
+        let linkHeight: CGFloat
+        switch linkType {
+        case .linkedArticle: linkHeight = LinkCellConstants.urlLinkTextHeight
+        default: linkHeight = 0
+        }
+        
+        return backButtonHeight + backButtonTopMargin + topViewMetaHeight + bottomInfoViewHeight + contentHeight + textBoxHeight + (Constants.contentVeritcalPadding * 2) + Constants.commentboxTopPadding + titleHeight + linkHeight
     }
 }
 // MARK: - Layout/Setup
@@ -152,6 +171,10 @@ extension PostDetailHeaderCell {
         backButton.action = #selector(backButtonPressed)
         
         commentBox.delegate = self
+        
+        urlLinkButton.alignment = .left
+        urlLinkButton.target = self
+        urlLinkButton.action = #selector(didSelectLink)
     }
     
     private func layoutViews() {
@@ -161,6 +184,7 @@ extension PostDetailHeaderCell {
         titleLabel.setupForAutolayout(superView: self)
         commentBox.setupForAutolayout(superView: self)
         backButton.setupForAutolayout(superView: self)
+        urlLinkButton.setupForAutolayout(superView: self)
         
         backButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.backButtonTopMargin).activate()
         backButton.centerXAnchor.constraint(equalTo: upvoteDownvoteView.centerXAnchor).activate()
@@ -181,9 +205,15 @@ extension PostDetailHeaderCell {
         titleLabel.trailingAnchor.constraint(equalTo: topInfoView.trailingAnchor).activate()
         titleLabel.topAnchor.constraint(equalTo: topInfoView.bottomAnchor).activate()
         
+        urlLinkButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
+        urlLinkButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).activate()
+        urlLinkButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).activate()
+        urlLinkButtonHeightAnchor = urlLinkButton.heightAnchor.constraint(equalToConstant: 0)
+        urlLinkButtonHeightAnchor.activate()
+        
         contentView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
         contentView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).activate()
-        contentView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.contentVeritcalPadding).activate()
+        contentView.topAnchor.constraint(equalTo: urlLinkButton.bottomAnchor, constant: Constants.contentVeritcalPadding).activate()
         contentView.bottomAnchor.constraint(equalTo: commentBox.topAnchor, constant: -Constants.contentVeritcalPadding).activate()
         
         commentBox.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()

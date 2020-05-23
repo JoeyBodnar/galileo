@@ -1,8 +1,0 @@
-Document
-    ↳ Paragraph
-        ↳ Text - Text 
-        ↳ Link - title: nil, url: www.example.com)
-            ↳ Text - link
-        ↳ Text -  text 
-        ↳ Image - title: nil, url: www.example.com)
-            ↳ Text - image

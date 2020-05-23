@@ -15,7 +15,7 @@ struct LinkCellConstants {
     // for video, image cells. spacing between media top and title bottom
     static let mediaContentSpacingToTitle: CGFloat = 8
     static let urlLinkTopToTitleBottom: CGFloat = 10
-    static let urlLinkTextHeight: CGFloat = 12
+    static let urlLinkTextHeight: CGFloat = 14
     
     static let titleLabelFont: NSFont = NSFont.boldSystemFont(ofSize: 15)
 }
