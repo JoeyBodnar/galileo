@@ -60,6 +60,7 @@ public final class CommentData: Decodable {
     public var replies: CommentReplyData?
     
     public var depth: Int?
+    public var saved: Bool?
     
     /// used for `kind` of `more` for loading new comments
     public var moreCount: Int?
@@ -72,8 +73,7 @@ public final class CommentData: Decodable {
     public let subject: String?
     public let new: Bool?
     public let linkTitle: String?
-    
-    public var saved: Bool?
+
     public var likes: Bool?
     
     public init(from decoder: Decoder) throws {

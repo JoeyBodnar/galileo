@@ -192,6 +192,15 @@ extension PostDetailViewModel {
 
 // MARK: - CommentTableViewCellViewDelegate
 extension PostDetailViewModel: CommentTableViewCellViewDelegate {
+    func commentTableViewCelView(_ commentTableViewCellView: CommentTableViewCellView, comment: Comment, didSelectSaveButton button: ClearButton) {
+        PostServices.shared.savePost(id: comment.data.name!) { result in
+            switch result {
+            case .success: button.title = Strings.saveButtonSavedText
+            case .failure: button.title = Strings.saveFailedTosave
+            }
+        }
+    }
+    
     func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didVote direction: VoteDirection, comment: Comment) {
         guard SessionManager.shared.isLoggedIn else { return }
         PostServices.shared.votePost(id: comment.data.name!, direction: direction) { [weak self] result in

@@ -70,6 +70,9 @@ final class PostMetaInfoBottomView: NSView {
     
     func configure(comment: Comment) {
         commentButton.title = Strings.reply
+        
+        let isSaved: Bool = comment.data.saved ?? false
+        saveButton.title = isSaved ? Strings.saveButtonUnsaveText : Strings.saveButtonDefaultText
     }
 }
 

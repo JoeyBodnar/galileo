@@ -62,10 +62,16 @@ extension MailViewController: CommentTextBoxDelegate {
 
 // MARK: - CommentTableViewCellViewDelegate
 extension MailViewController: CommentTableViewCellViewDelegate {
-    
-    func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didVote direction: VoteDirection, comment: Comment) {
-        
+    func commentTableViewCelView(_ commentTableViewCellView: CommentTableViewCellView, comment: Comment, didSelectSaveButton button: ClearButton) {
+        PostServices.shared.savePost(id: comment.data.name!) { result in
+            switch result {
+            case .success: button.title = Strings.saveButtonSavedText
+            case .failure: button.title = Strings.saveFailedTosave
+            }
+        }
     }
+    
+    func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didVote direction: VoteDirection, comment: Comment) { }
     
     func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didSelectReply comment: Comment) {
         guard let _ = mailViewDataSource.insertCommentField(forComment: comment) else { return }
