@@ -23,7 +23,7 @@ Features currently supported:
 
 Features Planning to support:
 - <s>Logout</s> ✅
-- Save comments
+- <s>Save comments</s> ✅
 - autofill subreddit suggestions when typing in "go to subreddit" box
 - <s>add links to Post detail view for link posts</s> ✅
 - better support for window resizing
