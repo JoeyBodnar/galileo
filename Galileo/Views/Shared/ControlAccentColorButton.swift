@@ -12,14 +12,23 @@ final class ControlAccentColorButton: NSButton {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        wantsLayer = true
-        isBordered = false
-        layer?.backgroundColor = NSColor.controlAccentColor.cgColor //NSColor(red: 0, green: 110 / 255, blue: 1, alpha: 1).cgColor
-        layer?.cornerRadius = 4
-        contentTintColor = NSColor.white
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
+    }
+    
+    private func setup() {
+        wantsLayer = true
+        isBordered = false
+        layer?.backgroundColor = NSColor.controlAccentColor.cgColor
+        layer?.cornerRadius = 4
+        contentTintColor = NSColor.white
     }
 }

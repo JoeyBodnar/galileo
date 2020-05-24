@@ -26,7 +26,7 @@ final class PostDetailHeaderCell: NSTableCellView {
     
     private var contentViewHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
-    private let commentBox: CommentTextBoxCell = CommentTextBoxCell()
+    private var commentBox: CommentTextBoxCell?
     private let backButton: NSButton = NSButton()
     
     private let urlLinkButton: ClearButton = ClearButton()
@@ -170,7 +170,7 @@ extension PostDetailHeaderCell {
         backButton.target = self
         backButton.action = #selector(backButtonPressed)
         
-        commentBox.delegate = self
+        commentBox?.delegate = self
         
         urlLinkButton.alignment = .left
         urlLinkButton.target = self
@@ -178,11 +178,15 @@ extension PostDetailHeaderCell {
     }
     
     private func layoutViews() {
+        if let commentBox: CommentTextBoxCell = NSView.loadFromNib(nibName: "CommentTextBoxCell", owner: nil) as? CommentTextBoxCell {
+            self.commentBox = commentBox
+        }
+        
         upvoteDownvoteView.setupForAutolayout(superView: self)
         topInfoView.setupForAutolayout(superView: self)
         contentView.setupForAutolayout(superView: self)
         titleLabel.setupForAutolayout(superView: self)
-        commentBox.setupForAutolayout(superView: self)
+        commentBox?.setupForAutolayout(superView: self)
         backButton.setupForAutolayout(superView: self)
         urlLinkButton.setupForAutolayout(superView: self)
         
@@ -214,12 +218,18 @@ extension PostDetailHeaderCell {
         contentView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
         contentView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).activate()
         contentView.topAnchor.constraint(equalTo: urlLinkButton.bottomAnchor, constant: Constants.contentVeritcalPadding).activate()
-        contentView.bottomAnchor.constraint(equalTo: commentBox.topAnchor, constant: -Constants.contentVeritcalPadding).activate()
         
-        commentBox.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
-        commentBox.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).activate()
-        commentBox.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.commentboxTopPadding).activate()
-        commentBox.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).activate()
-        commentBox.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextBoxContainerHeight).activate()
+        // this should never be nil since i assigend above, but just check so it doesnt crash
+        if let comBox = commentBox {
+            contentView.bottomAnchor.constraint(equalTo: comBox.topAnchor, constant: -Constants.contentVeritcalPadding).activate()
+        } else {
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.contentVeritcalPadding).activate()
+        }
+        
+        commentBox?.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
+        commentBox?.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).activate()
+        commentBox?.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.commentboxTopPadding).activate()
+        commentBox?.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).activate()
+        commentBox?.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextBoxContainerHeight).activate()
     }
 }

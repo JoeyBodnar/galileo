@@ -12,14 +12,23 @@ class GreyButton: NSButton {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
+    }
+    
+    private func setup() {
         wantsLayer = true
         isBordered = false
         layer?.backgroundColor = NSColor.lightGray.cgColor
         layer?.cornerRadius = 4
         contentTintColor = NSColor.white
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
     }
 }

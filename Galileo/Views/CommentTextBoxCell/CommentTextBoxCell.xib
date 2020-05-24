@@ -1,18 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <tableCellView identifier="CommentTextBoxCell" id="PBS-UF-n4w" customClass="CommentTextBoxCell" customModule="Nicea" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="363" height="122"/>
+        <tableCellView identifier="CommentTextBoxCell" id="PBS-UF-n4w" customClass="CommentTextBoxCell" customModule="Galileo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="661" height="215"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <point key="canvasLocation" x="241.5" y="150"/>
+            <subviews>
+                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQj-Mx-f1f">
+                    <rect key="frame" x="0.0" y="85" width="661" height="130"/>
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="f1z-9K-Gau">
+                        <rect key="frame" x="0.0" y="0.0" width="661" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rWO-BD-pMC">
+                                <rect key="frame" x="0.0" y="0.0" width="661" height="130"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <size key="minSize" width="661" height="130"/>
+                                <size key="maxSize" width="661" height="10000000"/>
+                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            </textView>
+                        </subviews>
+                    </clipView>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="GlV-1C-3KW"/>
+                    </constraints>
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="d9n-Ry-UUj">
+                        <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="jJR-hY-x72">
+                        <rect key="frame" x="645" y="0.0" width="16" height="130"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zs1-TC-fE2" customClass="ControlAccentColorButton" customModule="Galileo" customModuleProvider="target">
+                    <rect key="frame" x="553" y="42" width="114" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="102" id="0LS-Ld-NHn"/>
+                        <constraint firstAttribute="height" constant="30" id="7PD-bH-pXJ"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="acw-Z2-51R">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3C7-T2-twX" customClass="GreyButton" customModule="Galileo" customModuleProvider="target">
+                    <rect key="frame" x="431" y="42" width="114" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="gSy-kC-NJT"/>
+                        <constraint firstAttribute="width" constant="102" id="oIh-Q9-SaA"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rbh-xY-CkG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="a40-17-Gjd" customClass="NSActivityIndicator" customModule="Galileo" customModuleProvider="target">
+                    <rect key="frame" x="602" y="56" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="UCa-27-FBw"/>
+                        <constraint firstAttribute="width" constant="16" id="XAw-N3-Qak"/>
+                    </constraints>
+                </progressIndicator>
+            </subviews>
+            <constraints>
+                <constraint firstItem="a40-17-Gjd" firstAttribute="centerX" secondItem="zs1-TC-fE2" secondAttribute="centerX" id="FPn-zj-eFG"/>
+                <constraint firstItem="a40-17-Gjd" firstAttribute="centerY" secondItem="zs1-TC-fE2" secondAttribute="centerY" id="KYb-Lu-k1C"/>
+                <constraint firstItem="IQj-Mx-f1f" firstAttribute="leading" secondItem="PBS-UF-n4w" secondAttribute="leading" id="QG0-86-7O7"/>
+                <constraint firstAttribute="trailing" secondItem="zs1-TC-fE2" secondAttribute="trailing" id="Ree-8F-cQ3"/>
+                <constraint firstAttribute="trailing" secondItem="IQj-Mx-f1f" secondAttribute="trailing" id="dB2-7s-8dL"/>
+                <constraint firstItem="zs1-TC-fE2" firstAttribute="leading" secondItem="3C7-T2-twX" secondAttribute="trailing" constant="20" id="dan-sg-VNf"/>
+                <constraint firstItem="3C7-T2-twX" firstAttribute="centerY" secondItem="zs1-TC-fE2" secondAttribute="centerY" id="gB9-J0-Kbv"/>
+                <constraint firstItem="zs1-TC-fE2" firstAttribute="top" secondItem="IQj-Mx-f1f" secondAttribute="bottom" constant="6" id="gin-xh-FCy"/>
+                <constraint firstItem="IQj-Mx-f1f" firstAttribute="top" secondItem="PBS-UF-n4w" secondAttribute="top" id="hzI-cc-oUa"/>
+            </constraints>
+            <connections>
+                <outlet property="cancelButton" destination="3C7-T2-twX" id="6z1-Wj-jfS"/>
+                <outlet property="indicator" destination="a40-17-Gjd" id="EfR-DY-Xqp"/>
+                <outlet property="submitButton" destination="zs1-TC-fE2" id="NDL-gQ-GJM"/>
+                <outlet property="textView" destination="rWO-BD-pMC" id="NFi-ba-Pzd"/>
+            </connections>
+            <point key="canvasLocation" x="390.5" y="196.5"/>
         </tableCellView>
     </objects>
 </document>

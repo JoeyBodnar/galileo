@@ -33,4 +33,24 @@ extension NSView {
         centerYAnchor.constraint(equalTo: superView.centerYAnchor).activate()
         centerXAnchor.constraint(equalTo: superView.centerXAnchor).activate()
     }
+    
+    // source: https://stackoverflow.com/questions/45567363/add-custom-view-from-nib-to-viewcontroller
+    static func loadFromNib(nibName: String, owner: Any?) -> NSView? {
+
+        var arrayWithObjects: NSArray?
+
+        let nibLoaded = Bundle.main.loadNibNamed(NSNib.Name(nibName), owner: owner, topLevelObjects: &arrayWithObjects)
+
+        if nibLoaded {
+            guard let unwrappedObjectArray = arrayWithObjects else { return nil }
+            for object in unwrappedObjectArray {
+                if object is NSView {
+                    return object as? NSView
+                }
+            }
+            return nil
+        } else {
+            return nil
+        }
+    }
 }
