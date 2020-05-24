@@ -14,6 +14,7 @@ protocol CommentTableViewCellViewDelegate: AnyObject {
     
     func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didSelectReply comment: Comment)
     func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didVote direction: VoteDirection, comment: Comment)
+    func commentTableViewCelView(_ commentTableViewCellView: CommentTableViewCellView, comment: Comment, didSelectSaveButton button: ClearButton)
 }
 
 final class CommentTableViewCellView: NSView {
@@ -89,7 +90,10 @@ extension CommentTableViewCellView: PostMetaInfoBottomViewDelegate {
         delegate?.commentTableViewCellView(self, didSelectReply: unwrappedComment)
     }
     
-    func postMetaInfoBottomView(_ postMetaInfoBottomView: PostMetaInfoBottomView, didSelectSave button: ClearButton) { }
+    func postMetaInfoBottomView(_ postMetaInfoBottomView: PostMetaInfoBottomView, didSelectSave button: ClearButton) {
+        guard let unwrappedComment = comment else { return }
+        delegate?.commentTableViewCelView(self, comment: unwrappedComment, didSelectSaveButton: button)
+    }
     
     func postMetaInfoBottomView(_ postMetaInfoBottomView: PostMetaInfoBottomView, didSelectShare button: ClearButton) { }
 }
