@@ -1508,7 +1508,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.Nicea;
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.Galileo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1537,7 +1537,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.Nicea;
+				PRODUCT_BUNDLE_IDENTIFIER = stephenbodnar.Galileo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

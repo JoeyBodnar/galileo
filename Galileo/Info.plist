@@ -4,10 +4,6 @@
 <dict>
 	<key>BearerAuthHeader</key>
 	<string>$(BEARER_AUTH_HEADER)</string>
-	<key>RedditClientId</key>
-	<string>$(REDDIT_CLIENT_ID)</string>
-	<key>RedditAuthUrlState</key>
-	<string>$(REDDIT_AUTH_URL_STATE)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -38,5 +34,9 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+	<key>RedditAuthUrlState</key>
+	<string>$(REDDIT_AUTH_URL_STATE)</string>
+	<key>RedditClientId</key>
+	<string>$(REDDIT_CLIENT_ID)</string>
 </dict>
 </plist>

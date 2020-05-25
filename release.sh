@@ -11,7 +11,7 @@ fastlane run increment_build_number
 
 xcodebuild archive \
   -project Galileo.xcodeproj \
-  -scheme "Nicea" \
+  -scheme "Galileo" \
   -configuration Release \
   -archivePath archive/result.xcarchive
 
@@ -35,7 +35,7 @@ requestInfo=$(xcrun altool --notarize-app \
             --username "$1" \
             --password "@keychain:notarization-password" \
             --asc-provider "$2" \
-            --primary-bundle-id "stephenbodnar.Nicea")
+            --primary-bundle-id "stephenbodnar.Galileo")
 
 uuid=$(echo $requestInfo | awk '/RequestUUID/ { print $NF; }')
 
