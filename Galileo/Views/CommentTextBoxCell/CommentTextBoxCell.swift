@@ -16,15 +16,12 @@ protocol CommentTextBoxDelegate: AnyObject {
 }
 
 final class CommentTextBoxCell: NSTableCellView {
-    private let textView: NSTextView = NSTextView()
-    private let cancelButton: GreyButton = GreyButton()
-    private let submitButton: ControlAccentColorButton = ControlAccentColorButton()
+    @IBOutlet weak var textView: NSTextView!
+    @IBOutlet weak var cancelButton: GreyButton!
+    @IBOutlet weak var submitButton: ControlAccentColorButton!
+    @IBOutlet weak var indicator: NSActivityIndicator!
     
     weak var delegate: CommentTextBoxDelegate?
-    
-    private var textViewHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
-    private let indicatorBox: NSView = NSView()
-    private let indicator: NSActivityIndicator = NSActivityIndicator()
     
     /// the Comment object (of type "in-progress") for this box
     var comment: Comment?
@@ -35,18 +32,7 @@ final class CommentTextBoxCell: NSTableCellView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        layoutViews()
         setupViews()
-    }
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        layoutViews()
-        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
     }
     
     func clear() {
@@ -121,40 +107,10 @@ extension CommentTextBoxCell {
         cancelButton.target = self
         cancelButton.action = #selector(cancelPressed)
         
-        indicatorBox.wantsLayer = true
-        indicatorBox.layer?.backgroundColor = NSColor.controlAccentColor.cgColor
-        indicatorBox.layer?.cornerRadius = 4
+        indicator.alphaValue = 0
     }
     
     private func layoutViews() {
-        textView.setupForAutolayout(superView: self)
-        cancelButton.setupForAutolayout(superView: self)
         
-        indicatorBox.setupForAutolayout(superView: self)
-        indicator.setupForAutolayout(superView: indicatorBox)
-        submitButton.setupForAutolayout(superView: self)
-        
-        indicator.center(in: indicatorBox)
-        
-        textView.leadingAnchor.constraint(equalTo: leadingAnchor).activate()
-        textView.topAnchor.constraint(equalTo: topAnchor).activate()
-        textView.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
-        textViewHeightConstraint = textView.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextViewHeight)
-        textViewHeightConstraint.activate()
-        
-        submitButton.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 6).activate()
-        submitButton.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
-        submitButton.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextBoxSubmitButtonHeight).activate()
-        submitButton.widthAnchor.constraint(equalToConstant: 102).activate()
-        
-        indicatorBox.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 7).activate()
-        indicatorBox.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
-        indicatorBox.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextBoxSubmitButtonHeight).activate()
-        indicatorBox.widthAnchor.constraint(equalToConstant: 102).activate()
-        
-        cancelButton.centerYAnchor.constraint(equalTo: submitButton.centerYAnchor).activate()
-        cancelButton.trailingAnchor.constraint(equalTo: submitButton.leadingAnchor, constant: -20).activate()
-        cancelButton.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextBoxSubmitButtonHeight).activate()
-        cancelButton.widthAnchor.constraint(equalToConstant: 102).activate()
     }
 }
