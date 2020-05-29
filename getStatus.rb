@@ -2,7 +2,7 @@ IN_PROGRESS = "in progress"
 SUCCESS = "success"
 
 # the response is a multiline string, with the status being on its own line
-# using the format #Status: "<status here>"
+# using the format "Status: <status here>"
 response_objects = ARGV[0].split("\n")
 
 # get line that contains the status
