@@ -37,16 +37,16 @@ requestInfo=$(xcrun altool --notarize-app \
             --asc-provider "$2" \
             --primary-bundle-id "stephenbodnar.Galileo")
 
-uuid=$(echo $requestInfo | awk '/RequestUUID/ { print $NF; }')
+uuid=$(ruby uuid.rb "$requestInfo")
 
 status="in progress"
 while [[ "$status" == "in progress" ]]; do
     sleep 15
-    status=$(xcrun altool --notarization-info "$uuid" \
-            --verbose \
+    statusResponse=$(xcrun altool --notarization-info "$uuid" \
             --username "$1" \
-            --password "@keychain:notarization-password" \
-              | awk -F ': ' '/Status:/ { print $2; }')
+            --password "@keychain:notarization-password")
+    status=$(ruby getStatus.rb "$statusResponse")
+     
     echo "waiting for Apple to finish notarization. Current status is: $status"
 done
 
