@@ -46,7 +46,6 @@ while [[ "$status" == "in progress" ]]; do
             --username "$1" \
             --password "@keychain:notarization-password")
     status=$(ruby getStatus.rb "$statusResponse")
-    #echo "entire stats is $statusResponse"
      
     echo "waiting for Apple to finish notarization. Current status is: $status"
 done
