@@ -15,6 +15,7 @@ protocol PostDetailHeaderCellDelegate: AnyObject {
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectBackButton sender: NSButton)
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSubmit commentBox: CommentTextBoxCell)
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectLink linkButton: ClearButton)
+    func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSort sort: String)
 }
 
 final class PostDetailHeaderCell: NSTableCellView {
@@ -28,6 +29,8 @@ final class PostDetailHeaderCell: NSTableCellView {
     
     private var commentBox: CommentTextBoxCell?
     private let backButton: NSButton = NSButton()
+    
+    private let sortButton: NSPopUpButton = NSPopUpButton()
     
     private let urlLinkButton: ClearButton = ClearButton()
     private var urlLinkButtonHeightAnchor: NSLayoutConstraint = NSLayoutConstraint()
@@ -99,6 +102,10 @@ final class PostDetailHeaderCell: NSTableCellView {
     @objc func didSelectLink() {
         delegate?.postDetailHeaderCell(self, didSelectLink: urlLinkButton)
     }
+    
+    @objc func menuItemPressed(sender: NSMenuItem) {
+        delegate?.postDetailHeaderCell(self, didSelectSort: sender.title)
+    }
 }
 
 extension PostDetailHeaderCell: CommentTextBoxDelegate {
@@ -157,7 +164,8 @@ extension PostDetailHeaderCell {
         default: linkHeight = 0
         }
         
-        return backButtonHeight + backButtonTopMargin + topViewMetaHeight + bottomInfoViewHeight + contentHeight + textBoxHeight + (Constants.contentVeritcalPadding * 2) + Constants.commentboxTopPadding + titleHeight + linkHeight
+        let sortButtonHeight: CGFloat = 30
+        return backButtonHeight + backButtonTopMargin + topViewMetaHeight + bottomInfoViewHeight + contentHeight + textBoxHeight + (Constants.contentVeritcalPadding * 2) + Constants.commentboxTopPadding + titleHeight + linkHeight + sortButtonHeight
     }
 }
 // MARK: - Layout/Setup
@@ -175,6 +183,12 @@ extension PostDetailHeaderCell {
         urlLinkButton.alignment = .left
         urlLinkButton.target = self
         urlLinkButton.action = #selector(didSelectLink)
+        
+        let menuItems: [NSMenuItem] = [NSMenuItem(title: "Top", action: #selector(menuItemPressed(sender:)), keyEquivalent: ""), NSMenuItem(title: "Controversial", action: #selector(menuItemPressed(sender:)), keyEquivalent: ""), NSMenuItem(title: "New", action: #selector(menuItemPressed(sender:)), keyEquivalent: "")]
+        for item in menuItems {
+            item.target = self
+            sortButton.menu?.addItem(item)
+        }
     }
     
     private func layoutViews() {
@@ -189,6 +203,7 @@ extension PostDetailHeaderCell {
         commentBox?.setupForAutolayout(superView: self)
         backButton.setupForAutolayout(superView: self)
         urlLinkButton.setupForAutolayout(superView: self)
+        sortButton.setupForAutolayout(superView: self)
         
         backButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.backButtonTopMargin).activate()
         backButton.centerXAnchor.constraint(equalTo: upvoteDownvoteView.centerXAnchor).activate()
@@ -229,7 +244,12 @@ extension PostDetailHeaderCell {
         commentBox?.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
         commentBox?.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).activate()
         commentBox?.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.commentboxTopPadding).activate()
-        commentBox?.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).activate()
+        commentBox?.bottomAnchor.constraint(equalTo: sortButton.topAnchor, constant: 0).activate()
         commentBox?.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextBoxContainerHeight).activate()
+        
+        sortButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
+        sortButton.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
+        sortButton.widthAnchor.constraint(equalToConstant: 100).activate()
+        sortButton.heightAnchor.constraint(equalToConstant: 30).activate()
     }
 }

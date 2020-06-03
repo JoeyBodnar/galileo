@@ -9,6 +9,14 @@
 import AppKit
 import APIClient
 
+enum CommentSort {
+    
+    case hot
+    case top
+    case new
+    case controversial
+}
+
 final class PostDetailViewModel {
     
     /// the current subreddit
@@ -27,6 +35,8 @@ final class PostDetailViewModel {
     
     /// after loading comments we need to autoexpand some nodes, and during this split second, we suspend normal operations that we would do when manually expanding a node (for example, like loading more comments on node expand. Only want to do that for when a user manually expands a a node)
     var isAutoExpanding: Bool = false
+    
+    var currentSort: CommentSort = .hot
     
     func loadArticleAndComments(for link: Link) {
         PostServices.shared.getComments(subreddit: link.data.subreddit, articleId: link.data.id, isLoggedIn: SessionManager.shared.isLoggedIn) { [weak self] result in
@@ -230,6 +240,10 @@ extension PostDetailViewModel: CommentTextBoxDelegate {
 
 // MARK: - PostDetailHeaderCellDelegate
 extension PostDetailViewModel: PostDetailHeaderCellDelegate {
+    
+    func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSort sort: String) {
+        
+    }
     
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectLink linkButton: ClearButton) {
         delegate?.postDetailViewMode(self, didSelectArticleLink: linkButton, cell: postDetailHeaderCell)
