@@ -9,8 +9,9 @@
 import AppKit
 import APIClient
 
-enum CommentSort {
+enum CommentSort: String {
     
+    case best
     case hot
     case top
     case new
@@ -36,10 +37,11 @@ final class PostDetailViewModel {
     /// after loading comments we need to autoexpand some nodes, and during this split second, we suspend normal operations that we would do when manually expanding a node (for example, like loading more comments on node expand. Only want to do that for when a user manually expands a a node)
     var isAutoExpanding: Bool = false
     
-    var currentSort: CommentSort = .hot
+    var currentSort: CommentSort = .best
     
-    func loadArticleAndComments(for link: Link) {
-        PostServices.shared.getComments(subreddit: link.data.subreddit, articleId: link.data.id, isLoggedIn: SessionManager.shared.isLoggedIn) { [weak self] result in
+    /// passing in nil as sort will loaad the default sort used by reddit
+    func loadArticleAndComments(for link: Link, sort: CommentSort?) {
+        PostServices.shared.getComments(subreddit: link.data.subreddit, articleId: link.data.id, isLoggedIn: SessionManager.shared.isLoggedIn, sort: sort?.rawValue) { [weak self] result in
             switch result {
             case .success(let commentResponse):
                 self?.handleDidLoadInitialComments(commentResponse: commentResponse, originalLink: link)
@@ -135,7 +137,6 @@ final class PostDetailViewModel {
                     let constructedListing: ListingResponse<Comment> = ListingResponse(modhash: nil, before: nil, after: nil, dist: nil, children: [newComment])
                     let commentReplyData = CommentReplyData(kind: "t1", data: constructedListing)
                     parentComment.data.replies = commentReplyData
-                    print("ok created new constructed listing")
                 }
                 
                 assignNewCommentRepliesToParentComment(newComment, newComments: newComments)
@@ -242,7 +243,11 @@ extension PostDetailViewModel: CommentTextBoxDelegate {
 extension PostDetailViewModel: PostDetailHeaderCellDelegate {
     
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSort sort: String) {
-        
+        if let commentSort = CommentSort(rawValue: sort.lowercased()) {
+            currentSort = commentSort
+            delegate?.postDetailViewModel(self, didChangeCommentSort: commentSort)
+            loadArticleAndComments(for: self.link!, sort: commentSort)
+        }
     }
     
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectLink linkButton: ClearButton) {

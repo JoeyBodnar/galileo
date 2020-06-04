@@ -31,6 +31,7 @@ final class PostDetailHeaderCell: NSTableCellView {
     private let backButton: NSButton = NSButton()
     
     private let sortButton: NSPopUpButton = NSPopUpButton()
+    private let indicator: NSActivityIndicator = NSActivityIndicator()
     
     private let urlLinkButton: ClearButton = ClearButton()
     private var urlLinkButtonHeightAnchor: NSLayoutConstraint = NSLayoutConstraint()
@@ -70,7 +71,7 @@ final class PostDetailHeaderCell: NSTableCellView {
         setupViews()
     }
     
-    func configure(link: Link) {
+    func configure(link: Link, sort: String) {
         upvoteDownvoteView.configure(voteCount: link.data.score, hideScore: link.data.hide_score, likes: link.data.likes)
         topInfoView.configure(link: link)
         
@@ -93,6 +94,10 @@ final class PostDetailHeaderCell: NSTableCellView {
             urlLinkButtonHeightAnchor.constant = LinkCellConstants.urlLinkTextHeight
         default: break
         }
+        
+        sortButton.selectItem(withTitle: sort)
+        indicator.isHidden = true
+        indicator.stopAnimation(nil)
     }
     
     @objc func backButtonPressed() {
@@ -105,6 +110,9 @@ final class PostDetailHeaderCell: NSTableCellView {
     
     @objc func menuItemPressed(sender: NSMenuItem) {
         delegate?.postDetailHeaderCell(self, didSelectSort: sender.title)
+        indicator.isHidden = false
+        indicator.alphaValue = 1
+        indicator.startAnimation(nil)
     }
 }
 
@@ -184,11 +192,17 @@ extension PostDetailHeaderCell {
         urlLinkButton.target = self
         urlLinkButton.action = #selector(didSelectLink)
         
-        let menuItems: [NSMenuItem] = [NSMenuItem(title: "Top", action: #selector(menuItemPressed(sender:)), keyEquivalent: ""), NSMenuItem(title: "Controversial", action: #selector(menuItemPressed(sender:)), keyEquivalent: ""), NSMenuItem(title: "New", action: #selector(menuItemPressed(sender:)), keyEquivalent: "")]
+        let allSorts: [CommentSort] = [CommentSort.best, CommentSort.new, CommentSort.controversial, CommentSort.hot, CommentSort.top]
+        let menuItems: [NSMenuItem] = allSorts.map { sort -> NSMenuItem in
+            return NSMenuItem(title: sort.rawValue, action: #selector(menuItemPressed(sender:)), keyEquivalent: "")
+        }
+        
         for item in menuItems {
             item.target = self
             sortButton.menu?.addItem(item)
         }
+        
+        indicator.isHidden = true
     }
     
     private func layoutViews() {
@@ -204,6 +218,7 @@ extension PostDetailHeaderCell {
         backButton.setupForAutolayout(superView: self)
         urlLinkButton.setupForAutolayout(superView: self)
         sortButton.setupForAutolayout(superView: self)
+        indicator.setupForAutolayout(superView: self)
         
         backButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.backButtonTopMargin).activate()
         backButton.centerXAnchor.constraint(equalTo: upvoteDownvoteView.centerXAnchor).activate()
@@ -249,7 +264,10 @@ extension PostDetailHeaderCell {
         
         sortButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
         sortButton.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
-        sortButton.widthAnchor.constraint(equalToConstant: 100).activate()
+        sortButton.widthAnchor.constraint(equalToConstant: 130).activate()
         sortButton.heightAnchor.constraint(equalToConstant: 30).activate()
+        
+        indicator.leadingAnchor.constraint(equalTo: sortButton.trailingAnchor, constant: 10).activate()
+        indicator.centerYAnchor.constraint(equalTo: sortButton.centerYAnchor).activate()
     }
 }

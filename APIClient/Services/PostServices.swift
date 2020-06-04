@@ -36,8 +36,8 @@ public class PostServices {
         APIClient.shared.dataRequest(whiteFlowerRequest: WhiteFlowerRequest(method: .get, endPoint: SubredditRouter.about(subreddit: subreddit)), forType: Subreddit.self, completion: completion)
     }
     
-    public func getComments(subreddit: String, articleId: String, isLoggedIn: Bool, completion: @escaping (Result<CommentResponse, Error>) -> Void) {
-        APIClient.shared.dataRequest(whiteFlowerRequest: WhiteFlowerRequest(method: .get, endPoint: PostRouter.getCommentsForPost(subreddit: subreddit, id: articleId, isLoggedIn: isLoggedIn), headers: nil), forType: CommentResponse.self, completion: completion)
+    public func getComments(subreddit: String, articleId: String, isLoggedIn: Bool, sort: String?, completion: @escaping (Result<CommentResponse, Error>) -> Void) {
+        APIClient.shared.dataRequest(whiteFlowerRequest: WhiteFlowerRequest(method: .get, endPoint: PostRouter.getCommentsForPost(subreddit: subreddit, id: articleId, isLoggedIn: isLoggedIn, sort: sort), headers: nil), forType: CommentResponse.self, completion: completion)
     }
     
     public func getMoreComments(subreddit: String, parentId: String, childrenIds: [String], completion: @escaping (Result<[Comment], Error>) -> Void) {
