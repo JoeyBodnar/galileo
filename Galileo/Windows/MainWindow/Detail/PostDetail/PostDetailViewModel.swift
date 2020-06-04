@@ -54,7 +54,7 @@ final class PostDetailViewModel {
     func loadMoreCommentsOnParentArticle(comment: Comment) {
         guard let children = comment.data.commentChildren, let parentId = link?.data.name else { return }
         
-        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, childrenIds: children) { [weak self] result in
+        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, childrenIds: children, sort: currentSort.rawValue) { [weak self] result in
             switch result {
             case .success(let newComments):
                 self?.handleDidFetchNewComments(newComments, parentComment: comment)

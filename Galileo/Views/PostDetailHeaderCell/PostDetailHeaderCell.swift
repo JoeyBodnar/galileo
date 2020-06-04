@@ -45,6 +45,8 @@ final class PostDetailHeaderCell: NSTableCellView {
         static let topInfoViewToVoteTrailingMargin: CGFloat = 8
         static let contentVeritcalPadding: CGFloat = 10
         static let commentboxTopPadding: CGFloat = 10
+        static let sortButtonHeight: CGFloat = 30
+        static let sortButtonBottomSpacing: CGFloat = 10
     }
     
     override init(frame frameRect: NSRect) {
@@ -172,8 +174,8 @@ extension PostDetailHeaderCell {
         default: linkHeight = 0
         }
         
-        let sortButtonHeight: CGFloat = 30
-        return backButtonHeight + backButtonTopMargin + topViewMetaHeight + bottomInfoViewHeight + contentHeight + textBoxHeight + (Constants.contentVeritcalPadding * 2) + Constants.commentboxTopPadding + titleHeight + linkHeight + sortButtonHeight
+        let sortButtonTotal: CGFloat = Constants.sortButtonBottomSpacing + Constants.sortButtonHeight
+        return backButtonHeight + backButtonTopMargin + topViewMetaHeight + bottomInfoViewHeight + contentHeight + textBoxHeight + (Constants.contentVeritcalPadding * 2) + Constants.commentboxTopPadding + titleHeight + linkHeight + sortButtonTotal
     }
 }
 // MARK: - Layout/Setup
@@ -263,9 +265,9 @@ extension PostDetailHeaderCell {
         commentBox?.heightAnchor.constraint(equalToConstant: LayoutConstants.commentTextBoxContainerHeight).activate()
         
         sortButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).activate()
-        sortButton.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
+        sortButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.sortButtonBottomSpacing).activate()
         sortButton.widthAnchor.constraint(equalToConstant: 130).activate()
-        sortButton.heightAnchor.constraint(equalToConstant: 30).activate()
+        sortButton.heightAnchor.constraint(equalToConstant: Constants.sortButtonHeight).activate()
         
         indicator.leadingAnchor.constraint(equalTo: sortButton.trailingAnchor, constant: 10).activate()
         indicator.centerYAnchor.constraint(equalTo: sortButton.centerYAnchor).activate()
