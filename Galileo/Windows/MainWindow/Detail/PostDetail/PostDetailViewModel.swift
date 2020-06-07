@@ -9,6 +9,15 @@
 import AppKit
 import APIClient
 
+enum CommentSort: String {
+    
+    case best
+    case hot
+    case top
+    case new
+    case controversial
+}
+
 final class PostDetailViewModel {
     
     /// the current subreddit
@@ -28,8 +37,11 @@ final class PostDetailViewModel {
     /// after loading comments we need to autoexpand some nodes, and during this split second, we suspend normal operations that we would do when manually expanding a node (for example, like loading more comments on node expand. Only want to do that for when a user manually expands a a node)
     var isAutoExpanding: Bool = false
     
-    func loadArticleAndComments(for link: Link) {
-        PostServices.shared.getComments(subreddit: link.data.subreddit, articleId: link.data.id, isLoggedIn: SessionManager.shared.isLoggedIn) { [weak self] result in
+    var currentSort: CommentSort = .best
+    
+    /// passing in nil as sort will load the default sort used by reddit
+    func loadArticleAndComments(for link: Link, sort: CommentSort?) {
+        PostServices.shared.getComments(subreddit: link.data.subreddit, articleId: link.data.id, isLoggedIn: SessionManager.shared.isLoggedIn, sort: sort?.rawValue) { [weak self] result in
             switch result {
             case .success(let commentResponse):
                 self?.handleDidLoadInitialComments(commentResponse: commentResponse, originalLink: link)
@@ -42,7 +54,7 @@ final class PostDetailViewModel {
     func loadMoreCommentsOnParentArticle(comment: Comment) {
         guard let children = comment.data.commentChildren, let parentId = link?.data.name else { return }
         
-        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, childrenIds: children) { [weak self] result in
+        PostServices.shared.getMoreComments(subreddit: subreddit, parentId: parentId, childrenIds: children, sort: currentSort.rawValue) { [weak self] result in
             switch result {
             case .success(let newComments):
                 self?.handleDidFetchNewComments(newComments, parentComment: comment)
@@ -125,7 +137,6 @@ final class PostDetailViewModel {
                     let constructedListing: ListingResponse<Comment> = ListingResponse(modhash: nil, before: nil, after: nil, dist: nil, children: [newComment])
                     let commentReplyData = CommentReplyData(kind: "t1", data: constructedListing)
                     parentComment.data.replies = commentReplyData
-                    print("ok created new constructed listing")
                 }
                 
                 assignNewCommentRepliesToParentComment(newComment, newComments: newComments)
@@ -230,6 +241,14 @@ extension PostDetailViewModel: CommentTextBoxDelegate {
 
 // MARK: - PostDetailHeaderCellDelegate
 extension PostDetailViewModel: PostDetailHeaderCellDelegate {
+    
+    func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSort sort: String) {
+        guard let unwrappedLink = link else { return }
+        if let commentSort = CommentSort(rawValue: sort.lowercased()) {
+            currentSort = commentSort
+            loadArticleAndComments(for: unwrappedLink, sort: commentSort)
+        }
+    }
     
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectLink linkButton: ClearButton) {
         delegate?.postDetailViewMode(self, didSelectArticleLink: linkButton, cell: postDetailHeaderCell)

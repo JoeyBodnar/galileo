@@ -10,65 +10,79 @@ import Foundation
 
 extension Date {
     
-    func timeAgoSince() -> String {
+    // source: https://gist.github.com/minorbug/468790060810e0d29545#gistcomment-2670415
+    func timeAgoSince(numericDates:Bool = true) -> String {
         
         let calendar = Calendar.current
         let now = Date()
-        let unitFlags: NSCalendar.Unit = [.second, .minute, .hour, .day, .weekOfYear, .month, .year]
-        let components = (calendar as NSCalendar).components(unitFlags, from: self, to: now, options: [])
+        let earliest = self < now ? self : now
+        let latest =  self > now ? self : now
         
-        if let year = components.year, year >= 2 {
-            return "\(year) years ago"
+        let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfMonth, .month, .year, .second]
+        let components: DateComponents = calendar.dateComponents(unitFlags, from: earliest, to: latest)
+        
+        if let year = components.year {
+            if (year >= 2) {
+                return "\(year) years ago"
+            } else if (year >= 1) {
+                return stringToReturn(flag: numericDates, strings: ("1 year ago", "Last year"))
+            }
         }
         
-        if let year = components.year, year >= 1 {
-            return "1 year ago"
+        if let month = components.month {
+            if (month >= 2) {
+                return "\(month) months ago"
+            } else if (month >= 2) {
+                return stringToReturn(flag: numericDates, strings: ("1 month ago", "Last month"))
+            }
         }
         
-        if let month = components.month, month >= 2 {
-            return "\(month) months ago"
+        if let weekOfYear = components.weekOfYear {
+            if (weekOfYear >= 2) {
+                return "\(weekOfYear) months ago"
+            } else if (weekOfYear >= 2) {
+                return stringToReturn(flag: numericDates, strings: ("1 week ago", "Last week"))
+            }
         }
         
-        if let month = components.month, month >= 1 {
-            return "1 month ago"
+        if let day = components.day {
+            if (day >= 2) {
+                return "\(day) days ago"
+            } else if (day >= 2) {
+                return stringToReturn(flag: numericDates, strings: ("1 day ago", "Yesterday"))
+            }
         }
         
-        if let week = components.weekOfYear, week >= 2 {
-            return "\(week) weeks ago"
+        if let hour = components.hour {
+            if (hour >= 2) {
+                return "\(hour) hours ago"
+            } else if (hour >= 2) {
+                return stringToReturn(flag: numericDates, strings: ("1 hour ago", "An hour ago"))
+            }
         }
         
-        if let week = components.weekOfYear, week >= 1 {
-            return "last week"
+        if let minute = components.minute {
+            if (minute >= 2) {
+                return "\(minute) minutes ago"
+            } else if (minute >= 2) {
+                return stringToReturn(flag: numericDates, strings: ("1 minute ago", "A minute ago"))
+            }
         }
         
-        if let day = components.day, day >= 2 {
-            return "\(day) days ago"
+        if let second = components.second {
+            if (second >= 3) {
+                return "\(second) seconds ago"
+            }
         }
         
-        if let day = components.day, day >= 1 {
-            return "yesterday"
+        return "Just now"
+    }
+    
+    private func stringToReturn(flag:Bool, strings: (String, String)) -> String {
+        if (flag){
+            return strings.0
+        } else {
+            return strings.1
         }
-        
-        if let hour = components.hour, hour >= 2 {
-            return "\(hour) hours ago"
-        }
-        
-        if let hour = components.hour, hour >= 1 {
-            return "an hour ago"
-        }
-        
-        if let minute = components.minute, minute >= 2 {
-            return "\(minute) minutes ago"
-        }
-        
-        if let minute = components.minute, minute >= 1 {
-            return "a minute ago"
-        }
-        
-        if let second = components.second, second >= 3 {
-            return "\(second) seconds ago"
-        }
-        
-        return "just now"
     }
 }

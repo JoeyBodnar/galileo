@@ -42,7 +42,7 @@ final class PostDetailViewController: NSViewController {
 }
 
 extension PostDetailViewController: PostDetailViewModelDelegate {
-    
+
     func postDetailViewMode(_ postDetailViewModel: PostDetailViewModel, didSelectArticleLink button: ClearButton, cell: PostDetailHeaderCell) {
         guard let link = viewModel.dataSource.comments[outlineView.row(for: cell)] as? Link else {
             return

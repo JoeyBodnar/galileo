@@ -60,7 +60,7 @@ final class PostDetailDelegate: NSObject, NSOutlineViewDelegate {
             } else if comment.isInProgressComment {
                 return LayoutConstants.commentTextBoxContainerHeight
             } else {
-                // calculations seem to be a bit off sometimes. Subtract 30 so if there are a few characters on the last line then itwont cut them off
+                // calculations seem to be a bit off sometimes. Subtract 30 so if there are a few characters on the last line then it wont cut them off
                 return CommentCell.height(comment: comment, width: commentTextBoxWidth - 30)
             }
         } else if let link = item as? Link {
@@ -77,7 +77,7 @@ final class PostDetailDelegate: NSObject, NSOutlineViewDelegate {
         } else if let link = item as? Link {
             let cell: PostDetailHeaderCell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PostDetailHeaderCell"), owner: self) as! PostDetailHeaderCell
             cell.delegate = postDetailHeaderDelegate
-            cell.configure(link: link)
+            cell.configure(link: link, sort: viewModel?.currentSort.rawValue ?? "")
             return cell
         }
         return nil

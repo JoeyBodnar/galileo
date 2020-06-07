@@ -51,7 +51,10 @@ final class DetailViewController: NSViewController {
         postDetailViewController = PostDetailViewController()
         postDetailViewController?.delegate = self
         postDetailViewController?.viewModel.link = link
-        postDetailViewController?.viewModel.loadArticleAndComments(for: link)
+        if let suggestedSort = link.data.suggestedSort, let commentSort = CommentSort(rawValue: suggestedSort) {
+            postDetailViewController?.viewModel.currentSort = commentSort
+        }
+        postDetailViewController?.viewModel.loadArticleAndComments(for: link, sort: nil)
         postDetailViewController?.view.setupForAutolayout(superView: view)
         postDetailViewController?.view.pinToSides(superView: view)
     }

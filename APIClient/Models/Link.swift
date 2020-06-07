@@ -50,6 +50,33 @@ public class LinkData: Decodable {
     public var media: Media?
     public var saved: Bool?
     public var likes: Bool?
+    public var suggestedSort: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case selftext
+        case subreddit
+        case clicked
+        case name
+        case ups
+        case downs
+        case score
+        case hide_score = "hide_score"
+        case link_flair_text = "link_flair_text"
+        case thumbnail_height = "thumbnail_height"
+        case thumbnail
+        case post_hint = "post_hint"
+        case author
+        case created_utc = "created_utc"
+        case url
+        case num_comments = "num_comments"
+        case preview
+        case media
+        case saved
+        case likes
+        case suggestedSort = "suggested_sort"
+    }
 }
 
 public class LinkDataMediaPreview: Decodable {
