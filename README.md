@@ -30,7 +30,7 @@ Features Planning to support:
 - Change "All" icon on sidebar to be different from that of the Home button
 - CMD+T for opening a new window
 - handle callbacks for errors when commenting
-- sorting comments
+- <s>sorting comments</s> ✅
 
 Features I am not planning to support (but would welcome a pull request on):
 - create a post
