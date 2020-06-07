@@ -27,5 +27,4 @@ protocol PostDetailViewModelDelegate: AnyObject {
     func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didVoteOnComment comment: Comment, direction: VoteDirection, result: Result<Bool, Error>)
     
     func postDetailViewMode(_ postDetailViewModel: PostDetailViewModel, didSelectArticleLink button: ClearButton, cell: PostDetailHeaderCell)
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didChangeCommentSort commentSort: CommentSort)
 }

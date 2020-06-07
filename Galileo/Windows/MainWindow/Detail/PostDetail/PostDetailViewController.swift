@@ -43,13 +43,6 @@ final class PostDetailViewController: NSViewController {
 
 extension PostDetailViewController: PostDetailViewModelDelegate {
 
-    func postDetailViewModel(_ postDetailViewModel: PostDetailViewModel, didChangeCommentSort commentSort: CommentSort) {
-        /*if viewModel.dataSource.comments.count < 1 { return }
-        viewModel.dataSource.comments = [viewModel.dataSource.comments[0]]
-        outlineView.reloadData()
-        indicator.startAnimation(nil)*/
-    }
-    
     func postDetailViewMode(_ postDetailViewModel: PostDetailViewModel, didSelectArticleLink button: ClearButton, cell: PostDetailHeaderCell) {
         guard let link = viewModel.dataSource.comments[outlineView.row(for: cell)] as? Link else {
             return

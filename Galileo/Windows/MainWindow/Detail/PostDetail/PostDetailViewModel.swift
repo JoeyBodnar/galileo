@@ -39,7 +39,7 @@ final class PostDetailViewModel {
     
     var currentSort: CommentSort = .best
     
-    /// passing in nil as sort will loaad the default sort used by reddit
+    /// passing in nil as sort will load the default sort used by reddit
     func loadArticleAndComments(for link: Link, sort: CommentSort?) {
         PostServices.shared.getComments(subreddit: link.data.subreddit, articleId: link.data.id, isLoggedIn: SessionManager.shared.isLoggedIn, sort: sort?.rawValue) { [weak self] result in
             switch result {
@@ -243,10 +243,10 @@ extension PostDetailViewModel: CommentTextBoxDelegate {
 extension PostDetailViewModel: PostDetailHeaderCellDelegate {
     
     func postDetailHeaderCell(_ postDetailHeaderCell: PostDetailHeaderCell, didSelectSort sort: String) {
+        guard let unwrappedLink = link else { return }
         if let commentSort = CommentSort(rawValue: sort.lowercased()) {
             currentSort = commentSort
-            delegate?.postDetailViewModel(self, didChangeCommentSort: commentSort)
-            loadArticleAndComments(for: self.link!, sort: commentSort)
+            loadArticleAndComments(for: unwrappedLink, sort: commentSort)
         }
     }
     
