@@ -28,7 +28,7 @@ final class MainWindowController: NSWindowController {
     }
     
     // this is called when loading new tabbed window. Not called when loading initial view from storyboard
-    convenience init(initialSubreddit: String) {
+    convenience init(initialSubreddit: String?) {
         let splitViewVc: SplitViewController = SplitViewController()
         splitViewVc.initialSubreddit = initialSubreddit
         self.init(window: NSWindow(contentViewController: splitViewVc))
@@ -36,6 +36,24 @@ final class MainWindowController: NSWindowController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    @IBAction func openNewWindow(sender: Any) {
+        if let splitViewController = contentViewController as? SplitViewController, let postListVc = splitViewController.detailViewController?.postListViewController {
+            let currentSubreddit = postListVc.viewModel.subreddit
+            let subreddit: String?
+            if currentSubreddit == "" && SessionManager.shared.isLoggedIn {
+                subreddit = nil // will load home for logged in user
+            } else if currentSubreddit.count > 0 {
+                subreddit = currentSubreddit
+            } else {
+                subreddit = "Popular"
+            }
+            
+            let mainWindowController = MainWindowController(initialSubreddit: subreddit)
+            window?.addTabbedWindow(mainWindowController.window!, ordered: NSWindow.OrderingMode.above)
+            mainWindowController.window?.orderFront(self)
+        }
     }
 }
 
