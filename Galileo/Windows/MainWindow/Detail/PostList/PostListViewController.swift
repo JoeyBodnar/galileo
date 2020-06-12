@@ -203,7 +203,7 @@ extension PostListViewController: PostListViewModelDelegate {
     func postListViewModel(_ postListViewModelDelegate: PostListViewModel, didRetrievePosts posts: [Any], isNewSubreddit newSubreddit: Bool) {
         didSetResults(isNewSubreddit: newSubreddit, subreddit: viewModel.subreddit, posts: posts)
         viewModel.isFetching = false
-        view.window?.title = viewModel.subreddit
+        view.window?.title = viewModel.windowTitle
     }
 }
 

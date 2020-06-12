@@ -37,6 +37,14 @@ final class PostListViewModel {
         }
     }
     
+    var windowTitle: String {
+        switch listType {
+        case .home: return "Home"
+        case .searchResults: return "Search results for \(searchTerm ?? "")"
+        case .subreddit: return self.subreddit.lowercased()
+        }
+    }
+    
     var isFetching: Bool = false // set to true in PostListViewModel, set to false when tableview updates in DetailviewController
     
     var listType: PostListType = PostListType.subreddit
