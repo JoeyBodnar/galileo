@@ -32,13 +32,7 @@ final public class APIClient {
     
     public var refreshToken: String?
     
-    internal var isRefreshingToken: Bool = false
-    
     internal func dataRequest<T: Decodable>(whiteFlowerRequest: WhiteFlowerRequest, forType type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
-        if isRefreshingToken {
-            //requestInterceptor.pendingUnauthorizedRequests.append(whiteFlowerRequest)
-            return
-        }
         let alteredReqest: WhiteFlowerRequest = requestInterceptor.alteredRequest(fromRequest: whiteFlowerRequest)
         whiteFlower.request(request: alteredReqest) { [weak self] response in
             switch response.serializeTo(type: T.self) {

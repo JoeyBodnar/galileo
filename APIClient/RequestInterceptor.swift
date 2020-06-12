@@ -9,19 +9,11 @@
 import Foundation
 import WhiteFlowerFactory
 
-struct PendingUnauthorizedRequest<T> {
-    let request: WhiteFlowerRequest
-    let type: T
-    let isDataRequest: Bool
-}
-
 internal final class RequestInterceptor {
     
     internal var authToken: String?
     
     private let userAgent: HTTPHeader = HTTPHeader(field: HTTPHeaderField.userAgent, value: "stephen-macbook")
-    
-    //var pendingUnauthorizedDataRequests: [PendingUnauthorizedRequest<T>] = []
     
     /// Automatically adds User-Agent header to each request. If url endpoint contains "oauth", adds Authorization header. If method is POST, adds url encoded content type
     internal func alteredRequest(fromRequest request: WhiteFlowerRequest) -> WhiteFlowerRequest {
