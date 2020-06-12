@@ -45,7 +45,6 @@ final class PostMetaInfoView: NSView {
     
     @objc func subredditButtonPressed() {
         let mainWindowController = MainWindowController(initialSubreddit: subredditLinkButton.title)
-        //mainWindowController.window!.setFrame(LayoutConstants.defaultMainWindowRect, display: true)
         window?.addTabbedWindow(mainWindowController.window!, ordered: NSWindow.OrderingMode.above)
         mainWindowController.window?.orderFront(self)
     }

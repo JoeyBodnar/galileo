@@ -22,5 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
+    
+    @IBAction func commandTPressed(sender: Any) {
+        let mainWindows = NSApplication.shared.windows.filter { $0.windowController is MainWindowController }
+        let lastWindow = mainWindows.last
+        (lastWindow?.windowController as? MainWindowController)?.openNewWindow(sender: sender)
+    }
 }
