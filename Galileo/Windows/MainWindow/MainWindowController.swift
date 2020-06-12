@@ -38,7 +38,7 @@ final class MainWindowController: NSWindowController {
         super.init(coder: coder)
     }
     
-    @IBAction func openNewWindow(sender: Any) {
+    func openNewWindow(sender: Any) {
         if let splitViewController = contentViewController as? SplitViewController, let postListVc = splitViewController.detailViewController?.postListViewController {
             let currentSubreddit = postListVc.viewModel.subreddit
             let subreddit: String?
@@ -51,7 +51,8 @@ final class MainWindowController: NSWindowController {
             }
             
             let mainWindowController = MainWindowController(initialSubreddit: subreddit)
-            window?.addTabbedWindow(mainWindowController.window!, ordered: NSWindow.OrderingMode.above)
+            let lastWindow: NSWindow? = window?.tabbedWindows?.last ?? self.window
+            lastWindow?.addTabbedWindow(mainWindowController.window!, ordered: NSWindow.OrderingMode.above)
             mainWindowController.window?.orderFront(self)
         }
     }

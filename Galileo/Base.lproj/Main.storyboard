@@ -62,7 +62,7 @@
                                     <items>
                                         <menuItem title=" New Window" state="on" keyEquivalent="t" id="Was-JA-tGl">
                                             <connections>
-                                                <action selector="openNewWindowWithSender:" target="Ady-hI-5gd" id="5ZS-TL-16D"/>
+                                                <action selector="commandTPressedWithSender:" target="Ady-hI-5gd" id="V7h-Cw-lhx"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
