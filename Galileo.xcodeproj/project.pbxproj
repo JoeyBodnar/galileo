@@ -35,7 +35,7 @@
 		9F1B3E8B24489E4E003BBB95 /* WindowResizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8A24489E4E003BBB95 /* WindowResizeManager.swift */; };
 		9F1B3E8E2448AA2D003BBB95 /* CommentListWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8D2448AA2D003BBB95 /* CommentListWindowController.swift */; };
 		9F1B3E902448AB3F003BBB95 /* CommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E8F2448AB3F003BBB95 /* CommentListViewController.swift */; };
-		9F1B3E932448AD10003BBB95 /* MailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E922448AD10003BBB95 /* MailViewModel.swift */; };
+		9F1B3E932448AD10003BBB95 /* CommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B3E922448AD10003BBB95 /* CommentListViewModel.swift */; };
 		9F20BE4F244F65D200BC8415 /* SidebarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F20BE4E244F65D200BC8415 /* SidebarItem.swift */; };
 		9F2A8A0B2430F70C00AF3CA4 /* VoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A8A0A2430F70C00AF3CA4 /* VoteRouter.swift */; };
 		9F2A8A0D2430FA4F00AF3CA4 /* AuthenticationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A8A0C2430FA4F00AF3CA4 /* AuthenticationRouter.swift */; };
@@ -128,13 +128,13 @@
 		9FA57404243B885B00B9384C /* PostListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA57403243B885B00B9384C /* PostListDelegate.swift */; };
 		9FA57406243B8BEB00B9384C /* NSActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA57405243B8BEB00B9384C /* NSActivityIndicator.swift */; };
 		9FA57408243B8D9D00B9384C /* PostDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA57407243B8D9D00B9384C /* PostDetailDelegate.swift */; };
-		9FAA536A244B45D0009A58A5 /* MailViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5369244B45D0009A58A5 /* MailViewModelDelegate.swift */; };
+		9FAA536A244B45D0009A58A5 /* CommentListViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5369244B45D0009A58A5 /* CommentListViewModelDelegate.swift */; };
 		9FAA536E244B7D3A009A58A5 /* CommentTextBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAA536D244B7D3A009A58A5 /* CommentTextBoxCell.xib */; };
 		9FAA5370244C1359009A58A5 /* CommentLoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA536F244C1359009A58A5 /* CommentLoadingCell.swift */; };
 		9FAA5373244C138C009A58A5 /* CommentLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAA5372244C138C009A58A5 /* CommentLoadingCell.xib */; };
 		9FB16110243B6D8D00495B0E /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1610F243B6D8D00495B0E /* PostListViewModel.swift */; };
-		9FBA01612448AE0B00C9A8FE /* MailViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01602448AE0B00C9A8FE /* MailViewDataSource.swift */; };
-		9FBA01632448AE1400C9A8FE /* MailViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01622448AE1400C9A8FE /* MailViewDelegate.swift */; };
+		9FBA01612448AE0B00C9A8FE /* CommentListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01602448AE0B00C9A8FE /* CommentListDataSource.swift */; };
+		9FBA01632448AE1400C9A8FE /* CommentListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01622448AE1400C9A8FE /* CommentListDelegate.swift */; };
 		9FBA01662448AFF600C9A8FE /* MailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01652448AFF600C9A8FE /* MailTableViewCell.swift */; };
 		9FBA01682448B0CB00C9A8FE /* MailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FBA01672448B0CB00C9A8FE /* MailTableViewCell.xib */; };
 		9FBA016A2448B8EA00C9A8FE /* MailboxResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA01692448B8EA00C9A8FE /* MailboxResponse.swift */; };
@@ -267,7 +267,7 @@
 		9F1B3E8A24489E4E003BBB95 /* WindowResizeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowResizeManager.swift; sourceTree = "<group>"; };
 		9F1B3E8D2448AA2D003BBB95 /* CommentListWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListWindowController.swift; sourceTree = "<group>"; };
 		9F1B3E8F2448AB3F003BBB95 /* CommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
-		9F1B3E922448AD10003BBB95 /* MailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewModel.swift; sourceTree = "<group>"; };
+		9F1B3E922448AD10003BBB95 /* CommentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewModel.swift; sourceTree = "<group>"; };
 		9F20BE4E244F65D200BC8415 /* SidebarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItem.swift; sourceTree = "<group>"; };
 		9F2A8A0A2430F70C00AF3CA4 /* VoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRouter.swift; sourceTree = "<group>"; };
 		9F2A8A0C2430FA4F00AF3CA4 /* AuthenticationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRouter.swift; sourceTree = "<group>"; };
@@ -364,13 +364,13 @@
 		9FA57403243B885B00B9384C /* PostListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListDelegate.swift; sourceTree = "<group>"; };
 		9FA57405243B8BEB00B9384C /* NSActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSActivityIndicator.swift; sourceTree = "<group>"; };
 		9FA57407243B8D9D00B9384C /* PostDetailDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailDelegate.swift; sourceTree = "<group>"; };
-		9FAA5369244B45D0009A58A5 /* MailViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewModelDelegate.swift; sourceTree = "<group>"; };
+		9FAA5369244B45D0009A58A5 /* CommentListViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewModelDelegate.swift; sourceTree = "<group>"; };
 		9FAA536D244B7D3A009A58A5 /* CommentTextBoxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTextBoxCell.xib; sourceTree = "<group>"; };
 		9FAA536F244C1359009A58A5 /* CommentLoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLoadingCell.swift; sourceTree = "<group>"; };
 		9FAA5372244C138C009A58A5 /* CommentLoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentLoadingCell.xib; sourceTree = "<group>"; };
 		9FB1610F243B6D8D00495B0E /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
-		9FBA01602448AE0B00C9A8FE /* MailViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewDataSource.swift; sourceTree = "<group>"; };
-		9FBA01622448AE1400C9A8FE /* MailViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewDelegate.swift; sourceTree = "<group>"; };
+		9FBA01602448AE0B00C9A8FE /* CommentListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListDataSource.swift; sourceTree = "<group>"; };
+		9FBA01622448AE1400C9A8FE /* CommentListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListDelegate.swift; sourceTree = "<group>"; };
 		9FBA01652448AFF600C9A8FE /* MailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTableViewCell.swift; sourceTree = "<group>"; };
 		9FBA01672448B0CB00C9A8FE /* MailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailTableViewCell.xib; sourceTree = "<group>"; };
 		9FBA01692448B8EA00C9A8FE /* MailboxResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxResponse.swift; sourceTree = "<group>"; };
@@ -516,7 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				9F817F7E24967A7A00C8716A /* Profile */,
-				9F1B3E8C2448AA1A003BBB95 /* MailWindow */,
+				9F1B3E8C2448AA1A003BBB95 /* CommentListWindow */,
 				9FFF0DCD243F511E00651DB2 /* PhotoViewerWindow */,
 				9F0512FB242E2CC600ED64FE /* MainWindow */,
 				9F0512E5242BACF300ED64FE /* WebViewWindow */,
@@ -566,23 +566,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		9F1B3E8C2448AA1A003BBB95 /* MailWindow */ = {
+		9F1B3E8C2448AA1A003BBB95 /* CommentListWindow */ = {
 			isa = PBXGroup;
 			children = (
 				9F1B3E8D2448AA2D003BBB95 /* CommentListWindowController.swift */,
 				9F1B3E912448AB57003BBB95 /* ViewController */,
 			);
-			path = MailWindow;
+			path = CommentListWindow;
 			sourceTree = "<group>";
 		};
 		9F1B3E912448AB57003BBB95 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				9F1B3E8F2448AB3F003BBB95 /* CommentListViewController.swift */,
-				9FAA5369244B45D0009A58A5 /* MailViewModelDelegate.swift */,
-				9F1B3E922448AD10003BBB95 /* MailViewModel.swift */,
-				9FBA01602448AE0B00C9A8FE /* MailViewDataSource.swift */,
-				9FBA01622448AE1400C9A8FE /* MailViewDelegate.swift */,
+				9FAA5369244B45D0009A58A5 /* CommentListViewModelDelegate.swift */,
+				9F1B3E922448AD10003BBB95 /* CommentListViewModel.swift */,
+				9FBA01602448AE0B00C9A8FE /* CommentListDataSource.swift */,
+				9FBA01622448AE1400C9A8FE /* CommentListDelegate.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1223,7 +1223,7 @@
 				9F0512E9242BAD3500ED64FE /* WebViewController.swift in Sources */,
 				9FC1B37F243858A000C60A4C /* PostDetailDataSource.swift in Sources */,
 				9F1B3E7D2444D33B003BBB95 /* URL.swift in Sources */,
-				9FBA01612448AE0B00C9A8FE /* MailViewDataSource.swift in Sources */,
+				9FBA01612448AE0B00C9A8FE /* CommentListDataSource.swift in Sources */,
 				9F1B3E8424484B35003BBB95 /* String.swift in Sources */,
 				9F817F8624967A8A00C8716A /* UserProfileViewController.swift in Sources */,
 				9F8CAFA3245DDA5C0063C156 /* PostListType.swift in Sources */,
@@ -1264,7 +1264,7 @@
 				9FCF3765242E45CC004BDD22 /* SidebarSubredditCell.swift in Sources */,
 				9F7FC3E8242F315A006DD0AF /* LinkArticleCell.swift in Sources */,
 				9FFF0DCF243F516900651DB2 /* PhotoViewerWindowController.swift in Sources */,
-				9F1B3E932448AD10003BBB95 /* MailViewModel.swift in Sources */,
+				9F1B3E932448AD10003BBB95 /* CommentListViewModel.swift in Sources */,
 				9F8CAF97245DC9890063C156 /* SidebarSearchToggleCell.swift in Sources */,
 				9FCF3763242E4552004BDD22 /* TableViewCells.swift in Sources */,
 				9F0512F9242D260900ED64FE /* IdentifierConstants.swift in Sources */,
@@ -1283,7 +1283,7 @@
 				9F9C1FBA242625EB0001DF9E /* SidebarViewController.swift in Sources */,
 				9FFF0DDB243F719C00651DB2 /* LinkVideoCell.swift in Sources */,
 				9F0512DF242A535B00ED64FE /* SplitViewController.swift in Sources */,
-				9FAA536A244B45D0009A58A5 /* MailViewModelDelegate.swift in Sources */,
+				9FAA536A244B45D0009A58A5 /* CommentListViewModelDelegate.swift in Sources */,
 				9F20BE4F244F65D200BC8415 /* SidebarItem.swift in Sources */,
 				9F7FC3D1242E5CB0006DD0AF /* SidebarSectionHeaderCell.swift in Sources */,
 				9F97B493243775AF0059B45F /* PostListViewController.swift in Sources */,
@@ -1294,7 +1294,7 @@
 				9FAA5370244C1359009A58A5 /* CommentLoadingCell.swift in Sources */,
 				9F7FC3DE242F2188006DD0AF /* PostListDataSource.swift in Sources */,
 				9FE566BB24540E3000A108C4 /* PostDetailHeaderCell.swift in Sources */,
-				9FBA01632448AE1400C9A8FE /* MailViewDelegate.swift in Sources */,
+				9FBA01632448AE1400C9A8FE /* CommentListDelegate.swift in Sources */,
 				9FC1B37D2437AFD800C60A4C /* PostDetailViewModel.swift in Sources */,
 				9F6AC378243B44DE00BB31FF /* CommentOutlineView.swift in Sources */,
 				9FCF3760242E423F004BDD22 /* SidebarSection.swift in Sources */,

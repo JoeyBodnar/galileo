@@ -1,5 +1,5 @@
 //
-//  MailViewModel.swift
+//  CommentListViewModel.swift
 //  Nicea
 //
 //  Created by Stephen Bodnar on 4/16/20.
