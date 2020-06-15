@@ -83,7 +83,7 @@ final class LoggedInHeaderContentView: NSView {
     // MARK: - Private
     
     private func showCommentListWindow(type: CommentListType) {
-        CommentListWindowController.present(fromWindow: self.window, commentListType: .userProfile(username: usernameButton.title))
+        CommentListWindowController.present(fromWindow: self.window, commentListType: type)
     }
     
     private func logoutNow() {
