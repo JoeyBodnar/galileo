@@ -9,21 +9,42 @@
 import Foundation
 import APIClient
 
+enum CommentListType {
+    
+    case userProfile(username: String)
+    case mailbox
+    
+    var windowTitle: String {
+        switch self {
+        case .mailbox: return "Mailbox"
+        case .userProfile(username: let username): return username
+        }
+    }
+}
+
 final class CommentListViewModel {
     
     weak var delegate: CommentListViewModelDelegate?
     
-    var commentListType: CommentListType = .mailbox
+    var commentListType: CommentListType = .mailbox {
+        didSet {
+            getComments()
+        }
+    }
+    
+    var windowTitle: String {
+        return commentListType.windowTitle
+    }
     
     func getComments() {
         switch commentListType {
         case .mailbox: getMailbox()
-        case .userProfile: getUserProfile()
+        case .userProfile(let username): getUserProfile(username: username)
         }
     }
     
-    private func getUserProfile() {
-        UserServices.shared.getUserPosts(username: "vaporcasts") { [weak self] result in
+    private func getUserProfile(username: String) {
+        UserServices.shared.getUserPosts(username: username) { [weak self] result in
             switch result {
             case .success(let userComments):
                 guard let weakSelf = self else { return }

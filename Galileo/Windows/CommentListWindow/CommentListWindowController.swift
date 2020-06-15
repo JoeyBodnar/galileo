@@ -10,7 +10,11 @@ import AppKit
 
 final class CommentListWindowController: NSWindowController {
     
-    var commentListType: CommentListType = .mailbox
+    var commentListType: CommentListType = .mailbox {
+        didSet {
+            (contentViewController as? CommentListViewController)?.setCommentListType(type: commentListType)
+        }
+    }
     
     override func loadWindow() {
         super.loadWindow()
@@ -27,5 +31,15 @@ final class CommentListWindowController: NSWindowController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    static func present(fromWindow window: NSWindow?, commentListType: CommentListType) {
+        let storyboard: NSStoryboard = NSStoryboard(name: StoryboardIds.Main, bundle: nil)
+        let commentListController: CommentListWindowController = storyboard.instantiateController(withIdentifier: StoryboardIds.CommentListWindowController) as! CommentListWindowController
+        commentListController.commentListType = commentListType
+        DispatchQueue.main.async {
+            window?.addTabbedWindow(commentListController.window!, ordered: NSWindow.OrderingMode.above)
+            commentListController.window?.orderFront(self)
+        }
     }
 }

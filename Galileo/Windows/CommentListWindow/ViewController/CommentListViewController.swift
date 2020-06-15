@@ -9,12 +9,6 @@
 import AppKit
 import APIClient
 
-enum CommentListType {
-    
-    case userProfile
-    case mailbox
-}
-
 final class CommentListViewController: NSViewController {
     
     private let scrollView: NSScrollView = NSScrollView()
@@ -38,12 +32,10 @@ final class CommentListViewController: NSViewController {
         setupViews()
         indicator.alphaValue = 1
         indicator.startAnimation(nil)
-        viewModel.getComments()
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        view.window?.title = "Mailbox"
+    func setCommentListType(type: CommentListType) {
+        viewModel.commentListType = type
     }
 }
 
@@ -113,6 +105,7 @@ extension CommentListViewController: CommentListViewModelDelegate {
         indicator.stopAnimation(nil)
         tableView.reloadData()
         viewModel.markCommentsRead(comments: comments)
+        view.window?.title = commentListViewModel.windowTitle
     }
     
     func commentListViewModel(_ commentListViewModel: CommentListViewModel, didFailToMarkCommentsRead error: Error) { }
