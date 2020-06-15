@@ -8,19 +8,21 @@
 
 import AppKit
 
-final class MailWindowController: NSWindowController {
+final class CommentListWindowController: NSWindowController {
+    
+    var commentListType: CommentListType = .mailbox
     
     override func loadWindow() {
         super.loadWindow()
-        contentViewController = MailViewController()
+        contentViewController = CommentListViewController()
     }
     
     override func windowDidLoad() {
         super.windowDidLoad()
         guard let windowSize: NSSize = window?.frame.size else { return }
-        let mailVc: MailViewController = MailViewController()
+        let mailVc: CommentListViewController = CommentListViewController()
         mailVc.view.setFrameSize(windowSize)
-        contentViewController = MailViewController()
+        contentViewController = CommentListViewController()
     }
     
     required init?(coder: NSCoder) {

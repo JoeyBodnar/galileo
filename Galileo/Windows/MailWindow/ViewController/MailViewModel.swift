@@ -13,9 +13,28 @@ final class MailViewModel {
     
     weak var delegate: MailViewModelDelegate?
     
-    func getMailbox() {
-        guard let authToken = DefaultsManager.shared.userAuthorizationToken else { return }
-        UserServices.shared.getUserMailbox(authorizationToken: authToken) { [weak self] result in
+    var commentListType: CommentListType = .mailbox
+    
+    func getComments() {
+        switch commentListType {
+        case .mailbox: getMailbox()
+        case .userProfile: getUserProfile()
+        }
+    }
+    
+    private func getUserProfile() {
+        UserServices.shared.getUserPosts(username: "vaporcasts") { [weak self] result in
+            switch result {
+            case .success(let userComments):
+                guard let weakSelf = self else { return }
+                weakSelf.delegate?.mailViewModel(weakSelf, didRetrieveMailbox: userComments.data?.children ?? [])
+            case .failure(let error): print(error)
+            }
+        }
+    }
+    
+    private func getMailbox() {
+        UserServices.shared.getUserMailbox() { [weak self] result in
             switch result {
             case .success(let mailbox):
                 guard let weakSelf = self else { return }
@@ -41,6 +60,7 @@ final class MailViewModel {
     }
     
     func markCommentsRead(comments: [Comment]) {
+        return
         guard SessionManager.shared.isLoggedIn else { return }
         let newComments: [Comment] = comments.filter { $0.data.new ?? false }
         if newComments.count == 0 { return }

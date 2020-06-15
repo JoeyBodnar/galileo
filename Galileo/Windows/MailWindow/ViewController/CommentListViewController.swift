@@ -1,5 +1,5 @@
 //
-//  MailViewController.swift
+//  CommentListViewController.swift
 //  Nicea
 //
 //  Created by Stephen Bodnar on 4/16/20.
@@ -9,7 +9,13 @@
 import AppKit
 import APIClient
 
-final class MailViewController: NSViewController {
+enum CommentListType {
+    
+    case userProfile
+    case mailbox
+}
+
+final class CommentListViewController: NSViewController {
     
     private let scrollView: NSScrollView = NSScrollView()
     private let tableView: NSOutlineView = NSOutlineView()
@@ -32,7 +38,7 @@ final class MailViewController: NSViewController {
         setupViews()
         indicator.alphaValue = 1
         indicator.startAnimation(nil)
-        viewModel.getMailbox()
+        viewModel.getComments()
     }
     
     override func viewDidAppear() {
@@ -42,7 +48,7 @@ final class MailViewController: NSViewController {
 }
 
 // MARK: - CommentTextBoxDelegate
-extension MailViewController: CommentTextBoxDelegate {
+extension CommentListViewController: CommentTextBoxDelegate {
     
     func commentTextBoxCell(_ commentTextBox: CommentTextBoxCell, didSelectSubmit comment: Comment?) {
         if let parentComment = tableView.parent(forItem: comment) as? Comment {
@@ -61,7 +67,7 @@ extension MailViewController: CommentTextBoxDelegate {
 }
 
 // MARK: - CommentTableViewCellViewDelegate
-extension MailViewController: CommentTableViewCellViewDelegate {
+extension CommentListViewController: CommentTableViewCellViewDelegate {
     func commentTableViewCelView(_ commentTableViewCellView: CommentTableViewCellView, comment: Comment, didSelectSaveButton button: ClearButton) {
         PostServices.shared.savePost(id: comment.data.name!) { result in
             switch result {
@@ -82,7 +88,7 @@ extension MailViewController: CommentTableViewCellViewDelegate {
 }
 
 // MARK: - MailViewModelDelegate
-extension MailViewController: MailViewModelDelegate {
+extension CommentListViewController: MailViewModelDelegate {
     
     // called when we successfully respond to a comment
     func mailViewModel(_ mailViewModel: MailViewModel, didRespondToComment comment: Comment, withNewComment newComment: Comment, inCommentBox commentBox: CommentTextBoxCell?) {
@@ -114,7 +120,7 @@ extension MailViewController: MailViewModelDelegate {
 }
 
 // MARK: - Layout/Setup
-extension MailViewController {
+extension CommentListViewController {
     
     private func setupViews() {
         view.wantsLayer = true

@@ -12,7 +12,7 @@ struct StoryboardIds {
     
     static let Main: String = "Main"
     static let AuthenticationWindowController: String = "AuthenticationWindowController"
-    static let MailWindowController: String = "MailWindowController"
+    static let CommentListWindowController: String = "CommentListWindowController"
     static let MainWindowController: String = "MainWindowController"
 }
 

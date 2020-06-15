@@ -51,7 +51,7 @@ final class LoggedInHeaderContentView: NSView {
     
     @objc func didSelectMailBox() {
         let storyboard: NSStoryboard = NSStoryboard(name: StoryboardIds.Main, bundle: nil)
-        let mailWindowController: MailWindowController = storyboard.instantiateController(withIdentifier: StoryboardIds.MailWindowController) as! MailWindowController
+        let mailWindowController: CommentListWindowController = storyboard.instantiateController(withIdentifier: StoryboardIds.CommentListWindowController) as! CommentListWindowController
         DispatchQueue.main.async {
             self.window?.addTabbedWindow(mailWindowController.window!, ordered: NSWindow.OrderingMode.above)
             mailWindowController.window?.orderFront(self)

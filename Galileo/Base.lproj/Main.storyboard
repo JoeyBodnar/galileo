@@ -438,7 +438,7 @@
         <!--Window Controller-->
         <scene sceneID="uGP-ap-Wi5">
             <objects>
-                <windowController storyboardIdentifier="MailWindowController" id="G4S-rJ-Amf" customClass="MailWindowController" customModule="Galileo" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="CommentListWindowController" id="G4S-rJ-Amf" customClass="CommentListWindowController" customModule="Galileo" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="VmD-JP-Zud">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
