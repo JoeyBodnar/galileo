@@ -20,12 +20,12 @@ final class CommentListViewController: NSViewController {
     private let scrollView: NSScrollView = NSScrollView()
     private let tableView: NSOutlineView = NSOutlineView()
     
-    private let mailViewDataSource: MailViewDataSource = MailViewDataSource(comments: [])
-    private lazy var mailViewDelegate: MailViewDelegate = {
-        return MailViewDelegate(dataSource: mailViewDataSource, cellDelegate: self, textBoxCellDelegate: self)
+    private let commentDataSource: CommentListDataSource = CommentListDataSource(comments: [])
+    private lazy var commentDelegate: CommentListDelegate = {
+        return CommentListDelegate(dataSource: commentDataSource, cellDelegate: self, textBoxCellDelegate: self)
     }()
     
-    private let viewModel: MailViewModel = MailViewModel()
+    private let viewModel: CommentListViewModel = CommentListViewModel()
     private let indicator: NSActivityIndicator = NSActivityIndicator()
     
     override func loadView() {
@@ -59,7 +59,7 @@ extension CommentListViewController: CommentTextBoxDelegate {
     func commentTextBoxCell(_ commentTextBox: CommentTextBoxCell, didSelectCancel comment: Comment) {
         if let parentComment = tableView.parent(forItem: comment) as? Comment {
             commentTextBox.clear()
-            mailViewDataSource.removeInProgressComment(forComment: parentComment)
+            commentDataSource.removeInProgressComment(forComment: parentComment)
             tableView.removeItems(at: IndexSet(integer: 0), inParent: parentComment, withAnimation: NSTableView.AnimationOptions.effectFade)
             tableView.reloadItem(parentComment)
         }
@@ -80,7 +80,7 @@ extension CommentListViewController: CommentTableViewCellViewDelegate {
     func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didVote direction: VoteDirection, comment: Comment) { }
     
     func commentTableViewCellView(_ commentTableViewCellView: CommentTableViewCellView, didSelectReply comment: Comment) {
-        guard let _ = mailViewDataSource.insertCommentField(forComment: comment) else { return }
+        guard let _ = commentDataSource.insertCommentField(forComment: comment) else { return }
         tableView.insertItems(at: IndexSet(integer: 0), inParent: comment, withAnimation: NSTableView.AnimationOptions.effectFade)
         tableView.reloadItem(comment)
         tableView.expandItem(comment, expandChildren: true)
@@ -88,11 +88,11 @@ extension CommentListViewController: CommentTableViewCellViewDelegate {
 }
 
 // MARK: - MailViewModelDelegate
-extension CommentListViewController: MailViewModelDelegate {
+extension CommentListViewController: CommentListViewModelDelegate {
     
     // called when we successfully respond to a comment
-    func mailViewModel(_ mailViewModel: MailViewModel, didRespondToComment comment: Comment, withNewComment newComment: Comment, inCommentBox commentBox: CommentTextBoxCell?) {
-        mailViewDataSource.removeInProgressComment(forComment: comment)
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didRespondToComment comment: Comment, withNewComment newComment: Comment, inCommentBox commentBox: CommentTextBoxCell?) {
+        commentDataSource.removeInProgressComment(forComment: comment)
         self.tableView.removeItems(at: IndexSet(integer: 0), inParent: comment, withAnimation: NSTableView.AnimationOptions.effectFade)
         let listingResponse: ListingResponse<Comment> = ListingResponse(modhash: nil, before: nil, after: nil, dist: nil, children: [newComment])
         comment.data.replies = CommentReplyData(kind: "t1", data: listingResponse)
@@ -102,12 +102,12 @@ extension CommentListViewController: MailViewModelDelegate {
         commentBox?.clear()
     }
     
-    func mailViewModel(_ mailViewModel: MailViewModel, didFailToRespondToComment comment: Comment, error: Error) {
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didFailToRespondToComment comment: Comment, error: Error) {
         // should probably show error here
     }
     
-    func mailViewModel(_ mailViewModel: MailViewModel, didRetrieveMailbox comments: [Comment]) {
-        mailViewDataSource.items = comments
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didRetrieveMailbox comments: [Comment]) {
+        commentDataSource.items = comments
         indicator.alphaValue = 0
         tableView.alphaValue = 1
         indicator.stopAnimation(nil)
@@ -115,8 +115,8 @@ extension CommentListViewController: MailViewModelDelegate {
         viewModel.markCommentsRead(comments: comments)
     }
     
-    func mailViewModel(_ mailViewModel: MailViewModel, didFailToMarkCommentsRead error: Error) { }
-    func mailViewModel(_ mailViewModel: MailViewModel, didMarkCommentsRead comments: [Comment]) { }
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didFailToMarkCommentsRead error: Error) { }
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didMarkCommentsRead comments: [Comment]) { }
 }
 
 // MARK: - Layout/Setup
@@ -126,8 +126,8 @@ extension CommentListViewController {
         view.wantsLayer = true
         viewModel.delegate = self
         
-        tableView.delegate = mailViewDelegate
-        tableView.dataSource = mailViewDataSource
+        tableView.delegate = commentDelegate
+        tableView.dataSource = commentDataSource
         tableView.register(NSNib(nibNamed: "MailTableViewCell", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier("MailTableViewCell"))
         tableView.register(NSNib(nibNamed: "CommentTextBoxCell", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier("CommentTextBoxCell"))
         

@@ -9,7 +9,7 @@
 import AppKit
 import APIClient
 
-final class MailViewDataSource: NSObject, NSOutlineViewDataSource {
+final class CommentListDataSource: NSObject, NSOutlineViewDataSource {
     
     var items: [Any]
     

@@ -9,16 +9,16 @@
 import Foundation
 import APIClient
 
-protocol MailViewModelDelegate: AnyObject {
+protocol CommentListViewModelDelegate: AnyObject {
     
-    func mailViewModel(_ mailViewModel: MailViewModel, didRetrieveMailbox comments: [Comment])
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didRetrieveMailbox comments: [Comment])
     
     /// `newComment` is the comment the user just created. `comment` is the one they replied to
-    func mailViewModel(_ mailViewModel: MailViewModel, didRespondToComment comment: Comment, withNewComment newComment: Comment, inCommentBox commentBox: CommentTextBoxCell?)
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didRespondToComment comment: Comment, withNewComment newComment: Comment, inCommentBox commentBox: CommentTextBoxCell?)
     /// the comment passed back is the one the user tried to response to
-    func mailViewModel(_ mailViewModel: MailViewModel, didFailToRespondToComment comment: Comment, error: Error)
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didFailToRespondToComment comment: Comment, error: Error)
     
     /// the comments passed back are the comments that were marked read
-    func mailViewModel(_ mailViewModel: MailViewModel, didMarkCommentsRead comments: [Comment])
-    func mailViewModel(_ mailViewModel: MailViewModel, didFailToMarkCommentsRead error: Error)
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didMarkCommentsRead comments: [Comment])
+    func commentListViewModel(_ commentListViewModel: CommentListViewModel, didFailToMarkCommentsRead error: Error)
 }

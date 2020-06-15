@@ -9,9 +9,9 @@
 import Foundation
 import APIClient
 
-final class MailViewModel {
+final class CommentListViewModel {
     
-    weak var delegate: MailViewModelDelegate?
+    weak var delegate: CommentListViewModelDelegate?
     
     var commentListType: CommentListType = .mailbox
     
@@ -27,7 +27,7 @@ final class MailViewModel {
             switch result {
             case .success(let userComments):
                 guard let weakSelf = self else { return }
-                weakSelf.delegate?.mailViewModel(weakSelf, didRetrieveMailbox: userComments.data?.children ?? [])
+                weakSelf.delegate?.commentListViewModel(weakSelf, didRetrieveMailbox: userComments.data?.children ?? [])
             case .failure(let error): print(error)
             }
         }
@@ -38,7 +38,7 @@ final class MailViewModel {
             switch result {
             case .success(let mailbox):
                 guard let weakSelf = self else { return }
-                weakSelf.delegate?.mailViewModel(weakSelf, didRetrieveMailbox: mailbox.data.children ?? [])
+                weakSelf.delegate?.commentListViewModel(weakSelf, didRetrieveMailbox: mailbox.data.children ?? [])
             case .failure(let error): print(error)
             }
         }
@@ -52,15 +52,14 @@ final class MailViewModel {
             switch result {
             case .success(let comments):
                 CommentReplyCache.shared.removeValue(forKey: parentId)
-                self.delegate?.mailViewModel(self, didRespondToComment: comment, withNewComment: comments[0], inCommentBox: textBoxView)
+                self.delegate?.commentListViewModel(self, didRespondToComment: comment, withNewComment: comments[0], inCommentBox: textBoxView)
             case .failure(let error):
-                self.delegate?.mailViewModel(self, didFailToRespondToComment: comment, error: error)
+                self.delegate?.commentListViewModel(self, didFailToRespondToComment: comment, error: error)
             }
         }
     }
     
     func markCommentsRead(comments: [Comment]) {
-        return
         guard SessionManager.shared.isLoggedIn else { return }
         let newComments: [Comment] = comments.filter { $0.data.new ?? false }
         if newComments.count == 0 { return }
@@ -69,9 +68,9 @@ final class MailViewModel {
             guard let weakSelf = self else { return }
             switch result {
             case .success:
-                weakSelf.delegate?.mailViewModel(weakSelf, didMarkCommentsRead: newComments)
+                weakSelf.delegate?.commentListViewModel(weakSelf, didMarkCommentsRead: newComments)
                 NotificationCenter.default.post(name: .didReadMail, object: nil)
-            case .failure(let error): weakSelf.delegate?.mailViewModel(weakSelf, didFailToMarkCommentsRead: error)
+            case .failure(let error): weakSelf.delegate?.commentListViewModel(weakSelf, didFailToMarkCommentsRead: error)
             }
         }
     }
