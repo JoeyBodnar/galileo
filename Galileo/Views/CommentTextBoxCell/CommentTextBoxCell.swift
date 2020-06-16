@@ -15,8 +15,15 @@ protocol CommentTextBoxDelegate: AnyObject {
     func commentTextBoxCell(_ commentTextBox: CommentTextBoxCell, didSelectCancel comment: Comment)
 }
 
+final class CommentBoxTextView: NSTextView {
+ 
+    override func preferredPasteboardType(from availableTypes: [NSPasteboard.PasteboardType], restrictedToTypesFrom allowedTypes: [NSPasteboard.PasteboardType]?) -> NSPasteboard.PasteboardType? {
+        return NSPasteboard.PasteboardType.string
+    }
+}
+
 final class CommentTextBoxCell: NSTableCellView {
-    @IBOutlet weak var textView: NSTextView!
+    @IBOutlet weak var textView: CommentBoxTextView!
     @IBOutlet weak var cancelButton: GreyButton!
     @IBOutlet weak var submitButton: ControlAccentColorButton!
     @IBOutlet weak var indicator: NSActivityIndicator!
