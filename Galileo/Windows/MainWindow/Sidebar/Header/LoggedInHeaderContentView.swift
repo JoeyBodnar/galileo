@@ -17,7 +17,7 @@ protocol LoggedInHeaderContentViewDelegate: AnyObject {
 final class LoggedInHeaderContentView: NSView {
     
     private let mailButton: ImageButton = ImageButton()
-    private let usernameLabel: NSLabel = NSLabel()
+    private let usernameButton: ClearButton = ClearButton()
     private let karmaLabel: NSLabel = NSLabel()
     
     private let logoutButton: ClearButton = ClearButton()
@@ -44,18 +44,17 @@ final class LoggedInHeaderContentView: NSView {
     }
     
     func setup(user: User) {
-        usernameLabel.stringValue = user.name
+        usernameButton.title = user.name
         karmaLabel.stringValue = "\(user.linkKarma + user.commentKarma)"
         hasUnread = user.inboxCount > 0
     }
     
     @objc func didSelectMailBox() {
-        let storyboard: NSStoryboard = NSStoryboard(name: StoryboardIds.Main, bundle: nil)
-        let mailWindowController: MailWindowController = storyboard.instantiateController(withIdentifier: StoryboardIds.MailWindowController) as! MailWindowController
-        DispatchQueue.main.async {
-            self.window?.addTabbedWindow(mailWindowController.window!, ordered: NSWindow.OrderingMode.above)
-            mailWindowController.window?.orderFront(self)
-        }
+        showCommentListWindow(type: .mailbox)
+    }
+    
+    @objc func didSelectUsername() {
+        showCommentListWindow(type: .userProfile(username: usernameButton.title))
     }
     
     /// called from MailViewModel when the user reads their mail and we mark it as read
@@ -76,13 +75,18 @@ final class LoggedInHeaderContentView: NSView {
         
         let response: NSApplication.ModalResponse = alert.runModal()
         switch response {
-        case .alertFirstButtonReturn:
-            logoutNow()
+        case .alertFirstButtonReturn: logoutNow()
         default: break
         }
     }
     
-    func logoutNow() {
+    // MARK: - Private
+    
+    private func showCommentListWindow(type: CommentListType) {
+        CommentListWindowController.present(fromWindow: self.window, commentListType: type)
+    }
+    
+    private func logoutNow() {
         delegate?.loggedInHeaderContentViewDidSelectLogout(self)
     }
 }
@@ -95,8 +99,8 @@ extension LoggedInHeaderContentView {
         logoutButton.target = self
         logoutButton.action = #selector(logoutPressed)
         
-        usernameLabel.font = NSFont.systemFont(ofSize: 11)
-        usernameLabel.stringValue = ""
+        usernameButton.font = NSFont.systemFont(ofSize: 11)
+        usernameButton.stringValue = ""
         
         karmaLabel.font = NSFont.systemFont(ofSize: 10)
         karmaLabel.stringValue = ""
@@ -105,12 +109,17 @@ extension LoggedInHeaderContentView {
         mailButton.target = self
         mailButton.action = #selector(didSelectMailBox)
         
+        usernameButton.contentTintColor = NSColor.white
+        usernameButton.alignment = .left
+        usernameButton.target = self
+        usernameButton.action = #selector(didSelectUsername)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didReadMail), name: .didReadMail, object: nil)
     }
     
     private func layoutViews() {
         mailButton.setupForAutolayout(superView: self)
-        usernameLabel.setupForAutolayout(superView: self)
+        usernameButton.setupForAutolayout(superView: self)
         karmaLabel.setupForAutolayout(superView: self)
         logoutButton.setupForAutolayout(superView: self)
         
@@ -119,13 +128,13 @@ extension LoggedInHeaderContentView {
         mailButton.heightAnchor.constraint(equalToConstant: 18).activate()
         mailButton.widthAnchor.constraint(equalTo: mailButton.heightAnchor, multiplier: 142 / 110).activate()
         
-        usernameLabel.leadingAnchor.constraint(equalTo: mailButton.trailingAnchor, constant: 8).activate()
-        usernameLabel.topAnchor.constraint(equalTo: mailButton.topAnchor, constant: -5).activate()
-        usernameLabel.trailingAnchor.constraint(equalTo: logoutButton.leadingAnchor).activate()
+        usernameButton.leadingAnchor.constraint(equalTo: mailButton.trailingAnchor, constant: 8).activate()
+        usernameButton.topAnchor.constraint(equalTo: mailButton.topAnchor, constant: -5).activate()
+        usernameButton.trailingAnchor.constraint(equalTo: logoutButton.leadingAnchor).activate()
         
-        karmaLabel.leadingAnchor.constraint(equalTo: usernameLabel.leadingAnchor).activate()
-        karmaLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor).activate()
-        karmaLabel.trailingAnchor.constraint(equalTo: usernameLabel.trailingAnchor).activate()
+        karmaLabel.leadingAnchor.constraint(equalTo: usernameButton.leadingAnchor).activate()
+        karmaLabel.topAnchor.constraint(equalTo: usernameButton.bottomAnchor).activate()
+        karmaLabel.trailingAnchor.constraint(equalTo: usernameButton.trailingAnchor).activate()
         
         logoutButton.centerYAnchor.constraint(equalTo: mailButton.centerYAnchor).activate()
         logoutButton.heightAnchor.constraint(equalToConstant: 16).activate()

@@ -18,7 +18,7 @@ public class UserServices {
         APIClient.shared.dataRequest(whiteFlowerRequest: request, forType: MySubredditListResponse.self, completion: completion)
     }
     
-    public func getUserMailbox(authorizationToken: String, completion: @escaping (Result<MailboxCommentResponse, Error>) -> Void) {
+    public func getUserMailbox(completion: @escaping (Result<MailboxCommentResponse, Error>) -> Void) {
         let endpoint: UserRouter = UserRouter.unreadCommentMail
         let request: WhiteFlowerRequest = WhiteFlowerRequest(method: .get, endPoint: endpoint, params: nil, headers: nil)
         APIClient.shared.dataRequest(whiteFlowerRequest: request, forType: MailboxCommentResponse.self, completion: completion)
@@ -30,7 +30,7 @@ public class UserServices {
         APIClient.shared.dataRequest(whiteFlowerRequest: request, forType: User.self, completion: completion)
     }
     
-    public func getUserPosts(authorizationToken: String, username: String, completion: @escaping (Result<ListingResponse<Comment>, Error>) -> Void) {
-        APIClient.shared.dataRequest(whiteFlowerRequest: WhiteFlowerRequest(method: .get, endPoint: UserRouter.getUserComments(username: username), params: nil, headers: nil), forType: ListingResponse<Comment>.self, completion: completion)
+    public func getUserPosts(username: String, completion: @escaping (Result<CommentReplyData, Error>) -> Void) {
+        APIClient.shared.dataRequest(whiteFlowerRequest: WhiteFlowerRequest(method: .get, endPoint: UserRouter.getUserComments(username: username), params: nil, headers: nil), forType: CommentReplyData.self, completion: completion)
     }
 }

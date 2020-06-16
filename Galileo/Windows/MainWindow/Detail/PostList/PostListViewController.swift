@@ -1,5 +1,5 @@
 //
-//  PostListView.swift
+//  PostListViewController.swift
 //  Nicea
 //
 //  Created by Stephen Bodnar on 4/3/20.

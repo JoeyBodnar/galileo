@@ -1,5 +1,5 @@
 //
-//  MailViewDelegate.swift
+//  CommentListDelegate.swift
 //  Nicea
 //
 //  Created by Stephen Bodnar on 4/16/20.
@@ -9,13 +9,13 @@
 import AppKit
 import APIClient
 
-final class MailViewDelegate: NSObject, NSOutlineViewDelegate {
+final class CommentListDelegate: NSObject, NSOutlineViewDelegate {
     
-    private let dataSource: MailViewDataSource
+    private let dataSource: CommentListDataSource
     private weak var cellDelegate: CommentTableViewCellViewDelegate?
     private weak var textBoxCellDelegate: CommentTextBoxDelegate?
     
-    init(dataSource: MailViewDataSource, cellDelegate: CommentTableViewCellViewDelegate, textBoxCellDelegate: CommentTextBoxDelegate) {
+    init(dataSource: CommentListDataSource, cellDelegate: CommentTableViewCellViewDelegate, textBoxCellDelegate: CommentTextBoxDelegate) {
         self.dataSource = dataSource
         self.cellDelegate = cellDelegate
         self.textBoxCellDelegate = textBoxCellDelegate

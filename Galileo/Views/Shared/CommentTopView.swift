@@ -71,6 +71,10 @@ final class CommentTopView: VotableView {
             }
         }
     }
+    
+    @objc func usernameButtonPressed() {
+        CommentListWindowController.present(fromWindow: self.window, commentListType: .userProfile(username: authorButton.title))
+    }
 }
 
 // MARK: - Layout/Setup
@@ -81,6 +85,9 @@ extension CommentTopView {
         layer?.backgroundColor = NSColor.clear.cgColor
         
         authorButton.font = NSFont.systemFont(ofSize: 10)
+        authorButton.target = self
+        authorButton.action = #selector(usernameButtonPressed)
+        
         voteLabel.font = NSFont.systemFont(ofSize: 10)
         dateLabel.font = NSFont.systemFont(ofSize: 10)
         

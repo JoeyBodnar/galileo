@@ -1,5 +1,5 @@
 //
-//  MailViewDataSource.swift
+//  CommentListDataSource.swift
 //  Nicea
 //
 //  Created by Stephen Bodnar on 4/16/20.
@@ -9,7 +9,7 @@
 import AppKit
 import APIClient
 
-final class MailViewDataSource: NSObject, NSOutlineViewDataSource {
+final class CommentListDataSource: NSObject, NSOutlineViewDataSource {
     
     var items: [Any]
     

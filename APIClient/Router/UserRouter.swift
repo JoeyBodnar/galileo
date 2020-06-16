@@ -27,7 +27,7 @@ enum UserRouter: Provider {
         case .getUserPosts:
             return ""
         case .getUserComments(let username):
-            return "\(baseURL)user/\(username)/comments"
+            return "\(baseURL)user/\(username)/comments?limit=100"
         }
     }
     

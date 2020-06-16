@@ -48,6 +48,10 @@ final class PostMetaInfoView: NSView {
         window?.addTabbedWindow(mainWindowController.window!, ordered: NSWindow.OrderingMode.above)
         mainWindowController.window?.orderFront(self)
     }
+    
+    @objc func usernameButtonPressed() {
+        CommentListWindowController.present(fromWindow: self.window, commentListType: .userProfile(username: usernameButton.title))
+    }
 }
 
 // MARK: - Layout/Setup
@@ -58,6 +62,8 @@ extension PostMetaInfoView {
         postedByLabel.stringValue = "posted by"
         
         usernameButton.font = NSFont.systemFont(ofSize: 10)
+        usernameButton.target = self
+        usernameButton.action = #selector(usernameButtonPressed)
         
         timeButton.font = NSFont.systemFont(ofSize: 10)
         
