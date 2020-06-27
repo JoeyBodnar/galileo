@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="661" height="130"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rWO-BD-pMC">
+                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rWO-BD-pMC" customClass="CommentBoxTextView" customModule="Galileo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="661" height="130"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -87,7 +87,7 @@
                 <outlet property="cancelButton" destination="3C7-T2-twX" id="6z1-Wj-jfS"/>
                 <outlet property="indicator" destination="a40-17-Gjd" id="EfR-DY-Xqp"/>
                 <outlet property="submitButton" destination="zs1-TC-fE2" id="NDL-gQ-GJM"/>
-                <outlet property="textView" destination="rWO-BD-pMC" id="NFi-ba-Pzd"/>
+                <outlet property="textView" destination="rWO-BD-pMC" id="dXc-RL-A1w"/>
             </connections>
             <point key="canvasLocation" x="390.5" y="196.5"/>
         </tableCellView>
